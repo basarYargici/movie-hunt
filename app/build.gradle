@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -32,10 +34,16 @@ android {
 }
 
 dependencies {
-
     implementationAppCompat(dependencies)
+    implementationNavigation(dependencies)
+    implementationHilt(dependencies)
+    implementationNetwork(dependencies)
     testUnit(dependencies)
     testAndroid(dependencies)
-    implementation "androidx.constraintlayout:constraintlayout:${versions.CONSTRAINTLAYOUT}"
-    implementation "com.google.android.material:material:${versions.MATERIAL}"
+    implementation deps.ANDROID_CONSTRAINT_LAYOUT
+    implementation deps.MATERIAL
+    implementation deps.COROUTINES
+    implementation deps.VIEWPAGER2
+    implementation deps.COIL
+    implementation deps.SHIMMER
 }

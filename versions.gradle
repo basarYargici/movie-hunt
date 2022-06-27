@@ -3,43 +3,100 @@ def versions = [
         TARGET_ANDROID_SDK : 32,
         COMPILE_ANDROID_SDK: 32,
         Androidx           : [
-                APP_COMPAT: "1.4.2",
-                CORE_KTX  : "1.8.0",
-                ESPRESSO  : "3.4.0"
+                APP_COMPAT       : "1.4.2",
+                CORE_KTX         : "1.8.0",
+                ESPRESSO         : "3.4.0",
+                NAVIGATION       : "2.4.2",
+                CONSTRAINT_LAYOUT: "2.1.4",
+                RECYCLERVIEW     : "1.2.1",
+                EXT              : "1.1.3",
         ],
         MATERIAL           : "1.6.1",
-        CONSTRAINTLAYOUT   : "2.1.4",
         JUNIT              : "4.13.2",
-        EXT                : "1.1.3"
+        COROUTINES         : "1.3.9",
+        HILT               : "2.38.21",
+        KAPT_HILT          : "2.38.21",
+        HILT_PLUGIN        : "2.38.1",
+        COIL               : "2.1.0",
+        VIEWPAGER2         : "1.0.0",
+        RETROFIT           : "2.9.0",
+        GSON               : "2.9.0",
+        OKHTTP             : "2.9.0",
+        OKHTTP_LOGGING     : "4.9.1",
+        SHIMMER            : "0.5.0",
 ]
 ext.versions = versions
 
-// todo when dependency is needed
 def deps = [
-        ANDROID_CORE_KTX        : "androidx.core:core-ktx:${versions.Androidx.CORE_KTX}",
-        ANDROID_APP_COMPAT      : "androidx.appcompat:appcompat:${versions.Androidx.APP_COMPAT}",
-        ANDROID_CONSTRAINTLAYOUT: "androidx.constraintlayout:constraintlayout:${versions.CONSTRAINTLAYOUT}",
-        MATERIAL                : "com.google.android.material:material:${versions.MATERIAL}",
-        JUNIT                   : "junit:junit:${versions.Androidx.JUNIT}",
-        EXT                     : "androidx.test.ext:${versions.EXT}",
-        ESPRESSO                : "androidx.test.espresso:espresso-core:${versions.Androidx.ESPRESSO}"
+        ANDROID_CORE_KTX         : "androidx.core:core-ktx:${versions.Androidx.CORE_KTX}",
+        ANDROID_APP_COMPAT       : "androidx.appcompat:appcompat:${versions.Androidx.APP_COMPAT}",
+        ESPRESSO                 : "androidx.test.espresso:espresso-core:${versions.Androidx.ESPRESSO}",
+        NAVIGATION_FRAGMENT      : "androidx.navigation:navigation-fragment-ktx:${versions.Androidx.NAVIGATION}",
+        NAVIGATION_UI            : "androidx.navigation:navigation-ui-ktx:${versions.Androidx.NAVIGATION}",
+        RECYCLERVIEW             : "androidx.recyclerview:recyclerview:${versions.Androidx.RECYCLERVIEW}",
+        ANDROID_CONSTRAINT_LAYOUT: "androidx.constraintlayout:constraintlayout:${versions.Androidx.CONSTRAINT_LAYOUT}",
+        EXT                      : "androidx.test.ext:${versions.Androidx.EXT}",
+
+        JUNIT                    : "junit:junit:${versions.JUNIT}",
+        MATERIAL                 : "com.google.android.material:material:${versions.MATERIAL}",
+        COROUTINES               : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.COROUTINES}",
+        HILT                     : "com.google.dagger:hilt-android:${versions.HILT}",
+        KAPT_HILT                : "com.google.dagger:hilt-compiler:${versions.KAPT_HILT}",
+        HILT_PLUGIN              : "com.google.dagger:hilt-android-gradle-plugin:${versions.HILT_PLUGIN}",
+        COIL                     : "io.coil-kt:coil:${versions.COIL}",
+        VIEWPAGER2               : "androidx.viewpager2:viewpager2:${versions.VIEWPAGER2}",
+        RETROFIT                 : "com.squareup.retrofit2:retrofit:${versions.RETROFIT}",
+        GSON                     : "com.squareup.retrofit2:converter-gson:latest.version:${versions.GSON}",
+        OKHTTP                   : "com.squareup.okhttp3:okhttp:${versions.OKHTTP}",
+        OKHTTP_LOGGING           : "com.squareup.okhttp3:okhttp:${versions.OKHTTP_LOGGING}",
+        SHIMMER                  : "com.facebook.shimmer:shimmer:${versions.OKHTTP_LOGGING}",
 ]
 ext.deps = deps
+
+def gradleDeps = [
+        HILT_PLUGIN: "${deps.HILT_PLUGIN}",
+]
+ext.gradleDeps = gradleDeps
 
 def implementationAppCompat(DependencyHandler handler) {
         handler.add("implementation", deps.ANDROID_APP_COMPAT)
         handler.add("implementation", deps.ANDROID_CORE_KTX)
 }
+
 ext.implementationAppCompat = this.&implementationAppCompat
+
+def implementationNavigation(DependencyHandler handler) {
+        handler.add("implementation", deps.NAVIGATION_FRAGMENT)
+        handler.add("implementation", deps.NAVIGATION_UI)
+}
+
+ext.implementationNavigation = this.&implementationNavigation
+
+def implementationHilt(DependencyHandler handler) {
+        handler.add("implementation", deps.HILT)
+        handler.add("implementation", deps.KAPT_HILT)
+}
+
+ext.implementationHilt = this.&implementationHilt
+
+def implementationNetwork(DependencyHandler handler) {
+        handler.add("implementation", deps.RETROFIT)
+        handler.add("implementation", deps.GSON)
+        handler.add("implementation", deps.OKHTTP)
+        handler.add("implementation", deps.OKHTTP_LOGGING)
+        handler.add("implementation", deps.GSON)
+}
+
+ext.implementationNetwork = this.&implementationNetwork
 
 def testUnit(DependencyHandler handler) {
         handler.add("testImplementation", deps.JUNIT)
         handler.add("testImplementation", deps.EXT)
 }
+
 ext.testUnit = this.&testUnit
 
 def testAndroid(DependencyHandler handler) {
         handler.add("androidTestImplementation", deps.ESPRESSO)
 }
-
 ext.testAndroid = this.&testAndroid
