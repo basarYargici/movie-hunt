@@ -1,19 +1,45 @@
 def versions = [
-        MIN_ANDROID_SDK         : 21,
-        TARGET_ANDROID_SDK      : 32,
-        COMPILE_ANDROID_SDK     : 32,
-        Androidx                : [
-                APP_COMPAT      : "1.4.2",
-                CORE_KTX        : "1.8.0",
-                ESPRESSO        : "3.4.0"
+        MIN_ANDROID_SDK    : 21,
+        TARGET_ANDROID_SDK : 32,
+        COMPILE_ANDROID_SDK: 32,
+        Androidx           : [
+                APP_COMPAT: "1.4.2",
+                CORE_KTX  : "1.8.0",
+                ESPRESSO  : "3.4.0"
         ],
-        MATERIAL                : "1.6.1",
-        CONSTRAINTLAYOUT         : "2.1.4",
-        JUNIT                   : "4.13.2",
+        MATERIAL           : "1.6.1",
+        CONSTRAINTLAYOUT   : "2.1.4",
+        JUNIT              : "4.13.2",
+        EXT                : "1.1.3"
 ]
 ext.versions = versions
 
 // todo when dependency is needed
-def deps  = [
+def deps = [
+        ANDROID_CORE_KTX        : "androidx.core:core-ktx:${versions.Androidx.CORE_KTX}",
+        ANDROID_APP_COMPAT      : "androidx.appcompat:appcompat:${versions.Androidx.APP_COMPAT}",
+        ANDROID_CONSTRAINTLAYOUT: "androidx.constraintlayout:constraintlayout:${versions.CONSTRAINTLAYOUT}",
+        MATERIAL                : "com.google.android.material:material:${versions.MATERIAL}",
+        JUNIT                   : "junit:junit:${versions.Androidx.JUNIT}",
+        EXT                     : "androidx.test.ext:${versions.EXT}",
+        ESPRESSO                : "androidx.test.espresso:espresso-core:${versions.Androidx.ESPRESSO}"
 ]
 ext.deps = deps
+
+def implementationAppCompat(DependencyHandler handler) {
+        handler.add("implementation", deps.ANDROID_APP_COMPAT)
+        handler.add("implementation", deps.ANDROID_CORE_KTX)
+}
+ext.implementationAppCompat = this.&implementationAppCompat
+
+def testUnit(DependencyHandler handler) {
+        handler.add("testImplementation", deps.JUNIT)
+        handler.add("testImplementation", deps.EXT)
+}
+ext.testUnit = this.&testUnit
+
+def testAndroid(DependencyHandler handler) {
+        handler.add("androidTestImplementation", deps.ESPRESSO)
+}
+
+ext.testAndroid = this.&testAndroid

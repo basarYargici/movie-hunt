@@ -33,11 +33,9 @@ android {
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:${versions.Androidx.CORE_KTX}"
-    implementation "androidx.appcompat:appcompat:${versions.Androidx.APP_COMPAT}"
-    implementation "com.google.android.material:material:${versions.MATERIAL}"
+    implementationAppCompat(dependencies)
+    testUnit(dependencies)
+    testAndroid(dependencies)
     implementation "androidx.constraintlayout:constraintlayout:${versions.CONSTRAINTLAYOUT}"
-    testImplementation "junit:junit:${versions.Androidx.JUNIT}"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.Androidx.ESPRESSO}"
+    implementation "com.google.android.material:material:${versions.MATERIAL}"
 }
