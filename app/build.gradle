@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk versions.COMPILE_ANDROID_SDK
 
     defaultConfig {
         applicationId "com.basar.moviehunter"
-        minSdk 27
-        targetSdk 32
+        minSdk versions.MIN_ANDROID_SDK
+        targetSdk versions.TARGET_ANDROID_SDK
         versionCode 1
         versionName "1.0"
 
@@ -33,11 +33,11 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
+    implementation "androidx.core:core-ktx:${versions.Androidx.CORE_KTX}"
+    implementation "androidx.appcompat:appcompat:${versions.Androidx.APP_COMPAT}"
+    implementation "com.google.android.material:material:${versions.MATERIAL}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.CONSTRAINTLAYOUT}"
+    testImplementation "junit:junit:${versions.Androidx.JUNIT}"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.Androidx.ESPRESSO}"
 }

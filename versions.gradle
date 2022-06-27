@@ -1,0 +1,19 @@
+def versions = [
+        MIN_ANDROID_SDK         : 21,
+        TARGET_ANDROID_SDK      : 32,
+        COMPILE_ANDROID_SDK     : 32,
+        Androidx                : [
+                APP_COMPAT      : "1.4.2",
+                CORE_KTX        : "1.8.0",
+                ESPRESSO        : "3.4.0"
+        ],
+        MATERIAL                : "1.6.1",
+        CONSTRAINTLAYOUT         : "2.1.4",
+        JUNIT                   : "4.13.2",
+]
+ext.versions = versions
+
+// todo when dependency is needed
+def deps  = [
+]
+ext.deps = deps
