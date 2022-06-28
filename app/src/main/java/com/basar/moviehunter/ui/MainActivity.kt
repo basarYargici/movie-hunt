@@ -9,7 +9,9 @@ import com.basar.moviehunter.R
 import com.basar.moviehunter.base.BaseActivity
 import com.basar.moviehunter.databinding.ActivityMainBinding
 import com.basar.moviehunter.util.Listener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(), Listener {
     private lateinit var navController: NavController
     private val appBarConfiguration: AppBarConfiguration by lazy {
@@ -25,8 +27,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), Listener {
     }
 
     override fun inflateLayout() = ActivityMainBinding.inflate(layoutInflater)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val navHostFragment = findNavHostFragment(R.id.nav_host_fragment)
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController, appBarConfiguration)
