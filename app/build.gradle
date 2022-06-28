@@ -8,6 +8,9 @@ plugins {
 android {
     compileSdk versions.COMPILE_ANDROID_SDK
 
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.basar.moviehunter"
         minSdk versions.MIN_ANDROID_SDK
@@ -17,7 +20,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -30,6 +32,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    packagingOptions {
+        exclude 'META-INF/gradle/incremental.annotation.processors'
     }
 }
 
@@ -46,4 +51,5 @@ dependencies {
     implementation deps.VIEWPAGER2
     implementation deps.COIL
     implementation deps.SHIMMER
+    implementation deps.TIMBER
 }
