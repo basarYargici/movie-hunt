@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieHunter">
         <activity
-            android:name=".ui.BaseActivity"
+            android:name=".base.BaseActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

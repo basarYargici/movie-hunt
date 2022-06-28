@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">MovieHunter</string>
+    <!-- Dummy strings -->
     <string name="lorem_3XL">Modification, history, and death.Vogon of a seismic procedure, observe the
         x-ray vision!Pattern at the alpha quadrant was the assimilation of ellipse, lowered to a unrelated girl.
         The apocalyptic girl impressively attacks the hur\'q.Teleporters resist from paralysis like gravimetric suns.</string>
@@ -13,4 +14,24 @@
     <string name="lorem_S">History, and death.</string>
     <string name="lorem_XS">History.</string>
     <string name="lorem_CHAR">H</string>
+
+    <string name="hello_downloads_fragment">Hello downloads fragment</string>
+    <string name="hello_home_fragment">Hello home fragment</string>
+    <string name="hello_others_fragment">Hello others fragment</string>
+    <string name="hello_upcoming_fragment">Hello upcoming fragment</string>
+    <string name="hello_search_fragment">Hello search fragment</string>
+
+    <!-- Bottom navigation icon strings -->
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_downloads">Downloads</string>
+    <string name="menu_upcoming">Upcoming</string>
+    <string name="menu_others">Others</string>
+
+    <!-- Fragment appbar title strings -->
+    <string name="label_home">Home</string>
+    <string name="label_search">Search</string>
+    <string name="label_downloads">Downloads</string>
+    <string name="label_upcoming">Upcoming</string>
+    <string name="label_others">Others</string>
 </resources>
