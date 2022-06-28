@@ -19,7 +19,9 @@ android {
         targetSdk versions.TARGET_ANDROID_SDK
         versionCode 1
         versionName "1.0"
-
+        buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
+        buildConfigField 'String', 'API_SERVICE_TIMEOUT', '"90"'
+        buildConfigField 'String', 'API_KEY', API_KEY
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

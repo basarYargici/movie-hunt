@@ -20,3 +20,4 @@ local.properties
 /app/src/androidTest/java/com/example/webintent/
 /gradlew.bat
 /gradlew
+gradle.properties

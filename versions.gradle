@@ -49,7 +49,7 @@ def deps = [
         RETROFIT                 : "com.squareup.retrofit2:retrofit:${versions.RETROFIT}",
         GSON                     : "com.squareup.retrofit2:converter-gson:${versions.GSON}",
         OKHTTP                   : "com.squareup.okhttp3:okhttp:${versions.OKHTTP}",
-        OKHTTP_LOGGING           : "com.squareup.okhttp3:okhttp:${versions.OKHTTP_LOGGING}",
+        OKHTTP_LOGGING           : "com.squareup.okhttp3:logging-interceptor:${versions.OKHTTP_LOGGING}",
         SHIMMER                  : "com.facebook.shimmer:shimmer:${versions.SHIMMER}",
         TIMBER                   : "com.jakewharton.timber:timber:${versions.TIMBER}",
 ]
