@@ -1,6 +1,7 @@
 package com.basar.moviehunter.ui.homepage
 
 import com.basar.moviehunter.base.BaseViewModel
+import com.basar.moviehunter.domain.discover.DiscoverUseCase
 import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
@@ -17,7 +18,8 @@ class HomeFragmentViewModel @Inject constructor(
     private val popularUseCase: MovieGetPopularUseCase,
     private val topRatedUseCase: MovieGetTopRatedUseCase,
     private val detailUseCase: MovieGetDetailUseCase,
-    private val upcomingUseCase: MovieGetUpcomingUseCase
+    private val upcomingUseCase: MovieGetUpcomingUseCase,
+    private val discoverUseCase: DiscoverUseCase
 ) : BaseViewModel() {
 
     fun initVM() {
@@ -26,6 +28,7 @@ class HomeFragmentViewModel @Inject constructor(
 //        getTopRated()
 //        getDetail(372058)
 //        getUpcoming()
+        getDiscovery()
     }
 
     private fun getPopular() = launch {
@@ -70,6 +73,18 @@ class HomeFragmentViewModel @Inject constructor(
         }.collect {
             Timber.v(
                 "getUpcoming : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
+            )
+        }
+    }
+
+    private fun getDiscovery(page: Int? = 1, region: String? = "TR") = launch {
+        discoverUseCase(DiscoverUseCase.Params(page, region)).onStart {
+            Timber.v("req started")
+        }.onCompletion {
+            Timber.v("req completed")
+        }.collect {
+            Timber.v(
+                "getDiscovery : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
             )
         }
     }
