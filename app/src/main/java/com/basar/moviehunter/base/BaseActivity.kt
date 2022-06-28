@@ -1,20 +1,23 @@
-package com.basar.moviehunter.ui
+package com.basar.moviehunter.base
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
 import timber.log.Timber
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     lateinit var binding: VB
-    abstract fun getLayoutID(): VB
+    abstract fun inflateLayout(): VB
+    abstract fun initViews(savedInstanceState: Bundle?)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Timber.v("onCreate ${javaClass.simpleName}")
-        binding = getLayoutID()
-        setContentView(binding.root)
         super.onCreate(savedInstanceState)
+        Timber.v("onCreate ${javaClass.simpleName}")
+        binding = inflateLayout()
+        setContentView(binding.root)
+        initViews(savedInstanceState)
     }
 
     override fun onResume() {
@@ -41,4 +44,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         val length = if (isLong == true) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
         Toast.makeText(this, message, length).show()
     }
+
+    fun findNavHostFragment(navHostId: Int) =
+        supportFragmentManager.findFragmentById(navHostId) as NavHostFragment
+
 }
