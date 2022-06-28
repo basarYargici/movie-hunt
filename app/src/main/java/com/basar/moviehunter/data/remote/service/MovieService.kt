@@ -7,6 +7,7 @@ import com.basar.moviehunter.data.model.UpcomingMovieResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieService {
 
@@ -16,10 +17,10 @@ interface MovieService {
     @GET("movie/top_rated")
     suspend fun getTopRated(): TopRatedMoviesResponse
 
-    @GET("/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     suspend fun getDetail(@Path("movie_id") movieId: Int): MovieDetailResponse
 
     // TODO: region should be enum
     @GET("movie/upcoming")
-    suspend fun getUpcoming(@Body region: String?): UpcomingMovieResponse
+    suspend fun getUpcoming(@Query("region") region: String?): UpcomingMovieResponse
 }

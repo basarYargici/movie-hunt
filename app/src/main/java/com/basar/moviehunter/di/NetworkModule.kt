@@ -29,6 +29,7 @@ object NetworkModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
+
     @Singleton
     @Provides
     fun provideOkHttpClient(
@@ -38,9 +39,14 @@ object NetworkModule {
         .connectTimeout(API_SERVICE_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(httpLoggingInterceptor)
         .addInterceptor { chain ->
-            val request: Request = chain.request().newBuilder().addHeader("apıKey", API_KEY).build();
+            val urlWithParams = chain.request().url
+                .newBuilder()
+                .addQueryParameter("api_key", API_KEY)
+                .build()
+            val request: Request = chain.request().newBuilder().url(urlWithParams).build();
             chain.proceed(request);
         }.build()
+
 
     @Singleton
     @Provides

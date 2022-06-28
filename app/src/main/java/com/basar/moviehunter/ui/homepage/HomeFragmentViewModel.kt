@@ -15,13 +15,16 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
     private val popularUseCase: MovieGetPopularUseCase,
-    private val topUseCase: MovieGetTopRatedUseCase,
+    private val topRatedUseCase: MovieGetTopRatedUseCase,
     private val detailUseCase: MovieGetDetailUseCase,
     private val upcomingUseCase: MovieGetUpcomingUseCase
 ) : BaseViewModel() {
 
     fun initVM() {
         getPopular()
+        getTopRated()
+        getDetail(372058)
+        getUpcoming()
     }
 
     private fun getPopular() = launch {
@@ -31,7 +34,41 @@ class HomeFragmentViewModel @Inject constructor(
             Timber.v("req completed")
         }.collect {
             Timber.v(
-                it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
+                "getPopular : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
+            )
+        }
+    }
+
+    private fun getTopRated() = launch {
+        topRatedUseCase(Unit).onStart {
+            Timber.v("req started")
+        }.onCompletion {
+            Timber.v("req completed")
+        }.collect {
+            Timber.v(
+                "getTopRated : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
+            )
+        }
+    }
+
+    private fun getDetail(movieId: Int) = launch {
+        detailUseCase(MovieGetDetailUseCase.Params(movieId)).onStart {
+            Timber.v("req started")
+        }.onCompletion {
+            Timber.v("req completed")
+        }.collect {
+            Timber.v("getDetail : " + it.title)
+        }
+    }
+
+    private fun getUpcoming(region: String = "TR") = launch {
+        upcomingUseCase(MovieGetUpcomingUseCase.Params(region)).onStart {
+            Timber.v("req started")
+        }.onCompletion {
+            Timber.v("req completed")
+        }.collect {
+            Timber.v(
+                "getUpcoming : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
             )
         }
     }
