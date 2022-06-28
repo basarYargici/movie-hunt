@@ -12,15 +12,17 @@ import com.basar.moviehunter.util.Listener
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), Listener {
     private lateinit var navController: NavController
-    private val appBarConfiguration = AppBarConfiguration(
-        setOf(
-            R.id.homeFragment,
-            R.id.searchFragment,
-            R.id.upcomingFragment,
-            R.id.downloadsFragment,
-            R.id.othersFragment
+    private val appBarConfiguration: AppBarConfiguration by lazy {
+        AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.searchFragment,
+                R.id.upcomingFragment,
+                R.id.downloadsFragment,
+                R.id.othersFragment
+            )
         )
-    )
+    }
 
     override fun inflateLayout() = ActivityMainBinding.inflate(layoutInflater)
     override fun onCreate(savedInstanceState: Bundle?) {
