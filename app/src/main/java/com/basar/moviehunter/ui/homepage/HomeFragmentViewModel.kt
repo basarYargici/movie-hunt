@@ -21,10 +21,11 @@ class HomeFragmentViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     fun initVM() {
-        getPopular()
-        getTopRated()
-        getDetail(372058)
-        getUpcoming()
+        // TODO: requests
+//        getPopular()
+//        getTopRated()
+//        getDetail(372058)
+//        getUpcoming()
     }
 
     private fun getPopular() = launch {

@@ -12,13 +12,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val viewmodel: HomeFragmentViewModel by viewModels()
 
-    override fun initViews() {
-        viewmodel.initVM()
-    }
-
     override fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
+    override fun initViews() {
+        viewmodel.initVM()
+    }
 }
