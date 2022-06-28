@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MovieHunter</string>
+    <string name="lorem_3XL">Modification, history, and death.Vogon of a seismic procedure, observe the
+        x-ray vision!Pattern at the alpha quadrant was the assimilation of ellipse, lowered to a unrelated girl.
+        The apocalyptic girl impressively attacks the hur\'q.Teleporters resist from paralysis like gravimetric suns.</string>
+    <string name="lorem_2XL">Modification, history, and death.Vogon of a seismic procedure, observe the
+        x-ray vision!Pattern at the alpha quadrant was the assimilation of ellipse, lowered to a unrelated girl.
+        The apocalyptic girl impressively attacks the hur\'q.</string>
+    <string name="lorem_XL">Modification, history, and death.Vogon of a seismic procedure, observe the x-ray
+        vision!Pattern at the alpha quadrant was the assimilation of ellipse, lowered to a unrelated girl.</string>
+    <string name="lorem_L">Modification, history, and death.Vogon of a seismic procedure, observe the x-ray vision!</string>
+    <string name="lorem_M">Modification, history, and death.</string>
+    <string name="lorem_S">History, and death.</string>
+    <string name="lorem_XS">History.</string>
+    <string name="lorem_CHAR">H</string>
 </resources>
