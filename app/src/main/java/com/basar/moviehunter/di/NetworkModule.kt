@@ -4,6 +4,7 @@ import com.basar.moviehunter.BuildConfig
 import com.basar.moviehunter.BuildConfig.API_KEY
 import com.basar.moviehunter.BuildConfig.API_SERVICE_TIMEOUT
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,6 +41,10 @@ object NetworkModule {
             val request: Request = chain.request().newBuilder().addHeader("apıKey", API_KEY).build();
             chain.proceed(request);
         }.build()
+
+    @Singleton
+    @Provides
+    fun provideGson() = GsonBuilder().create()
 
     @Singleton
     @Provides

@@ -76,7 +76,7 @@ ext.implementationNavigation = this.&implementationNavigation
 
 def implementationHilt(DependencyHandler handler) {
         handler.add("implementation", deps.HILT)
-        handler.add("implementation", deps.KAPT_HILT)
+        handler.add("kapt", deps.KAPT_HILT)
 }
 
 ext.implementationHilt = this.&implementationHilt
