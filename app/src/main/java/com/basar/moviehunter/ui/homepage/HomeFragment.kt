@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
+import com.basar.moviehunter.util.Observer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), Observer {
     private val viewmodel: HomeFragmentViewModel by viewModels()
 
     override fun inflateLayout(
@@ -20,5 +21,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initViews() {
         viewmodel.initVM()
+        setObservers()
+    }
+
+    override fun setObservers() {
+        viewmodel.discoverFilm.observe(viewLifecycleOwner) {
+            binding.tv.text = it.toString()
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.basar.moviehunter.ui.homepage
 
+import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
 import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
@@ -21,6 +22,8 @@ class HomeFragmentViewModel @Inject constructor(
     private val upcomingUseCase: MovieGetUpcomingUseCase,
     private val discoverUseCase: DiscoverUseCase
 ) : BaseViewModel() {
+
+    val discoverFilm = MutableLiveData("asdasd")
 
     fun initVM() {
         // TODO: requests
@@ -83,8 +86,9 @@ class HomeFragmentViewModel @Inject constructor(
         }.onCompletion {
             Timber.v("req completed")
         }.collect {
+            discoverFilm.postValue(it.originalTitle.toString())
             Timber.v(
-                "getDiscovery : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
+                "getDiscovery : " + it.originalTitle.toString()
             )
         }
     }
