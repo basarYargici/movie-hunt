@@ -34,4 +34,6 @@
     <string name="label_downloads">Downloads</string>
     <string name="label_upcoming">Upcoming</string>
     <string name="label_others">Others</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

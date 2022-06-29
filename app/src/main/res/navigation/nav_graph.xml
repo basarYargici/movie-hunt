@@ -1,49 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/home">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.basar.moviehunter.ui.homepage.HomeFragment"
-        android:label="@string/label_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.basar.moviehunter.ui.search.SearchFragment"
-        android:label="@string/label_search"
-        tools:layout="@layout/fragment_search">
-        <action
-            android:id="@+id/action_searchFragment_to_upcomingFragment"
-            app:destination="@id/upcomingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/downloadsFragment"
-        android:name="com.basar.moviehunter.ui.downloads.DownloadsFragment"
-        android:label="@string/label_downloads"
-        tools:layout="@layout/fragment_downloads">
-        <action
-            android:id="@+id/action_downloadsFragment_to_othersFragment2"
-            app:destination="@id/othersFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/upcomingFragment"
-        android:name="com.basar.moviehunter.ui.upcoming.UpcomingFragment"
-        android:label="@string/label_upcoming"
-        tools:layout="@layout/fragment_upcoming">
-        <action
-            android:id="@+id/action_upcomingFragment_to_downloadsFragment"
-            app:destination="@id/downloadsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/othersFragment"
-        android:name="com.basar.moviehunter.ui.others.OthersFragment"
-        android:label="@string/label_others"
-        tools:layout="@layout/fragment_others" />
+    <include app:graph="@navigation/nav_home" />
+    <include app:graph="@navigation/nav_others" />
+    <include app:graph="@navigation/nav_downloads" />
+    <include app:graph="@navigation/nav_search" />
+    <include app:graph="@navigation/nav_upcoming" />
 </navigation>

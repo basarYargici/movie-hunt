@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/others"
+    app:startDestination="@id/othersFragment">
+
+    <fragment
+        android:id="@+id/othersFragment"
+        android:name="com.basar.moviehunter.ui.others.OthersFragment"
+        android:label="fragment_others"
+        tools:layout="@layout/fragment_others" />
+</navigation>

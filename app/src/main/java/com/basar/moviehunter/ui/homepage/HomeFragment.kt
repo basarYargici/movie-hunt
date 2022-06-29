@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
-import com.basar.moviehunter.util.Observer
+import com.basar.moviehunter.extension.observe
+import com.basar.moviehunter.util.Listener
+import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), Observer {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
     private val viewmodel: HomeFragmentViewModel by viewModels()
 
     override fun inflateLayout(
@@ -21,12 +23,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Observer {
 
     override fun initViews() {
         viewmodel.initVM()
-        setObservers()
+        setListeners()
+        setReceiver()
     }
 
-    override fun setObservers() {
-        viewmodel.discoverFilm.observe(viewLifecycleOwner) {
+    override fun setReceiver() {
+        observe(viewmodel.discoverFilm) {
             binding.tv.text = it.toString()
+        }
+    }
+
+    override fun setListeners() {
+        binding.btnGo.setOnClickListener {
+            navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment())
         }
     }
 }
