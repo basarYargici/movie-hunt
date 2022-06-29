@@ -56,4 +56,6 @@ dependencies {
     implementation deps.COIL
     implementation deps.SHIMMER
     implementation deps.TIMBER
+    implementation deps.LIFECYCLE
+
 }
