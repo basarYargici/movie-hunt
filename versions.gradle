@@ -11,6 +11,7 @@ def versions = [
                 RECYCLERVIEW     : "1.2.1",
                 EXT              : "1.1.3",
                 LIFECYCLE        : "2.4.1",
+                SAFE_ARGS        : "2.4.2",
         ],
         MATERIAL           : "1.6.1",
         JUNIT              : "4.13.2",
@@ -39,6 +40,7 @@ def deps = [
         ANDROID_CONSTRAINT_LAYOUT: "androidx.constraintlayout:constraintlayout:${versions.Androidx.CONSTRAINT_LAYOUT}",
         EXT                      : "androidx.test.ext:${versions.Androidx.EXT}",
         LIFECYCLE                : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.Androidx.LIFECYCLE}",
+        SAFE_ARGS                : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.Androidx.SAFE_ARGS}",
 
         JUNIT                    : "junit:junit:${versions.JUNIT}",
         MATERIAL                 : "com.google.android.material:material:${versions.MATERIAL}",
@@ -59,6 +61,7 @@ ext.deps = deps
 
 def gradleDeps = [
         HILT_PLUGIN: "${deps.HILT_PLUGIN}",
+        SAFE_ARGS  : "${deps.SAFE_ARGS}",
 ]
 ext.gradleDeps = gradleDeps
 

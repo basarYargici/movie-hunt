@@ -3,6 +3,7 @@ buildscript {
     apply from: 'versions.gradle'
     dependencies {
         classpath gradleDeps.HILT_PLUGIN
+        classpath gradleDeps.SAFE_ARGS
     }
 }
 
