@@ -3,7 +3,6 @@ package com.basar.moviehunter.ui
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.basar.moviehunter.R
 import com.basar.moviehunter.base.BaseActivity
@@ -14,17 +13,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(), Listener {
     private lateinit var navController: NavController
-    private val appBarConfiguration: AppBarConfiguration by lazy {
-        AppBarConfiguration(
-            setOf(
-                R.id.homeFragment,
-                R.id.searchFragment,
-                R.id.upcomingFragment,
-                R.id.downloadsFragment,
-                R.id.othersFragment
-            )
-        )
-    }
+//    private val appBarConfiguration: AppBarConfiguration by lazy {
+//        AppBarConfiguration(
+//            setOf(
+//                R.id.homeFragment,
+//                R.id.searchFragment,
+//                R.id.upcomingFragment,
+//                R.id.downloadsFragment,
+//                R.id.othersFragment
+//            )
+//        )
+//    }
 
     override fun inflateLayout() = ActivityMainBinding.inflate(layoutInflater)
 
@@ -33,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), Listener {
 
         val navHostFragment = findNavHostFragment(R.id.nav_host_fragment)
         navController = navHostFragment.navController
-        setupActionBarWithNavController(navController, appBarConfiguration)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navController)
 
     }
@@ -41,9 +40,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), Listener {
     override fun initViews(savedInstanceState: Bundle?) {
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        return navController.navigateUp() || super.onSupportNavigateUp()
+//    }
 
     override fun setListeners() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->

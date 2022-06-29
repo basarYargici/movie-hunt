@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
 import com.basar.moviehunter.extension.observe
+import com.basar.moviehunter.extension.setImageBitmap
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,8 +29,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
     }
 
     override fun setReceiver() {
-        observe(viewmodel.discoverFilm) {
-            binding.tv.text = it.toString()
+        observe(viewmodel.discoverUIModel) {
+            binding.tv.text = it?.posterPath.toString()
+        }
+        observe(viewmodel.discoverImageUrl) {
+            binding.imageView.setImageBitmap(it!!)
         }
     }
 
