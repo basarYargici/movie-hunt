@@ -10,13 +10,12 @@ import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
 import com.basar.moviehunter.extension.observe
-import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
-    private val viewmodel: HomeFragmentViewModel by viewModels()
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
+    private val viewModel: HomeFragmentViewModel by viewModels()
 
     override fun inflateLayout(
         inflater: LayoutInflater,
@@ -25,16 +24,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
     ): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
-        viewmodel.initVM()
-        setListeners()
+        viewModel.initVM()
         setReceiver()
     }
 
     override fun setReceiver() {
-        observe(viewmodel.discoverUIModel) { discoverUIModel ->
+        observe(viewModel.discoverUIModel) { discoverUIModel ->
             discoverUIModel?.let {
                 binding.discover.setItem(it, onInfoClickListener = {
-                    navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment())
+                    navigateToMovieDetail(it.id)
                 }, onPlayClickListener = {
                     Toast.makeText(context, "ExoPlayer", Toast.LENGTH_SHORT).show()
                 }, onAddToListClickListener = {
@@ -42,28 +40,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
                 })
             }
         }
-        observe(viewmodel.popularMovieListUI) { popularMovieListUI ->
+        observe(viewModel.popularMovieListUI) { popularMovieListUI ->
             popularMovieListUI?.let {
                 binding.popularMovieList.setItem(popularMovieListUI, onClickListener = {
-                    navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it?.id ?: 0))
+                    navigateToMovieDetail(it?.id)
                 })
             }
         }
-        observe(viewmodel.topRatedMovieListUI) { topMovieListUI ->
+        observe(viewModel.topRatedMovieListUI) { topMovieListUI ->
             topMovieListUI?.let {
                 binding.topMovieList.setItem(topMovieListUI, onClickListener = {
-                    navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it?.id ?: 0))
+                    navigateToMovieDetail(it?.id)
                 })
             }
         }
-        observe(viewmodel.showLoading) {
+        observe(viewModel.showLoading) {
             binding.progressBar.root.visibility = if (it == true) VISIBLE else GONE
         }
     }
 
-    override fun setListeners() {
-//        binding.btnGo.setOnClickListener {
-//            navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment())
-//        }
+    private fun navigateToMovieDetail(id: Int?) {
+        navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(id ?: 0))
     }
 }

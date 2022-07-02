@@ -21,7 +21,6 @@ import javax.inject.Inject
 class HomeFragmentViewModel @Inject constructor(
     private val popularUseCase: MovieGetPopularUseCase,
     private val topRatedUseCase: MovieGetTopRatedUseCase,
-    private val detailUseCase: MovieGetDetailUseCase,
     private val upcomingUseCase: MovieGetUpcomingUseCase,
     private val discoverUseCase: DiscoverUseCase,
 ) : BaseViewModel() {
@@ -34,7 +33,6 @@ class HomeFragmentViewModel @Inject constructor(
         // TODO: requests
         getPopular()
         getTopRated()
-//        getDetail(372058)
 //        getUpcoming()
         getDiscovery()
     }
@@ -68,16 +66,6 @@ class HomeFragmentViewModel @Inject constructor(
                     movieList = movieList
                 )
             )
-        }
-    }
-
-    private fun getDetail(movieId: Int) = launch {
-        detailUseCase(MovieGetDetailUseCase.Params(movieId)).onStart {
-            Timber.v("req started")
-        }.onCompletion {
-            Timber.v("req completed")
-        }.collect {
-            Timber.v("getDetail : " + it.title)
         }
     }
 
