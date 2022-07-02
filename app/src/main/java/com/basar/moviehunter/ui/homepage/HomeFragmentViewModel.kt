@@ -1,7 +1,6 @@
 package com.basar.moviehunter.ui.homepage
 
 import androidx.lifecycle.MutableLiveData
-import com.basar.moviehunter.BuildConfig
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
 import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
@@ -9,7 +8,7 @@ import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
 import com.basar.moviehunter.domain.movie.MovieGetUpcomingUseCase
 import com.basar.moviehunter.extension.launch
-import com.basar.moviehunter.ui.model.DiscoverUI
+import com.basar.moviehunter.ui.model.DiscoverMovieUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
@@ -25,8 +24,7 @@ class HomeFragmentViewModel @Inject constructor(
     private val discoverUseCase: DiscoverUseCase,
 ) : BaseViewModel() {
 
-    val discoverUIModel = MutableLiveData<DiscoverUI>()
-    val discoverImageUrl = MutableLiveData("")
+    val discoverUIModel = MutableLiveData<DiscoverMovieUI>()
 
     fun initVM() {
         // TODO: requests
@@ -92,14 +90,9 @@ class HomeFragmentViewModel @Inject constructor(
             hideLoading()
         }.collect {
             discoverUIModel.postValue(it)
-            getImagePath(it.posterPath)
             Timber.v(
                 "getDiscovery : " + it.posterPath.toString()
             )
         }
-    }
-
-    private fun getImagePath(imagePath: String? = "error.jpg") {
-        discoverImageUrl.postValue(BuildConfig.IMAGE_BASE_URL + "t/p/original/" + imagePath)
     }
 }

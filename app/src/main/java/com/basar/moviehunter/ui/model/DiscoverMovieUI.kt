@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class DiscoverUI(
+data class DiscoverMovieUI(
     val id: Int? = null,
     val posterPath: String? = null,
+    val categoryList: List<String>? = null,
 ) : Parcelable
