@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
-//    private val viewmodel: HomeFragmentViewModel by viewModels()
 
     override fun inflateLayout(
         inflater: LayoutInflater,
@@ -18,6 +17,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     ): FragmentMovieDetailBinding = FragmentMovieDetailBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        binding.tvId.text = arguments?.get("movie_id").toString()
 //        viewmodel.initVM()
 //        setReceiver()
     }

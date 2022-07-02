@@ -8,5 +8,4 @@ fun ImageView.setImageBitmap(url: String) {
     this.load(url)
 }
 
-fun getImageEndpoint(imagePath: String? = "error.jpg") =
-    BuildConfig.IMAGE_BASE_URL + "t/p/original/" + imagePath
+fun getImageEndpoint(imagePath: String? = "error.jpg") = BuildConfig.IMAGE_BASE_URL + "t/p/w500/" + imagePath

@@ -17,5 +17,10 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.basar.moviehunter.ui.homepage.moviedetail.MovieDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail" />
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movie_id"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>
