@@ -127,5 +127,5 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".63" />
 
-
+    <include android:id="@+id/progressBar" layout="@layout/progress_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

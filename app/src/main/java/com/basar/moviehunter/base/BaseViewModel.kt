@@ -2,6 +2,7 @@ package com.basar.moviehunter.base
 
 import androidx.annotation.IdRes
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavDirections
@@ -20,6 +21,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         MutableSharedFlow<Tuple3<NavDirections, NavOptions?, Navigator.Extras?>>()
     var navigateDestination = MutableSharedFlow<ActivityNavigator.Destination>()
     var popBackStack = MutableSharedFlow<Pair<Int, Boolean>>()
+    var showLoading = MutableLiveData(false)
 
     fun navigate(destination: ActivityNavigator.Destination) = launch {
         navigateDestination.emit(destination)
@@ -44,6 +46,15 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     fun popBack(@IdRes destinationId: Int, inclusive: Boolean = false) = launch {
         popBackStack.emit(Pair(destinationId, inclusive))
+    }
+
+    // TODO: viewListener might be created
+    fun showLoading() {
+        showLoading.postValue(true)
+    }
+
+    fun hideLoading() {
+        showLoading.postValue(false)
     }
 
     private fun getError(t: Throwable) = when (t) {

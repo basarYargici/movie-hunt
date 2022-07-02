@@ -2,6 +2,8 @@ package com.basar.moviehunter.ui.homepage
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
@@ -34,6 +36,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
         }
         observe(viewmodel.discoverImageUrl) {
             binding.imageView.setImageBitmap(it!!)
+        }
+        observe(viewmodel.showLoading) {
+            binding.progressBar.root.visibility = if (it == true) {
+                VISIBLE
+            } else {
+                GONE
+            }
         }
     }
 

@@ -86,8 +86,10 @@ class HomeFragmentViewModel @Inject constructor(
     private fun getDiscovery(page: Int? = 1, region: String? = "TR") = launch {
         discoverUseCase(DiscoverUseCase.Params(page, region)).onStart {
             Timber.v("req started")
+            showLoading()
         }.onCompletion {
             Timber.v("req completed")
+            hideLoading()
         }.collect {
             discoverUIModel.postValue(it)
             getImagePath(it.posterPath)
