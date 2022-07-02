@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
@@ -32,7 +33,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
     override fun setReceiver() {
         observe(viewmodel.discoverUIModel) { discoverUIModel ->
             discoverUIModel?.let {
-                binding.discover.setItem(it)
+                binding.discover.setItem(it, onInfoClickListener = {
+                    navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment())
+                }, onPlayClickListener = {
+                    Toast.makeText(context, "ExoPlayer", Toast.LENGTH_SHORT).show()
+                }, onAddToListClickListener = {
+                    Toast.makeText(context, "Add To List", Toast.LENGTH_SHORT).show()
+                })
             }
         }
         observe(viewmodel.showLoading) {
@@ -41,8 +48,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
     }
 
     override fun setListeners() {
-        binding.btnGo.setOnClickListener {
-            navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment())
-        }
+//        binding.btnGo.setOnClickListener {
+//            navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment())
+//        }
     }
 }

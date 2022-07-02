@@ -21,12 +21,29 @@ class DiscoverMovieView @JvmOverloads constructor(
             true
         )
 
-    fun setItem(item: DiscoverMovieUI) {
+    fun setItem(
+        item: DiscoverMovieUI,
+        onInfoClickListener: (() -> Unit)? = null,
+        onAddToListClickListener: (() -> Unit)? = null,
+        onPlayClickListener: (() -> Unit)? = null
+    ) {
         with(binding) {
             var categoriesStr = ""
             item.categoryList?.forEach { s -> categoriesStr += s }
             tvCategories.text = categoriesStr
             imageView.setImageBitmap(getImageEndpoint(item.posterPath))
+            btnInfo.setOnClickListener {
+                onInfoClickListener?.invoke()
+            }
+            imageView.setOnClickListener {
+                onInfoClickListener?.invoke()
+            }
+            btnPlay.setOnClickListener {
+                onPlayClickListener?.invoke()
+            }
+            btnAddToList.setOnClickListener {
+                onAddToListClickListener?.invoke()
+            }
         }
     }
 }
