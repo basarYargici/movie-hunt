@@ -28,11 +28,12 @@ class HomeFragmentViewModel @Inject constructor(
 
     val discoverUIModel = MutableLiveData<DiscoverMovieUI>()
     val popularMovieListUI = MutableLiveData<MovieListUI>()
+    val topRatedMovieListUI = MutableLiveData<MovieListUI>()
 
     fun initVM() {
         // TODO: requests
         getPopular()
-//        getTopRated()
+        getTopRated()
 //        getDetail(372058)
 //        getUpcoming()
         getDiscovery()
@@ -44,12 +45,7 @@ class HomeFragmentViewModel @Inject constructor(
         }.onCompletion {
             hideLoading()
         }.collect {
-            val movieList: ArrayList<MovieResponse> = arrayListOf()
-            it.results?.forEach { movieResponse ->
-                movieResponse?.let { response ->
-                    movieList.add(response)
-                }
-            }
+            val movieList: ArrayList<MovieResponse> = it.results?.filterNotNull() as ArrayList<MovieResponse>
             popularMovieListUI.postValue(
                 MovieListUI(
                     title = "Popular Movies",
@@ -65,8 +61,12 @@ class HomeFragmentViewModel @Inject constructor(
         }.onCompletion {
             Timber.v("req completed")
         }.collect {
-            Timber.v(
-                "getTopRated : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
+            val movieList: ArrayList<MovieResponse> = it.results?.filterNotNull() as ArrayList<MovieResponse>
+            topRatedMovieListUI.postValue(
+                MovieListUI(
+                    title = "Top Rated Movies",
+                    movieList = movieList
+                )
             )
         }
     }

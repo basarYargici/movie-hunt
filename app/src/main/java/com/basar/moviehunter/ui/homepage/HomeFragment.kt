@@ -49,6 +49,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
                 })
             }
         }
+        observe(viewmodel.topRatedMovieListUI) { topMovieListUI ->
+            topMovieListUI?.let {
+                binding.topMovieList.setItem(topMovieListUI, onClickListener = {
+                    navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(it?.id ?: 0))
+                })
+            }
+        }
         observe(viewmodel.showLoading) {
             binding.progressBar.root.visibility = if (it == true) VISIBLE else GONE
         }
