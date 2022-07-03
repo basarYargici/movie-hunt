@@ -2,8 +2,7 @@ package com.basar.moviehunter.ui.homepage
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -54,8 +53,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
                 })
             }
         }
-        observe(viewModel.showLoading) {
-            binding.progressBar.root.visibility = if (it == true) VISIBLE else GONE
+        observe(viewModel.isShimmerVisible) {
+            binding.constraintLayout.visibility = if (it == false) View.VISIBLE else View.GONE
+            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
         }
     }
 

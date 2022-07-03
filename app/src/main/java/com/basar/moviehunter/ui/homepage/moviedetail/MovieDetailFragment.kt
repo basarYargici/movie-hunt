@@ -31,8 +31,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
 
     override fun initViews() {
         val movieId: Int = args.movieId
-        viewModel.getDetail(movieId)
-        viewModel.getSimilar(movieId)
+        viewModel.initVM(movieId)
         setReceiver()
     }
 
@@ -65,8 +64,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
                 layoutManager = GridLayoutManager(context, 2)
             }
         }
-        observe(viewModel.showLoading) {
-            binding.progressBar.root.visibility = if (it == true) View.VISIBLE else View.GONE
+        observe(viewModel.isShimmerVisible) {
+            binding.constraintLayout.visibility = if (it == false) View.VISIBLE else View.GONE
+            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
         }
     }
 

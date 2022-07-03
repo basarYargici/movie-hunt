@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
-import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
 import com.basar.moviehunter.domain.movie.MovieGetUpcomingUseCase
@@ -12,6 +11,10 @@ import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.ui.model.DiscoverMovieUI
 import com.basar.moviehunter.ui.model.MovieListUI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
@@ -28,14 +31,21 @@ class HomeFragmentViewModel @Inject constructor(
     val discoverUIModel = MutableLiveData<DiscoverMovieUI>()
     val popularMovieListUI = MutableLiveData<MovieListUI>()
     val topRatedMovieListUI = MutableLiveData<MovieListUI>()
+    val isShimmerVisible = MutableLiveData(false)
 
-    fun initVM() {
-        // TODO: requests
-        getPopular()
-        getTopRated()
-//        getUpcoming()
-        getDiscovery()
+
+    fun initVM() = launch {
+        val a = async { getPopular() }
+        val b = async { getTopRated() }
+        val c = async { getDiscovery() }
+        awaitAll(a, b, c).asFlow().onStart {
+            isShimmerVisible.postValue(true)
+            delay(5000L)
+        }.onCompletion {
+            isShimmerVisible.postValue(false)
+        }.collect {}
     }
+
 
     private fun getPopular() = launch {
         popularUseCase(Unit).onStart {
