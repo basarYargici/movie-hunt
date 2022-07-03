@@ -3,7 +3,7 @@ package com.basar.moviehunter.ui.homepage.moviedetail
 import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.data.model.MovieDetailResponse
-import com.basar.moviehunter.data.model.PopularMoviesResponse
+import com.basar.moviehunter.data.model.SimilarMoviesResponse
 import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
 import com.basar.moviehunter.domain.movie.MovieGetSimilarUseCase
 import com.basar.moviehunter.extension.launch
@@ -18,7 +18,7 @@ class MovieDetailViewModel @Inject constructor(
     private val similarUseCase: MovieGetSimilarUseCase
 ) : BaseViewModel() {
     val movieDetail = MutableLiveData<MovieDetailResponse>()
-    val similarMovies = MutableLiveData<PopularMoviesResponse>()
+    val similarMovies = MutableLiveData<SimilarMoviesResponse>()
 
     fun getDetail(movieId: Int) = launch {
         detailUseCase(MovieGetDetailUseCase.Params(movieId)).onStart {
