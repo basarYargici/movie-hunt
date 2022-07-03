@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/shimmer_imageView"
+        android:layout_width="125dp"
+        android:layout_height="218dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/shimmer_tvDetail"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_imageView" />
+
+    <View
+        android:id="@+id/shimmer_tvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tvDetail" />
+
+
+    <View
+        android:id="@+id/shimmer_btnPlay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tvCategories" />
+
+    <View
+        android:id="@+id/shimmer_btnDownload"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_btnPlay" />
+
+    <View
+        android:id="@+id/shimmer_tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_btnDownload" />
+
+
+    <View
+        android:id="@+id/shimmer_btnAddToList"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_margin="8dp"
+        android:background="@color/background"
+        app:layout_constraintBottom_toTopOf="@id/shimmer_imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/shimmer_btnShare"
+        app:layout_constraintStart_toStartOf="@+id/shimmer_tvDescription"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tvDescription" />
+
+    <View
+        android:id="@+id/shimmer_btnShare"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:background="@color/background"
+        app:layout_constraintBottom_toBottomOf="@+id/shimmer_btnAddToList"
+        app:layout_constraintEnd_toEndOf="@+id/shimmer_tvDescription"
+        app:layout_constraintStart_toEndOf="@id/shimmer_btnAddToList"
+        app:layout_constraintTop_toTopOf="@+id/shimmer_btnAddToList" />
+
+    <View
+        android:id="@+id/shimmer_imageView2"
+        android:layout_width="125dp"
+        android:layout_height="218dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="@+id/shimmer_btnAddToList"
+        app:layout_constraintStart_toStartOf="@+id/shimmer_btnAddToList"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_btnAddToList" />
+
+    <View
+        android:id="@+id/shimmer_imageView3"
+        android:layout_width="125dp"
+        android:layout_height="218dp"
+        android:background="@color/background"
+        app:layout_constraintEnd_toEndOf="@+id/shimmer_btnShare"
+        app:layout_constraintStart_toStartOf="@+id/shimmer_btnShare"
+        app:layout_constraintTop_toTopOf="@+id/shimmer_imageView2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

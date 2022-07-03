@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/shimmer_tvTitle"
+        android:layout_width="250dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/background"
+        android:text="THE NORTHMAN"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/shimmer_imageView"
+        android:layout_width="125dp"
+        android:layout_height="218dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tvTitle" />
+
+    <View
+        android:id="@+id/shimmer_imageView2"
+        android:layout_width="125dp"
+        android:layout_height="218dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/background"
+        app:layout_constraintStart_toEndOf="@+id/shimmer_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tvTitle" />
+
+    <View
+        android:id="@+id/shimmer_imageView3"
+        android:layout_width="125dp"
+        android:layout_height="218dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/background"
+        app:layout_constraintStart_toEndOf="@+id/shimmer_imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_tvTitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>
