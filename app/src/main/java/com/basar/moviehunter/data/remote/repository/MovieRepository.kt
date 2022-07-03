@@ -13,6 +13,7 @@ interface MovieRepository {
     fun getPopular(): Flow<PopularMoviesResponse>
     fun getTopRated(): Flow<TopRatedMoviesResponse>
     fun getDetail(movieId: Int): Flow<MovieDetailResponse>
+    fun getSimilar(movieId: Int): Flow<PopularMoviesResponse>
     fun getUpcoming(region: String?): Flow<UpcomingMovieResponse>
 }
 
@@ -29,6 +30,10 @@ class MovieRepositoryImpl @Inject constructor(
 
     override fun getDetail(movieId: Int): Flow<MovieDetailResponse> = sendRequest {
         service.getDetail(movieId)
+    }
+
+    override fun getSimilar(movieId: Int): Flow<PopularMoviesResponse> = sendRequest {
+        service.getSimilar(movieId)
     }
 
     override fun getUpcoming(region: String?): Flow<UpcomingMovieResponse> = sendRequest {

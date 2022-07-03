@@ -7,9 +7,8 @@ import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.databinding.ItemMovieListBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.setImageBitmap
-import com.basar.moviehunter.ui.model.MovieListUI
 
-class MovieListAdapter(private var movieListUI: MovieListUI) :
+class MovieListAdapter(private var movieList: List<MovieResponse>?) :
     RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
     var itemClickListener: ((MovieResponse?) -> Unit)? = null
@@ -18,7 +17,7 @@ class MovieListAdapter(private var movieListUI: MovieListUI) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
-            val movie = movieListUI.movieList?.get(position)
+            val movie = movieList?.get(position)
             binding.apply {
                 imageView.setImageBitmap(getImageEndpoint(movie?.posterPath))
                 materialCV.setOnClickListener {
@@ -41,5 +40,5 @@ class MovieListAdapter(private var movieListUI: MovieListUI) :
 
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) = holder.bind(position)
 
-    override fun getItemCount() = movieListUI.movieList?.size ?: 0
+    override fun getItemCount() = movieList?.size ?: 0
 }

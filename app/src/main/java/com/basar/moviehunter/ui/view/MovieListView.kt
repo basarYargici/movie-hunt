@@ -23,11 +23,11 @@ class MovieListView @JvmOverloads constructor(
     fun setItem(item: MovieListUI, onClickListener: ((MovieResponse?) -> Unit)? = null) {
         with(binding) {
             tvTitle.text = item.title
-            initRV(item, onClickListener)
+            initRV(item.movieList, onClickListener)
         }
     }
 
-    private fun ViewMovieListBinding.initRV(item: MovieListUI, onClickListener: ((MovieResponse?) -> Unit)?) {
+    private fun ViewMovieListBinding.initRV(item: List<MovieResponse>?, onClickListener: ((MovieResponse?) -> Unit)?) {
         with(rvItems) {
             with(MovieListAdapter(item)) {
                 itemClickListener = onClickListener

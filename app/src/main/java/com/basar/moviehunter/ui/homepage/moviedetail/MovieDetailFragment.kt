@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentMovieDetailBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.setImageBitmap
+import com.basar.moviehunter.ui.view.MovieListAdapter
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +32,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
     override fun initViews() {
         val movieId: Int = args.movieId
         viewModel.getDetail(movieId)
+        viewModel.getSimilar(movieId)
         setReceiver()
     }
 
@@ -40,12 +44,25 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
                     genreList.add(genreId)
                 }
             }
-            binding.tvDetail.text =
-                "Average Vote: ${movieDetail?.voteAverage} \nDate: ${movieDetail?.releaseDate}"
-            binding.tvCategories.text = categoryMapper(genreList).joinToString(separator = "-")
-            binding.tvDescription.text = movieDetail?.overview
+            with(binding) {
+                tvDetail.text =
+                    "Average Vote: ${movieDetail?.voteAverage} \nDate: ${movieDetail?.releaseDate}"
+                tvCategories.text = categoryMapper(genreList).joinToString(separator = "-")
+                tvDescription.text = movieDetail?.overview
+                imageView.setImageBitmap(getImageEndpoint(movieDetail?.posterPath))
+            }
+        }
 
-            binding.imageView.setImageBitmap(getImageEndpoint(movieDetail?.posterPath))
+        observe(viewModel.similarMovies) { similarMovies ->
+            binding.rvItems.apply {
+                with(MovieListAdapter(similarMovies?.results?.filterNotNull())) {
+                    itemClickListener = {
+                        Toast.makeText(context, it?.id.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                    adapter = this
+                }
+                layoutManager = GridLayoutManager(context, 2)
+            }
         }
         observe(viewModel.showLoading) {
             binding.progressBar.root.visibility = if (it == true) View.VISIBLE else View.GONE
