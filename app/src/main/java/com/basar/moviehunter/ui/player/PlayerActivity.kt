@@ -1,0 +1,42 @@
+package com.basar.moviehunter.ui.player
+
+import android.os.Bundle
+import android.widget.Toast
+import com.basar.moviehunter.BuildConfig
+import com.basar.moviehunter.databinding.ActivityPlayerBinding
+import com.google.android.youtube.player.YouTubeBaseActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+
+class PlayerActivity : YouTubeBaseActivity() {
+    private val binding by lazy(LazyThreadSafetyMode.NONE) {
+        ActivityPlayerBinding.inflate(layoutInflater)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+
+        // Get reference to the view of Video player
+        val ytPlayer = binding.ytPlayer
+
+        ytPlayer.initialize(
+            BuildConfig.YOUTUBE_API_KEY,
+            object : YouTubePlayer.OnInitializedListener {
+                override fun onInitializationSuccess(
+                    provider: YouTubePlayer.Provider,
+                    youTubePlayer: YouTubePlayer, b: Boolean
+                ) {
+                    youTubePlayer.loadVideo("bbMsuI2p1DQ")
+                    youTubePlayer.play()
+                }
+
+                override fun onInitializationFailure(
+                    provider: YouTubePlayer.Provider,
+                    youTubeInitializationResult: YouTubeInitializationResult
+                ) {
+                    Toast.makeText(applicationContext, "Video player Failed", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+}
