@@ -2,6 +2,7 @@ package com.basar.moviehunter.ui.player
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.navigation.navArgs
 import com.basar.moviehunter.BuildConfig
 import com.basar.moviehunter.databinding.ActivityPlayerBinding
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -12,6 +13,7 @@ class PlayerActivity : YouTubeBaseActivity() {
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityPlayerBinding.inflate(layoutInflater)
     }
+    val args: PlayerActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,7 @@ class PlayerActivity : YouTubeBaseActivity() {
                     provider: YouTubePlayer.Provider,
                     youTubePlayer: YouTubePlayer, b: Boolean
                 ) {
-                    youTubePlayer.loadVideo("bbMsuI2p1DQ")
+                    youTubePlayer.loadVideo(args.youtubePath)
                     youTubePlayer.play()
                 }
 

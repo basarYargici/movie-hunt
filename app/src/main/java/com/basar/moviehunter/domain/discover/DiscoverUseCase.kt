@@ -24,10 +24,11 @@ class DiscoverUseCase @Inject constructor(
 
     private fun response2UI(response: DiscoverMovieResponse): DiscoverMovieUI {
         return object : Mapper<DiscoverMovieResponse, DiscoverMovieUI>() {
-            override fun map(value: DiscoverMovieResponse): DiscoverMovieUI = with(value.results?.first()) {
+            override fun map(value: DiscoverMovieResponse): DiscoverMovieUI = with(value.results?.random()) {
                 return DiscoverMovieUI(
                     id = this?.id,
                     posterPath = this?.posterPath,
+                    youtubePath = this?.backdropPath,
                     categoryList = categoryMapper(this?.genreIds)
                 )
             }

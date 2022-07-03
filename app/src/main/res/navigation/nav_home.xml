@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_homeFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -26,5 +29,18 @@
             android:id="@+id/action_movieDetailFragment_self"
             app:destination="@id/movieDetailFragment"
             app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
     </fragment>
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="com.basar.moviehunter.ui.player.PlayerActivity"
+        android:label="activity_player"
+        tools:layout="@layout/activity_player">
+        <argument
+            android:name="youtube_path"
+            app:argType="string" />
+    </activity>
+
 </navigation>

@@ -16,8 +16,7 @@ interface DiscoverRepository {
 class DiscoverRepositoryImpl @Inject constructor(
     private val service: DiscoverService
 ) : BaseRepository(), DiscoverRepository {
-    override fun discoverMovie(page: Int?, region: String?): Flow<DiscoverMovieResponse> =
-        sendRequest {
-            service.discoverMovie(page, region)
-        }
+    override fun discoverMovie(page: Int?, region: String?): Flow<DiscoverMovieResponse> = sendRequest {
+        service.discoverMovie(page, region)
+    }
 }

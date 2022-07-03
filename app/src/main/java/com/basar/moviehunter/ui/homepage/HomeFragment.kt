@@ -33,7 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
                 binding.discover.setItem(it, onInfoClickListener = {
                     navigateToMovieDetail(it.id)
                 }, onPlayClickListener = {
-                    Toast.makeText(context, "ExoPlayer", Toast.LENGTH_SHORT).show()
+                    navigate(HomeFragmentDirections.actionHomeFragmentToPlayerActivity(it.youtubePath ?: ""))
                 }, onAddToListClickListener = {
                     Toast.makeText(context, "Add To List", Toast.LENGTH_SHORT).show()
                 })

@@ -7,5 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class DiscoverMovieUI(
     val id: Int? = null,
     val posterPath: String? = null,
+    val youtubePath: String? = null,
     val categoryList: List<String>? = null,
 ) : Parcelable

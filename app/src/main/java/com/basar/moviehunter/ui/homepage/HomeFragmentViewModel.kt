@@ -7,9 +7,11 @@ import com.basar.moviehunter.domain.discover.DiscoverUseCase
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
 import com.basar.moviehunter.domain.movie.MovieGetUpcomingUseCase
+import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.ui.model.DiscoverMovieUI
 import com.basar.moviehunter.ui.model.MovieListUI
+import com.basar.moviehunter.util.videoMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -26,6 +28,7 @@ class HomeFragmentViewModel @Inject constructor(
     private val topRatedUseCase: MovieGetTopRatedUseCase,
     private val upcomingUseCase: MovieGetUpcomingUseCase,
     private val discoverUseCase: DiscoverUseCase,
+    private val relatedVideosUseCase: GetRelatedMovieVideosUseCase
 ) : BaseViewModel() {
 
     val discoverUIModel = MutableLiveData<DiscoverMovieUI>()
@@ -92,12 +95,33 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     private fun getDiscovery(page: Int? = 1, region: String? = "TR") = launch {
-        discoverUseCase(DiscoverUseCase.Params(page, region)).onStart {
-            showLoading()
-        }.onCompletion {
-            hideLoading()
-        }.collect {
-            discoverUIModel.postValue(it)
+        val discoverReq = async { discoverUseCase(DiscoverUseCase.Params(page, region)) }
+        showLoading()
+        discoverReq.await().collect { discover ->
+            relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(discover.id ?: 0))
+                .onCompletion {
+                    hideLoading()
+                }.collect { video ->
+                    discoverUIModel.postValue(
+                        DiscoverMovieUI(
+                            discover.id,
+                            discover.posterPath,
+                            youtubePath = videoMapper(video)?.key,
+                            categoryList = discover.categoryList
+                        )
+                    )
+                }
         }
+
+//        discoverUseCase(DiscoverUseCase.Params(page, region))
+//            .onStart {
+//                showLoading()
+//            }.onCompletion {
+//                hideLoading()
+//            }.collect {
+//                discoverUIModel.postValue(it)
+//            }
     }
+
+
 }
