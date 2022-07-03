@@ -6,8 +6,7 @@
     android:id="@+id/materialCV"
     android:layout_width="150dp"
     android:layout_height="200dp"
-    android:layout_marginHorizontal="8dp"
-    android:padding="8dp"
+    android:layout_margin="8dp"
     app:cardElevation="0dp"
     app:strokeColor="@color/stroke_color"
     app:strokeWidth="1dp">

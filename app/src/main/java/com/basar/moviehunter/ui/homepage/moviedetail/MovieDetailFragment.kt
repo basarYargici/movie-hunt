@@ -57,6 +57,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             binding.rvItems.apply {
                 with(MovieListAdapter(similarMovies?.results?.filterNotNull())) {
                     itemClickListener = {
+                        navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(it?.id ?: 0))
                         Toast.makeText(context, it?.id.toString(), Toast.LENGTH_SHORT).show()
                     }
                     adapter = this

@@ -22,5 +22,9 @@
             android:name="movie_id"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_movieDetailFragment_self"
+            app:destination="@id/movieDetailFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 </navigation>
