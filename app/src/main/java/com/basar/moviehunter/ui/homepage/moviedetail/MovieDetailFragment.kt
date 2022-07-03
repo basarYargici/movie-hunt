@@ -45,7 +45,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             }
             with(binding) {
                 tvDetail.text =
-                    "Average Vote: ${movieDetail?.voteAverage} \nDate: ${movieDetail?.releaseDate}"
+                    "Average Vote: ${movieDetail?.voteAverage} Date: ${movieDetail?.releaseDate}"
                 tvCategories.text = categoryMapper(genreList).joinToString(separator = "-")
                 tvDescription.text = movieDetail?.overview
                 imageView.setImageBitmap(getImageEndpoint(movieDetail?.posterPath))
@@ -62,6 +62,11 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
                     adapter = this
                 }
                 layoutManager = GridLayoutManager(context, 2)
+            }
+        }
+        observe(viewModel.youtubePath) { path ->
+            binding.btnPlay.setOnClickListener {
+                navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentToPlayerActivity(path ?: ""))
             }
         }
         observe(viewModel.isShimmerVisible) {

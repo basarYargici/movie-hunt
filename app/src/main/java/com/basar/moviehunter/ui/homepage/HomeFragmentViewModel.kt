@@ -36,19 +36,18 @@ class HomeFragmentViewModel @Inject constructor(
     val topRatedMovieListUI = MutableLiveData<MovieListUI>()
     val isShimmerVisible = MutableLiveData(false)
 
-
     fun initVM() = launch {
-        val a = async { getPopular() }
-        val b = async { getTopRated() }
-        val c = async { getDiscovery() }
-        awaitAll(a, b, c).asFlow().onStart {
+        listOf(
+            async { getPopular() },
+            async { getTopRated() },
+            async { getDiscovery() }
+        ).awaitAll().asFlow().onStart {
             isShimmerVisible.postValue(true)
-            delay(2000L)
         }.onCompletion {
+            delay(500L)
             isShimmerVisible.postValue(false)
         }.collect {}
     }
-
 
     private fun getPopular() = launch {
         popularUseCase(Unit).onStart {
@@ -67,27 +66,18 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     private fun getTopRated() = launch {
-        topRatedUseCase(Unit).onStart {
-            Timber.v("req started")
-        }.onCompletion {
-            Timber.v("req completed")
-        }.collect {
-            val movieList: ArrayList<MovieResponse> = it.results?.filterNotNull() as ArrayList<MovieResponse>
+        topRatedUseCase(Unit).collect {
             topRatedMovieListUI.postValue(
                 MovieListUI(
                     title = "Top Rated Movies",
-                    movieList = movieList
+                    movieList = it.results?.filterNotNull() as ArrayList<MovieResponse>
                 )
             )
         }
     }
 
     private fun getUpcoming(region: String = "TR") = launch {
-        upcomingUseCase(MovieGetUpcomingUseCase.Params(region)).onStart {
-            Timber.v("req started")
-        }.onCompletion {
-            Timber.v("req completed")
-        }.collect {
+        upcomingUseCase(MovieGetUpcomingUseCase.Params(region)).collect {
             Timber.v(
                 "getUpcoming : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
             )
@@ -96,7 +86,6 @@ class HomeFragmentViewModel @Inject constructor(
 
     private fun getDiscovery(page: Int? = 1, region: String? = "TR") = launch {
         val discoverReq = async { discoverUseCase(DiscoverUseCase.Params(page, region)) }
-        showLoading()
         discoverReq.await().collect { discover ->
             relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(discover.id ?: 0))
                 .onCompletion {
@@ -112,16 +101,5 @@ class HomeFragmentViewModel @Inject constructor(
                     )
                 }
         }
-
-//        discoverUseCase(DiscoverUseCase.Params(page, region))
-//            .onStart {
-//                showLoading()
-//            }.onCompletion {
-//                hideLoading()
-//            }.collect {
-//                discoverUIModel.postValue(it)
-//            }
     }
-
-
 }
