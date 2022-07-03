@@ -27,7 +27,7 @@ class MovieDetailViewModel @Inject constructor(
         detailUseCase(MovieGetDetailUseCase.Params(movieId))
             .zip(similarUseCase(MovieGetSimilarUseCase.Params(movieId)))
             { movieDetailResponse, similarMoviesResponse ->
-                delay(5000L)
+                delay(2000L)
                 movieDetail.postValue(movieDetailResponse)
                 similarMovies.postValue(similarMoviesResponse)
             }.onStart {

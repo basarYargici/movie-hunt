@@ -108,10 +108,12 @@
 
             <LinearLayout
                 android:id="@+id/llButton"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@+id/tvDescription"
+                app:layout_constraintStart_toStartOf="@+id/tvDescription"
                 app:layout_constraintTop_toBottomOf="@+id/tvDescription">
 
                 <com.google.android.material.button.MaterialButton
@@ -135,6 +137,18 @@
                     app:iconGravity="top" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tvSimilarMovies"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:justificationMode="inter_word"
+                android:text="Similar Movies"
+                app:layout_constraintEnd_toEndOf="@+id/tvDescription"
+                app:layout_constraintStart_toStartOf="@+id/tvDescription"
+                app:layout_constraintTop_toBottomOf="@+id/llButton" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvItems"
                 android:layout_width="0dp"
@@ -142,7 +156,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/tvDescription"
                 app:layout_constraintStart_toStartOf="@+id/tvDescription"
-                app:layout_constraintTop_toBottomOf="@+id/llButton"
+                app:layout_constraintTop_toBottomOf="@+id/tvSimilarMovies"
                 app:spanCount="2"
                 tools:itemCount="4"
                 tools:listitem="@layout/item_movie_list" />

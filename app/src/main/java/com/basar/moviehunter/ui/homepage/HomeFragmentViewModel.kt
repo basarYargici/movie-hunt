@@ -40,7 +40,7 @@ class HomeFragmentViewModel @Inject constructor(
         val c = async { getDiscovery() }
         awaitAll(a, b, c).asFlow().onStart {
             isShimmerVisible.postValue(true)
-            delay(5000L)
+            delay(2000L)
         }.onCompletion {
             isShimmerVisible.postValue(false)
         }.collect {}
