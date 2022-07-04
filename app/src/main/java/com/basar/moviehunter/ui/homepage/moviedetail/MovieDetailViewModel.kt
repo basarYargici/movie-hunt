@@ -33,7 +33,7 @@ class MovieDetailViewModel @Inject constructor(
         listOf(
             async { getDetail(movieId) },
             async { getSimilar(movieId) },
-            async { getMovie(movieId) }
+            async { getMovieVideoPath(movieId) }
         ).awaitAll().asFlow().onStart {
             isShimmerVisible.postValue(true)
         }.onCompletion {
@@ -54,7 +54,7 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    private fun getMovie(movieId: Int) = launch {
+    private fun getMovieVideoPath(movieId: Int) = launch {
         relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(movieId)).collect {
             youtubePath.postValue(videoMapper(it)?.key ?: "")
         }

@@ -9,5 +9,40 @@
         android:id="@+id/searchFragment"
         android:name="com.basar.moviehunter.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/action_searchFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
+        <action
+            android:id="@+id/action_searchFragment_to_home2"
+            app:destination="@id/home">
+            <argument
+                android:name="movie_id"
+                app:argType="integer" />
+        </action>
+
+    </fragment>
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="com.basar.moviehunter.ui.player.PlayerActivity"
+        android:label="activity_player"
+        tools:layout="@layout/activity_player">
+        <argument
+            android:name="youtube_path"
+            app:argType="string" />
+    </activity>
+    <include
+        android:id="@+id/mynav"
+        app:graph="@navigation/nav_home">
+
+        <action
+            android:id="@+id/action_navGraph_to_movieDetail"
+            app:destination="@id/movieDetailFragment4" />
+    </include>
+    <fragment
+        android:id="@+id/movieDetailFragment4"
+        android:name="com.basar.moviehunter.ui.homepage.moviedetail.MovieDetailFragment"
+        android:label="MovieDetailFragment" />
+
 </navigation>

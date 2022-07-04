@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/imgPlayButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgPoster"
+            android:layout_width="84dp"
+            android:layout_height="128dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/dummy_poster" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imgPoster"
+            tools:text="THE NORTHMAN" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/imgPlayButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_play"
+        app:layout_constraintBottom_toBottomOf="@+id/ll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ll" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
