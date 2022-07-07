@@ -60,6 +60,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
     }
 
     private fun navigateToMovieDetail(id: Int?) {
-        navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(id ?: 0))
+        navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetail(id ?: 0))
     }
 }

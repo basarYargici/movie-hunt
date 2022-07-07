@@ -4,34 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
     app:startDestination="@id/homeFragment">
+
+    <include app:graph="@navigation/nav_movie_detail" />
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.basar.moviehunter.ui.homepage.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_playerActivity"
             app:destination="@id/playerActivity" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieDetailFragment"
-        android:name="com.basar.moviehunter.ui.homepage.moviedetail.MovieDetailFragment"
-        android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail">
-        <argument
-            android:name="movie_id"
-            android:defaultValue="0"
-            app:argType="integer" />
         <action
-            android:id="@+id/action_movieDetailFragment_self"
-            app:destination="@id/movieDetailFragment"
-            app:popUpTo="@id/homeFragment" />
-        <action
-            android:id="@+id/action_movieDetailFragment_to_playerActivity"
-            app:destination="@id/playerActivity" />
+            android:id="@+id/action_homeFragment_to_movieDetail"
+            app:destination="@id/movieDetail">
+            <argument
+                android:name="movie_id"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </action>
     </fragment>
     <activity
         android:id="@+id/playerActivity"

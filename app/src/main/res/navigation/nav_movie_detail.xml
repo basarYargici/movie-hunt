@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movieDetail"
+    app:startDestination="@id/movieDetailFragment">
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.basar.moviehunter.ui.homepage.moviedetail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movie_id"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_movieDetailFragment_self"
+            app:destination="@id/movieDetailFragment"
+            app:popUpTo="@id/movieDetailFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_playerActivity"
+            app:destination="@id/playerActivity">
+            <argument
+                android:name="youtube_path"
+                app:argType="string" />
+        </action>
+    </fragment>
+</navigation>

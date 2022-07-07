@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.basar.moviehunter.R
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentSearchBinding
 import com.basar.moviehunter.extension.observe
@@ -65,13 +63,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
                     tvTitle.text = "Most Searched List"
                     val adapter = SearchFragmentAdapter(it.movieList)
                     adapter.itemClickListener = {
-                        // TODO: how to go to detail page and play movie
-                        val bundle = Bundle()
-                        bundle.putString("movieId", it?.id.toString())
-
-                        findNavController().navigate(
-                            R.id.movieDetailFragment4,
-                            args = bundle
+                        navigate(
+                            SearchFragmentDirections.actionSearchFragmentToMovieDetail(
+                                it?.id ?: 0
+                            )
                         )
                     }
                     adapter.onPlayClickListener = {
