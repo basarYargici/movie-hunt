@@ -41,4 +41,9 @@ class PlayerActivity : YouTubeBaseActivity() {
                 }
             })
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

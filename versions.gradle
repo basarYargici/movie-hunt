@@ -27,6 +27,7 @@ def versions = [
         OKHTTP_LOGGING     : "4.9.1",
         SHIMMER            : "0.5.0",
         TIMBER             : "5.0.1",
+        LOTTIE             : "5.2.0",
 ]
 ext.versions = versions
 
@@ -56,6 +57,7 @@ def deps = [
         OKHTTP_LOGGING           : "com.squareup.okhttp3:logging-interceptor:${versions.OKHTTP_LOGGING}",
         SHIMMER                  : "com.facebook.shimmer:shimmer:${versions.SHIMMER}",
         TIMBER                   : "com.jakewharton.timber:timber:${versions.TIMBER}",
+        LOTTIE                   : "com.airbnb.android:lottie:${versions.LOTTIE}",
 ]
 ext.deps = deps
 
@@ -75,6 +77,7 @@ ext.implementationAppCompat = this.&implementationAppCompat
 def implementationNavigation(DependencyHandler handler) {
         handler.add("implementation", deps.NAVIGATION_FRAGMENT)
         handler.add("implementation", deps.NAVIGATION_UI)
+        handler.add("implementation", deps.LOTTIE)
 }
 
 ext.implementationNavigation = this.&implementationNavigation

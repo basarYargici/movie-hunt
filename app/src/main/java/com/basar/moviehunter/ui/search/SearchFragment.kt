@@ -24,14 +24,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
     ): FragmentSearchBinding = FragmentSearchBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
-        viewModel.initVM()
+        // TODO: Is it possible that not recreating fr when bottomNav changed?
+        if (viewModel.isInitialized.value != true) {
+            viewModel.initVM()
+        }
         setReceiver()
 
         with(binding) {
-            // TODO: if search result is null, show lotti
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    Toast.makeText(context, "onQueryTextSubmit..", Toast.LENGTH_LONG).show()
                     if (query != null) {
                         binding.rvItems.scrollToPosition(0)
                         viewModel.getMultiSearch(query)
@@ -41,7 +42,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    Toast.makeText(context, "onQueryTextChange..", Toast.LENGTH_LONG).show()
                     return false
                 }
             })
@@ -101,6 +101,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
         observe(viewModel.isShimmerVisible) {
             binding.cl.visibility = if (it == false) View.VISIBLE else View.GONE
             binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+        }
+
+        observe(viewModel.isNotFoundAnimVisible) {
+            with(binding) {
+                lottieAnimation.visibility = if (it == true) View.VISIBLE else View.GONE
+                if (lottieAnimation.visibility == View.VISIBLE) {
+                    tvTitle.text = "No results found with: ${searchView.query}"
+                }
+            }
         }
     }
 }

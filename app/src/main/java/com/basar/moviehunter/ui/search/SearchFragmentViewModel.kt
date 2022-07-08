@@ -10,6 +10,7 @@ import com.basar.moviehunter.domain.search.SearchUseCase
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.ui.model.MovieListUI
+import com.basar.moviehunter.util.SingleLiveEvent
 import com.basar.moviehunter.util.videoMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -25,11 +26,15 @@ class SearchFragmentViewModel @Inject constructor(
 ) : BaseViewModel() {
     val popularMovieListUI = MutableLiveData<MovieListUI>()
     val searchListUI = MutableLiveData<MovieListUI>()
-    val youtubePath = MutableLiveData<String>()
+    val youtubePath = SingleLiveEvent<String>()
     val isShimmerVisible = MutableLiveData(false)
+    val isNotFoundAnimVisible = MutableLiveData(false)
+    val isInitialized = MutableLiveData(false)
 
     fun initVM() {
+        isInitialized.postValue(true)
         getPopular()
+//        getMultiSearch
     }
 
     fun getMultiSearch(query: String = "al") = launch {
@@ -53,6 +58,10 @@ class SearchFragmentViewModel @Inject constructor(
                     movieList = movieResList
                 )
             )
+            when (movieResList.size) {
+                0 -> isNotFoundAnimVisible.postValue(true)
+                else -> isNotFoundAnimVisible.postValue(false)
+            }
         }
     }
 
