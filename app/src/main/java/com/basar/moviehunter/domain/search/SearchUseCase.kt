@@ -17,4 +17,5 @@ class SearchUseCase @Inject constructor(
     override fun execute(params: Params): Flow<SearchResponse> {
         return repository.multiSearch(params.query)
     }
+    // TODO: responseToUI
 }

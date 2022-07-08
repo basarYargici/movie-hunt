@@ -36,7 +36,7 @@ data class ResultsItem(
 	val known_for: List<PersonKnownFor?>? = null,
 
 	@field:SerializedName("popularity")
-	val popularity: Int? = null,
+	val popularity: Double? = null,
 
 	@field:SerializedName("name")
 	val name: String? = null,
@@ -66,7 +66,7 @@ data class ResultsItem(
 	val title: String? = null,
 
 	@field:SerializedName("genre_ids")
-	val genreIds: List<String?>? = null,
+	val genreIds: List<Int?>? = null,
 
 	@field:SerializedName("poster_path")
 	val posterPath: String? = null,
@@ -78,7 +78,7 @@ data class ResultsItem(
 	val releaseDate: String? = null,
 
 	@field:SerializedName("vote_average")
-	val voteAverage: Int? = null,
+	val voteAverage: Double? = null,
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int? = null,

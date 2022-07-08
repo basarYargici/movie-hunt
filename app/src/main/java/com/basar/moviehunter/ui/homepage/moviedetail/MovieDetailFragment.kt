@@ -74,5 +74,4 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
         }
     }
-
 }
