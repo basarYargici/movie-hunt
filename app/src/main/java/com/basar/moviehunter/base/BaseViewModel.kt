@@ -22,6 +22,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     var navigateDestination = MutableSharedFlow<ActivityNavigator.Destination>()
     var popBackStack = MutableSharedFlow<Pair<Int, Boolean>>()
     var showLoading = MutableLiveData(false)
+    val isShimmerVisible = MutableLiveData(false)
 
     fun navigate(destination: ActivityNavigator.Destination) = launch {
         navigateDestination.emit(destination)
@@ -55,6 +56,14 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     fun hideLoading() {
         showLoading.postValue(false)
+    }
+
+    fun showShimmer() {
+        isShimmerVisible.postValue(true)
+    }
+
+    fun hideShimmer() {
+        isShimmerVisible.postValue(false)
     }
 
     private fun getError(t: Throwable) = when (t) {

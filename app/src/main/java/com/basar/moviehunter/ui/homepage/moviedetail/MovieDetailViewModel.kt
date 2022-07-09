@@ -27,7 +27,6 @@ class MovieDetailViewModel @Inject constructor(
     val movieDetail = MutableLiveData<MovieDetailResponse>()
     val similarMovies = MutableLiveData<SimilarMoviesResponse>()
     val youtubePath = MutableLiveData<String>()
-    val isShimmerVisible = MutableLiveData(false)
 
     fun initVM(movieId: Int) = launch {
         listOf(
@@ -35,10 +34,10 @@ class MovieDetailViewModel @Inject constructor(
             async { getSimilar(movieId) },
             async { getMovieVideoPath(movieId) }
         ).awaitAll().asFlow().onStart {
-            isShimmerVisible.postValue(true)
+            showShimmer()
         }.onCompletion {
             delay(500L)
-            isShimmerVisible.postValue(false)
+            hideShimmer()
         }.collect {}
     }
 

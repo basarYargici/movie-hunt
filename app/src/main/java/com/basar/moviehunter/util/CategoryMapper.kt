@@ -1,8 +1,6 @@
 package com.basar.moviehunter.util
 
-import com.basar.moviehunter.data.model.Genre
-import com.basar.moviehunter.data.model.MovieVideoModel
-import com.basar.moviehunter.data.model.MovieVideosResponse
+import com.basar.moviehunter.data.model.*
 
 // TODO: clean the code
 val genreList = listOf(
@@ -41,3 +39,24 @@ fun videoMapper(video: MovieVideosResponse): MovieVideoModel? =
     video.results?.filter(predicate = { movieVideoModel ->
         movieVideoModel?.site == "YouTube"
     })?.random()
+
+fun resultItemToMovieResponseMapper(item: ResultsItem) = with(item) {
+    MovieResponse(
+        overview,
+        originalLanguage,
+        originalTitle,
+        video,
+        title,
+        genreIds,
+        posterPath,
+        backdropPath,
+        releaseDate,
+        popularity,
+        voteAverage,
+        id,
+        adult,
+        voteCount
+    )
+}
+
+

@@ -34,7 +34,6 @@ class HomeFragmentViewModel @Inject constructor(
     val discoverUIModel = MutableLiveData<DiscoverMovieUI>()
     val popularMovieListUI = MutableLiveData<MovieListUI>()
     val topRatedMovieListUI = MutableLiveData<MovieListUI>()
-    val isShimmerVisible = MutableLiveData(false)
 
     fun initVM() = launch {
         listOf(
@@ -42,10 +41,10 @@ class HomeFragmentViewModel @Inject constructor(
             async { getTopRated() },
             async { getDiscovery() }
         ).awaitAll().asFlow().onStart {
-            isShimmerVisible.postValue(true)
+            showShimmer()
         }.onCompletion {
             delay(500L)
-            isShimmerVisible.postValue(false)
+            hideShimmer()
         }.collect {}
     }
 
