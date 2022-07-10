@@ -19,14 +19,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
     private val popularUseCase: MovieGetPopularUseCase,
     private val topRatedUseCase: MovieGetTopRatedUseCase,
-    private val upcomingUseCase: MovieGetUpcomingUseCase,
     private val discoverUseCase: DiscoverUseCase,
     private val relatedVideosUseCase: GetRelatedMovieVideosUseCase
 ) : BaseViewModel() {
@@ -71,14 +69,6 @@ class HomeFragmentViewModel @Inject constructor(
                     title = "Top Rated Movies",
                     movieList = it.results?.filterNotNull() as ArrayList<MovieResponse>
                 )
-            )
-        }
-    }
-
-    private fun getUpcoming(region: String = "TR") = launch {
-        upcomingUseCase(MovieGetUpcomingUseCase.Params(region)).collect {
-            Timber.v(
-                "getUpcoming : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
             )
         }
     }

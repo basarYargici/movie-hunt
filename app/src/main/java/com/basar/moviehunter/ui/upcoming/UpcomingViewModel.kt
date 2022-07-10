@@ -1,19 +1,21 @@
 package com.basar.moviehunter.ui.upcoming
 
+import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.domain.movie.MovieGetUpcomingUseCase
 import com.basar.moviehunter.extension.launch
+import com.basar.moviehunter.ui.model.UpcomingMovieUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class UpcomingViewModel @Inject constructor(
     private val upcomingUseCase: MovieGetUpcomingUseCase,
 ) : BaseViewModel() {
+    var upcomingMoviesUI = MutableLiveData<List<UpcomingMovieUI>>()
     fun initVM() {
         getUpcoming()
     }
@@ -25,9 +27,7 @@ class UpcomingViewModel @Inject constructor(
             delay(500L)
             hideShimmer()
         }.collect {
-            Timber.v(
-                "getUpcoming : " + it.results?.forEach { movieResponse -> movieResponse?.id }.toString()
-            )
+            upcomingMoviesUI.postValue(it)
         }
     }
 }
