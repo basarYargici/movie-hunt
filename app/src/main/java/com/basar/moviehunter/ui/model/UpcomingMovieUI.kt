@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UpcomingMovieUI(
+    val id: Int? = null,
     val backdropPath: String? = null,
     val releaseDate: String? = null,
     val title: String? = null,

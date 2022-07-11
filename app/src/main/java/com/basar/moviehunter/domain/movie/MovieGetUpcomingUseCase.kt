@@ -29,6 +29,7 @@ class MovieGetUpcomingUseCase @Inject constructor(
                 value.results?.filterNotNull()?.forEach { movieResponse ->
                     upcomingMovieList.add(
                         UpcomingMovieUI(
+                            id = movieResponse.id,
                             backdropPath = movieResponse.backdropPath,
                             releaseDate = movieResponse.releaseDate,
                             title = movieResponse.title,
