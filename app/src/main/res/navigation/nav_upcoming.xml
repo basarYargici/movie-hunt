@@ -9,5 +9,20 @@
         android:id="@+id/upcomingFragment"
         android:name="com.basar.moviehunter.ui.upcoming.UpcomingFragment"
         android:label="fragment_upcoming"
-        tools:layout="@layout/fragment_upcoming" />
+        tools:layout="@layout/fragment_upcoming">
+        <action
+            android:id="@+id/action_upcomingFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="com.basar.moviehunter.ui.player.PlayerActivity"
+        android:label="activity_player"
+        tools:layout="@layout/activity_player">
+        <argument
+            android:name="youtube_path"
+            app:argType="string" />
+    </activity>
+
 </navigation>

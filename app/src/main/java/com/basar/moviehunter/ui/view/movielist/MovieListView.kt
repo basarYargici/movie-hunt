@@ -1,4 +1,4 @@
-package com.basar.moviehunter.ui.view
+package com.basar.moviehunter.ui.view.movielist
 
 import android.content.Context
 import android.util.AttributeSet

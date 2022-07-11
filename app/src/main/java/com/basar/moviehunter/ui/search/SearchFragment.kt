@@ -53,6 +53,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             popularMovieListUI?.let {
                 with(binding) {
                     tvTitle.text = it.title
+                    // TODO: leak each update?
                     val adapter = SearchFragmentAdapter(it.movieList)
                     adapter.itemClickListener = {
                         navigate(

@@ -45,7 +45,7 @@
             tools:context=".ui.homepage.HomeFragment">
 
             <!-- TODO: Image is not loading except height is match parent -->
-            <com.basar.moviehunter.ui.view.DiscoverMovieView
+            <com.basar.moviehunter.ui.view.discover.DiscoverMovieView
                 android:id="@+id/discover"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.basar.moviehunter.ui.view.MovieListView
+            <com.basar.moviehunter.ui.view.movielist.MovieListView
                 android:id="@+id/popularMovieList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/discover" />
 
-            <com.basar.moviehunter.ui.view.MovieListView
+            <com.basar.moviehunter.ui.view.movielist.MovieListView
                 android:id="@+id/topMovieList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

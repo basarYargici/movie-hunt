@@ -13,7 +13,7 @@ import com.basar.moviehunter.databinding.FragmentMovieDetailBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.setImageBitmap
-import com.basar.moviehunter.ui.view.MovieListAdapter
+import com.basar.moviehunter.ui.view.movielist.MovieListAdapter
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.basar.moviehunter.ui.view
+package com.basar.moviehunter.ui.view.movielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
