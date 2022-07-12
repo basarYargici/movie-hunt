@@ -1,11 +1,13 @@
 package com.basar.moviehunter.ui.homepage.moviedetail
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import at.huber.youtubeExtractor.VideoMeta
+import at.huber.youtubeExtractor.YouTubeExtractor
+import at.huber.youtubeExtractor.YtFile
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentMovieDetailBinding
 import com.basar.moviehunter.extension.*
@@ -23,14 +28,11 @@ import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 @AndroidEntryPoint
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver, Listener {
     private val viewModel: MovieDetailViewModel by viewModels()
-    val args: MovieDetailFragmentArgs by navArgs()
-    private var isPermissionGranted = false
-
+    private val args: MovieDetailFragmentArgs by navArgs()
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
 
     companion object {
@@ -101,11 +103,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
 
     private fun getPermissionsRequest() =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
-            if (isAllPermissionsGranted(PERMISSIONS)) {             //extension function
-                downloadImage(
-                    "https://img.freepik.com/premium-vector/warrior-logo-gaming_43623-412.jpg?w=2000",
-                    "warrior"
-                )
+            if (isAllPermissionsGranted(PERMISSIONS)) {
+                downloadYoutubeVideo(viewModel.youtubePath.value.toString())
             } else {
                 Toast.makeText(
                     context,
@@ -115,21 +114,33 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             }
         }
 
-    private fun downloadImage(url: String, fileName: String) {
+    // TODO: handle extraction error, move to domain
+    @SuppressLint("StaticFieldLeak")
+    private fun downloadYoutubeVideo(youtubeLink: String) {
+        return object : YouTubeExtractor(requireContext()) {
+            override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta?) {
+                ytFiles?.let {
+                    download(ytFiles[22].url, vMeta?.title.toString())
+                }
+            }
+        }.extract(youtubeLink)
+    }
+
+    private fun download(url: String, fileName: String) {
         try {
-            var downloadManager = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             val imageLink = Uri.parse(url)
-            var req = DownloadManager.Request(imageLink)
+            val req = DownloadManager.Request(imageLink)
             req.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-                .setMimeType("image/jpeg")
-                .setAllowedOverRoaming(false)
                 .setTitle(fileName)
+                .setDescription("Downloading Your File")
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 .setDestinationInExternalPublicDir(
-                    Environment.DIRECTORY_PICTURES, File.separator + fileName + ".jpg"
+                    Environment.DIRECTORY_DOWNLOADS,
+                    fileName
                 )
+            val downloadManager = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             downloadManager.enqueue(req)
             Toast.makeText(context, "downloaded", Toast.LENGTH_SHORT).show()
-
         } catch (e: Exception) {
             Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show()
         }

@@ -60,6 +60,7 @@ dependencies {
     implementation deps.SHIMMER
     implementation deps.TIMBER
     implementation deps.LIFECYCLE
+    implementation deps.YOUTUBE_EXTRACTOR
 
     implementation files("libs\\YouTubeAndroidPlayerApi.jar")
 }

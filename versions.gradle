@@ -28,6 +28,7 @@ def versions = [
         SHIMMER            : "0.5.0",
         TIMBER             : "5.0.1",
         LOTTIE             : "5.2.0",
+        YOUTUBE_EXTRACTOR  : "master-SNAPSHOT",
 ]
 ext.versions = versions
 
@@ -58,6 +59,7 @@ def deps = [
         SHIMMER                  : "com.facebook.shimmer:shimmer:${versions.SHIMMER}",
         TIMBER                   : "com.jakewharton.timber:timber:${versions.TIMBER}",
         LOTTIE                   : "com.airbnb.android:lottie:${versions.LOTTIE}",
+        YOUTUBE_EXTRACTOR        : "com.github.HaarigerHarald:android-youtubeExtractor:${versions.YOUTUBE_EXTRACTOR}",
 ]
 ext.deps = deps
 
