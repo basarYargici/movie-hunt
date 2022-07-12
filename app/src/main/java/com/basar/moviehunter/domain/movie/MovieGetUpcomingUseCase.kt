@@ -30,7 +30,7 @@ class MovieGetUpcomingUseCase @Inject constructor(
                     upcomingMovieList.add(
                         UpcomingMovieUI(
                             id = movieResponse.id,
-                            backdropPath = movieResponse.backdropPath,
+                            posterPath = movieResponse.posterPath,
                             releaseDate = movieResponse.releaseDate,
                             title = movieResponse.title,
                             overview = movieResponse.overview,

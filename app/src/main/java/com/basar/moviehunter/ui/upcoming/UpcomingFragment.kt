@@ -30,6 +30,7 @@ class UpcomingFragment : BaseFragment<FragmentUpcomingBinding>(), Receiver {
             adapterUpcoming = UpcomingFragmentAdapter(null)
             adapterUpcoming.playClickListener = {
                 Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                // TODO: async problem and catch required if we do not have any youtubePath
                 viewModel.getTutorialLink(it?.id ?: 0)
                 navigate(
                     UpcomingFragmentDirections.actionUpcomingFragmentToPlayerActivity(

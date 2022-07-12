@@ -21,14 +21,16 @@ class UpcomingFragmentAdapter(var movieList: List<UpcomingMovieUI>?) :
         fun bind(position: Int) {
             val movie = movieList?.get(position)
             binding.apply {
-                imgPoster.setImageBitmap(getImageEndpoint(movie?.backdropPath))
-                tvTitle.text = movie?.title
+                imgPoster.setImageBitmap(getImageEndpoint(movie?.posterPath))
                 tvOverview.text = movie?.overview
-                tvCategories.text = movie?.categoryList?.joinToString(separator = System.lineSeparator())
+                tvCategories.text = movie?.categoryList?.joinToString(separator = " - ")
                 imgShareButton.setOnClickListener {
                     shareClickListener?.invoke(movie)
                 }
                 imgPlayButton.setOnClickListener {
+                    playClickListener?.invoke(movie)
+                }
+                imgPoster.setOnClickListener {
                     playClickListener?.invoke(movie)
                 }
             }
