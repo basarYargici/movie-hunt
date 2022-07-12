@@ -18,8 +18,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +26,7 @@
             tools:src="@drawable/dummy_poster" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/gradient"

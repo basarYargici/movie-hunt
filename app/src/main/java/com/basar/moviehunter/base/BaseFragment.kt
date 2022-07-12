@@ -1,5 +1,6 @@
 package com.basar.moviehunter.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.MenuRes
@@ -87,6 +88,17 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             navOptions,
             navigatorExtras
         )
+    }
+
+    protected fun shareMessage(message: String) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, message)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
 }

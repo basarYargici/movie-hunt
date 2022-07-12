@@ -14,12 +14,13 @@ import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.setImageBitmap
 import com.basar.moviehunter.ui.view.movielist.MovieListAdapter
+import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver {
+class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver, Listener {
     private val viewModel: MovieDetailViewModel by viewModels()
     val args: MovieDetailFragmentArgs by navArgs()
 
@@ -33,6 +34,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         val movieId: Int = args.movieId
         viewModel.initVM(movieId)
         setReceiver()
+        setListeners()
     }
 
     override fun setReceiver() {
@@ -44,8 +46,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
                 }
             }
             with(binding) {
-                tvDetail.text =
-                    "Average Vote: ${movieDetail?.voteAverage} Date: ${movieDetail?.releaseDate}"
+                tvDetail.text = "Average Vote: ${movieDetail?.voteAverage} Date: ${movieDetail?.releaseDate}"
                 tvCategories.text = categoryMapper(genreList).joinToString(separator = "-")
                 tvDescription.text = movieDetail?.overview
                 imageView.setImageBitmap(getImageEndpoint(movieDetail?.posterPath))
@@ -72,6 +73,12 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         observe(viewModel.isShimmerVisible) {
             binding.constraintLayout.visibility = if (it == false) View.VISIBLE else View.GONE
             binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+        }
+    }
+
+    override fun setListeners() {
+        binding.btnShare.setOnClickListener {
+            shareMessage(viewModel.movieDetail.value.toString())
         }
     }
 }

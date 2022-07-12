@@ -28,9 +28,7 @@ class DiscoverMovieView @JvmOverloads constructor(
         onPlayClickListener: (() -> Unit)? = null
     ) {
         with(binding) {
-            var categoriesStr = ""
-            item.categoryList?.forEach { s -> categoriesStr += s }
-            tvCategories.text = categoriesStr
+            tvCategories.text = item.categoryList?.joinToString(separator = "-")
             imageView.setImageBitmap(getImageEndpoint(item.posterPath))
             btnInfo.setOnClickListener {
                 onInfoClickListener?.invoke()
