@@ -1,5 +1,6 @@
 package com.basar.moviehunter.ui.homepage.moviedetail
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.DownloadManager
@@ -24,6 +25,7 @@ import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentMovieDetailBinding
 import com.basar.moviehunter.extension.*
 import com.basar.moviehunter.ui.view.movielist.MovieListAdapter
+import com.basar.moviehunter.util.ConstantsHelper.MP4_BEST_QUALITY_FORMAT
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
@@ -36,7 +38,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
 
     companion object {
-        private val PERMISSIONS = arrayOf(WRITE_EXTERNAL_STORAGE)
+        private val PERMISSIONS = arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
     }
 
     override fun inflateLayout(
@@ -115,12 +117,26 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         }
 
     // TODO: handle extraction error, move to domain
+    /**
+     * Formats:
+     * 171 webm audio only DASH audio 115k , audio@128k (44100Hz), 2.59MiB (worst)
+     * 140 m4a audio only DASH audio 129k , audio@128k (44100Hz), 3.02MiB
+     * 141 m4a audio only DASH audio 255k , audio@256k (44100Hz), 5.99MiB
+     * 160 mp4 256x144 DASH video 111k , 12fps, video only, 2.56MiB
+     * 247 webm 1280x720 DASH video 1807k , 1fps, video only, 23.48MiB
+     * 136 mp4 1280x720 DASH video 2236k , 24fps, video only, 27.73MiB
+     * 248 webm 1920x1080 DASH video 3993k , 1fps, video only, 42.04MiB
+     * 137 mp4 1920x1080 DASH video 4141k , 24fps, video only, 60.28MiB
+     * 43 webm 640x360
+     * 18 mp4 640x360
+     * 22 mp4 1280x720 (best)
+     */
     @SuppressLint("StaticFieldLeak")
     private fun downloadYoutubeVideo(youtubeLink: String) {
         return object : YouTubeExtractor(requireContext()) {
             override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta?) {
                 ytFiles?.let {
-                    download(ytFiles[22].url, vMeta?.title.toString())
+                    download(ytFiles[MP4_BEST_QUALITY_FORMAT].url, vMeta?.title.toString())
                 }
             }
         }.extract(youtubeLink)
@@ -131,16 +147,17 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             val imageLink = Uri.parse(url)
             val req = DownloadManager.Request(imageLink)
             req.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-                .setTitle(fileName)
+                .setMimeType("video/mp4")
+                .setTitle("$fileName.mp4")
                 .setDescription("Downloading Your File")
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 .setDestinationInExternalPublicDir(
-                    Environment.DIRECTORY_DOWNLOADS,
-                    fileName
+                    Environment.DIRECTORY_DCIM,
+                    "/moviehunter/" + fileName
                 )
             val downloadManager = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             downloadManager.enqueue(req)
-            Toast.makeText(context, "downloaded", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "downloading started", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show()
         }
