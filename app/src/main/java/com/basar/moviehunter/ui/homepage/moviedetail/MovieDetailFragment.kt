@@ -136,6 +136,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         return object : YouTubeExtractor(requireContext()) {
             override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta?) {
                 ytFiles?.let {
+                    // TODO: url can be null 
                     download(ytFiles[MP4_BEST_QUALITY_FORMAT].url, vMeta?.title.toString())
                 }
             }
