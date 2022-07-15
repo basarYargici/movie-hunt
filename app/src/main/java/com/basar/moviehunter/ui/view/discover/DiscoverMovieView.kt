@@ -27,9 +27,13 @@ class DiscoverMovieView @JvmOverloads constructor(
         onAddToListClickListener: (() -> Unit)? = null,
         onPlayClickListener: (() -> Unit)? = null
     ) {
+        val vote = "${item.voteAverage} / ${item.voteCount}"
         with(binding) {
-            tvCategories.text = item.categoryList?.joinToString(separator = "-")
-            imageView.setImageBitmap(getImageEndpoint(item.posterPath))
+            tvTitle.text = item.title
+            tvCategories.text = item.categoryList?.joinToString(prefix = "*")
+            tvReleaseDate.text = item.releaseDate.toString()
+            tvVote.text = vote
+            imageView.setImageBitmap(getImageEndpoint(item.backdropPath))
             btnInfo.setOnClickListener {
                 onInfoClickListener?.invoke()
             }

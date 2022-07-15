@@ -27,7 +27,12 @@ class DiscoverUseCase @Inject constructor(
             override fun map(value: DiscoverMovieResponse): DiscoverMovieUI = with(value.results?.random()) {
                 return DiscoverMovieUI(
                     id = this?.id,
+                    title = this?.title,
                     posterPath = this?.posterPath,
+                    backdropPath = this?.backdropPath,
+                    releaseDate = this?.releaseDate,
+                    voteAverage = this?.voteAverage,
+                    voteCount = this?.voteCount,
                     youtubePath = this?.backdropPath,
                     categoryList = categoryMapper(this?.genreIds)
                 )

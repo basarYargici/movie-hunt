@@ -6,7 +6,6 @@ import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
-import com.basar.moviehunter.domain.movie.MovieGetUpcomingUseCase
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.ui.model.DiscoverMovieUI
@@ -81,12 +80,19 @@ class HomeFragmentViewModel @Inject constructor(
                     hideLoading()
                 }.collect { video ->
                     discoverUIModel.postValue(
-                        DiscoverMovieUI(
-                            discover.id,
-                            discover.posterPath,
-                            youtubePath = videoMapper(video)?.key,
-                            categoryList = discover.categoryList
-                        )
+                        with(discover) {
+                            DiscoverMovieUI(
+                                id = id,
+                                title = title,
+                                posterPath = posterPath,
+                                backdropPath = backdropPath,
+                                releaseDate = releaseDate,
+                                voteAverage = voteAverage,
+                                voteCount = voteCount,
+                                youtubePath = videoMapper(video)?.key,
+                                categoryList = categoryList
+                            )
+                        }
                     )
                 }
         }
