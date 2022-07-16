@@ -2,7 +2,7 @@ package com.basar.moviehunter.domain.discover
 
 import com.basar.moviehunter.data.model.DiscoverMovieResponse
 import com.basar.moviehunter.data.remote.repository.DiscoverRepository
-import com.basar.moviehunter.ui.model.DiscoverMovieUI
+import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
 import com.basar.moviehunter.util.Mapper
 import com.basar.moviehunter.util.categoryMapper
 import com.example.core.base.UseCase

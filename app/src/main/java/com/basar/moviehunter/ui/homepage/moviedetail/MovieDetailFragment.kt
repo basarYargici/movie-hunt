@@ -143,8 +143,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         }
         binding.btnAddToList.setOnClickListener {
             getImageUri(requireContext(), (binding.imageView.drawable as BitmapDrawable).bitmap)?.let {
-                uploadImageToStorage(
-                    viewModel.movieDetail.value?.id,
+                viewModel.uploadImage(
+                    viewModel.movieDetail.value?.id ?: 0,
                     it
                 )
             }

@@ -2,7 +2,7 @@ package com.basar.moviehunter.domain.movie
 
 import com.basar.moviehunter.data.model.UpcomingMovieResponse
 import com.basar.moviehunter.data.remote.repository.MovieRepository
-import com.basar.moviehunter.ui.model.UpcomingMovieUI
+import com.basar.moviehunter.domain.uimodel.UpcomingMovieUI
 import com.basar.moviehunter.util.Mapper
 import com.basar.moviehunter.util.categoryMapper
 import com.example.core.base.UseCase

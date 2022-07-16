@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import com.basar.moviehunter.databinding.ViewDiscoverMovieBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.setImageBitmap
-import com.basar.moviehunter.ui.model.DiscoverMovieUI
+import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
 import com.google.android.material.card.MaterialCardView
 
 class DiscoverMovieView @JvmOverloads constructor(

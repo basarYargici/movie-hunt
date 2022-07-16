@@ -1,10 +1,10 @@
 package com.basar.moviehunter.ui.others.mylist
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.extension.launch
+import com.basar.moviehunter.domain.uimodel.MyListUI
 import com.basar.moviehunter.util.ConstantsHelper.MB_SIZE
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -18,9 +18,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MyListFragmentViewModel @Inject constructor(
 ) : BaseViewModel() {
-    val savedMovieURL = MutableLiveData<List<Bitmap>>()
+    val savedMovieURL = MutableLiveData<List<MyListUI>>()
     var storageRef = Firebase.storage.reference
-    private var movieList = arrayListOf<Bitmap>()
+    private var movieList = arrayListOf<MyListUI>()
 
     fun downloadImage() = launch {
         try {
@@ -31,8 +31,9 @@ class MyListFragmentViewModel @Inject constructor(
                     Timber.d("failure" + it.message)
                 }.addOnSuccessListener {
                     Timber.d("success" + it.size.toString())
+                    val id = result.name
                     val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
-                    movieList.add(bitmap)
+                    movieList.add(MyListUI(id, bitmap))
                 }.addOnCompleteListener {
                     savedMovieURL.postValue(movieList)
                 }

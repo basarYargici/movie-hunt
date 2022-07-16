@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.basar.moviehunter.databinding.ItemUpcomigMoviesBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.setImageBitmap
-import com.basar.moviehunter.ui.model.UpcomingMovieUI
+import com.basar.moviehunter.domain.uimodel.UpcomingMovieUI
 import com.basar.moviehunter.ui.upcoming.UpcomingFragmentAdapter.UpcomingMoviesViewHolder
 
 class UpcomingFragmentAdapter(var movieList: List<UpcomingMovieUI>?) :

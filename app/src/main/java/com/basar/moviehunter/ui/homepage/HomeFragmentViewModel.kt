@@ -8,8 +8,8 @@ import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
-import com.basar.moviehunter.ui.model.DiscoverMovieUI
-import com.basar.moviehunter.ui.model.MovieListUI
+import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
+import com.basar.moviehunter.domain.uimodel.MovieListUI
 import com.basar.moviehunter.util.videoMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async

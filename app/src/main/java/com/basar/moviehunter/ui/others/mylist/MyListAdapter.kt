@@ -1,25 +1,27 @@
 package com.basar.moviehunter.ui.others.mylist
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.basar.moviehunter.databinding.ItemMovieListBinding
+import com.basar.moviehunter.domain.uimodel.MyListUI
+import timber.log.Timber
 
-class MyListAdapter(private var imageList: List<Bitmap>?) :
+class MyListAdapter(private var imageList: List<MyListUI>?) :
     RecyclerView.Adapter<MyListAdapter.MyListViewHolder>() {
 
-    var itemClickListener: ((Bitmap?) -> Unit)? = null
+    var itemClickListener: ((MyListUI?) -> Unit)? = null
 
     inner class MyListViewHolder(private val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
-            val imageBitmap = imageList?.get(position)
+            val listItem = imageList?.get(position)
             binding.apply {
-                imageView.setImageBitmap(imageBitmap)
+                imageView.setImageBitmap(listItem?.image)
                 materialCV.setOnClickListener {
                     // TODO: image id
+                    Timber.d("id: " + listItem?.id)
 //                    itemClickListener?.invoke(imageBitmap)
                 }
             }

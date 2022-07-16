@@ -1,4 +1,4 @@
-package com.basar.moviehunter.ui.model
+package com.basar.moviehunter.domain.uimodel
 
 import android.os.Parcelable
 import com.basar.moviehunter.data.model.MovieResponse

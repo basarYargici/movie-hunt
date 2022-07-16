@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.databinding.ViewMovieListBinding
-import com.basar.moviehunter.ui.model.MovieListUI
+import com.basar.moviehunter.domain.uimodel.MovieListUI
 import com.google.android.material.card.MaterialCardView
 
 class MovieListView @JvmOverloads constructor(
