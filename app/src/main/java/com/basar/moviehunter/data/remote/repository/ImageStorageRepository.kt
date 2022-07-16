@@ -20,6 +20,6 @@ class FirebaseStorageRepositoryImpl @Inject constructor(
     }
 
     override fun downloadImages(): Flow<ListResult> {
-        TODO("Not yet implemented")
+        return firebaseImageService.downloadImage()
     }
 }
