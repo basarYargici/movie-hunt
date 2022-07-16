@@ -5,9 +5,12 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore.Images.Media.insertImage
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
@@ -29,13 +32,22 @@ import com.basar.moviehunter.util.ConstantsHelper.MP4_BEST_QUALITY_FORMAT
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.ByteArrayOutputStream
+
 
 @AndroidEntryPoint
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver, Listener {
     private val viewModel: MovieDetailViewModel by viewModels()
     private val args: MovieDetailFragmentArgs by navArgs()
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
+    var storageRef = Firebase.storage.reference
 
     companion object {
         private val PERMISSIONS = arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
@@ -54,6 +66,26 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         setListeners()
         permissionsRequest = getPermissionsRequest()
     }
+
+    private fun uploadImageToStorage(id: Int? = null, uri: Uri) = CoroutineScope(Dispatchers.IO)
+        .launch {
+            try {
+                storageRef.child("image/$id").putFile(
+                    uri
+                ).addOnFailureListener {
+                    Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+
+                }.addOnSuccessListener {
+                    Toast.makeText(context, "success" + it.totalByteCount.toString(), Toast.LENGTH_LONG)
+                        .show()
+
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
 
     override fun setReceiver() {
         observe(viewModel.movieDetail) { movieDetail ->
@@ -94,12 +126,28 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         }
     }
 
+    // TODO refactor
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = insertImage(inContext.contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
+    }
+
     override fun setListeners() {
         binding.btnShare.setOnClickListener {
             shareMessage(viewModel.movieDetail.value.toString())
         }
         binding.btnDownload.setOnClickListener {
             requestPermissionList(permissionsRequest, PERMISSIONS)
+        }
+        binding.btnAddToList.setOnClickListener {
+            getImageUri(requireContext(), (binding.imageView.drawable as BitmapDrawable).bitmap)?.let {
+                uploadImageToStorage(
+                    viewModel.movieDetail.value?.id,
+                    it
+                )
+            }
         }
     }
 
