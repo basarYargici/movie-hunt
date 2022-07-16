@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -46,6 +47,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
     implementationAppCompat(dependencies)
     implementationNavigation(dependencies)
     implementationHilt(dependencies)
@@ -61,6 +63,7 @@ dependencies {
     implementation deps.TIMBER
     implementation deps.LIFECYCLE
     implementation deps.YOUTUBE_EXTRACTOR
-
+    implementation deps.FIREBASE_ANALYTICS_KTX
+    implementation platform(deps.FIREBASE_BOM)
     implementation files("libs\\YouTubeAndroidPlayerApi.jar")
 }

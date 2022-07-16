@@ -4,6 +4,7 @@ buildscript {
     dependencies {
         classpath gradleDeps.HILT_PLUGIN
         classpath gradleDeps.SAFE_ARGS
+        classpath gradleDeps.GOOGLE_SERVICES
     }
 }
 

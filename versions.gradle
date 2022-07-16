@@ -1,8 +1,8 @@
 def versions = [
-        MIN_ANDROID_SDK    : 21,
-        TARGET_ANDROID_SDK : 32,
-        COMPILE_ANDROID_SDK: 32,
-        Androidx           : [
+        MIN_ANDROID_SDK       : 21,
+        TARGET_ANDROID_SDK    : 32,
+        COMPILE_ANDROID_SDK   : 32,
+        Androidx              : [
                 APP_COMPAT       : "1.4.2",
                 CORE_KTX         : "1.8.0",
                 ESPRESSO         : "3.4.0",
@@ -13,22 +13,25 @@ def versions = [
                 LIFECYCLE        : "2.4.1",
                 SAFE_ARGS        : "2.4.2",
         ],
-        MATERIAL           : "1.6.1",
-        JUNIT              : "4.13.2",
-        COROUTINES         : "1.3.9",
-        HILT               : "2.38.1",
-        KAPT_HILT          : "2.38.1",
-        HILT_PLUGIN        : "2.38.1",
-        COIL               : "2.1.0",
-        VIEWPAGER2         : "1.0.0",
-        RETROFIT           : "2.9.0",
-        GSON               : "2.9.0",
-        OKHTTP             : "2.9.0",
-        OKHTTP_LOGGING     : "4.9.1",
-        SHIMMER            : "0.5.0",
-        TIMBER             : "5.0.1",
-        LOTTIE             : "5.2.0",
-        YOUTUBE_EXTRACTOR  : "master-SNAPSHOT",
+        MATERIAL              : "1.6.1",
+        JUNIT                 : "4.13.2",
+        COROUTINES            : "1.3.9",
+        HILT                  : "2.38.1",
+        KAPT_HILT             : "2.38.1",
+        HILT_PLUGIN           : "2.38.1",
+        COIL                  : "2.1.0",
+        VIEWPAGER2            : "1.0.0",
+        RETROFIT              : "2.9.0",
+        GSON                  : "2.9.0",
+        OKHTTP                : "2.9.0",
+        OKHTTP_LOGGING        : "4.9.1",
+        SHIMMER               : "0.5.0",
+        TIMBER                : "5.0.1",
+        LOTTIE                : "5.2.0",
+        YOUTUBE_EXTRACTOR     : "master-SNAPSHOT",
+        GOOGLE_SERVICES       : "4.3.13",
+        FIREBASE_BOM          : "30.2.0",
+        FIREBASE_ANALYTICS_KTX: "21.1.0",
 ]
 ext.versions = versions
 
@@ -50,6 +53,9 @@ def deps = [
         HILT                     : "com.google.dagger:hilt-android:${versions.HILT}",
         KAPT_HILT                : "com.google.dagger:hilt-compiler:${versions.KAPT_HILT}",
         HILT_PLUGIN              : "com.google.dagger:hilt-android-gradle-plugin:${versions.HILT_PLUGIN}",
+        GOOGLE_SERVICES          : "com.google.gms:google-services:${versions.GOOGLE_SERVICES}",
+        FIREBASE_BOM             : "com.google.firebase:firebase-bom:${versions.FIREBASE_BOM}",
+        FIREBASE_ANALYTICS_KTX   : "com.google.firebase:firebase-analytics-ktx:${versions.FIREBASE_ANALYTICS_KTX}",
         COIL                     : "io.coil-kt:coil:${versions.COIL}",
         VIEWPAGER2               : "androidx.viewpager2:viewpager2:${versions.VIEWPAGER2}",
         RETROFIT                 : "com.squareup.retrofit2:retrofit:${versions.RETROFIT}",
@@ -64,8 +70,9 @@ def deps = [
 ext.deps = deps
 
 def gradleDeps = [
-        HILT_PLUGIN: "${deps.HILT_PLUGIN}",
-        SAFE_ARGS  : "${deps.SAFE_ARGS}",
+        HILT_PLUGIN    : "${deps.HILT_PLUGIN}",
+        SAFE_ARGS      : "${deps.SAFE_ARGS}",
+        GOOGLE_SERVICES: "${deps.GOOGLE_SERVICES}",
 ]
 ext.gradleDeps = gradleDeps
 
