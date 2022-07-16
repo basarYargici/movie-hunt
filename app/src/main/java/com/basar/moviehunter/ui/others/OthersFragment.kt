@@ -31,7 +31,8 @@ class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver {
                     // TODO: string res
                     "Listem" -> {
                         // TODO: navigate
-                        Toast.makeText(context, "a clicked", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "my list clicked", Toast.LENGTH_SHORT).show()
+                        navigate(OthersFragmentDirections.actionOthersFragmentToMyListFragment())
                     }
                     "Ayarlar" -> {
                         // TODO: navigate

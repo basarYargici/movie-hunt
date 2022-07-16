@@ -9,5 +9,14 @@
         android:id="@+id/othersFragment"
         android:name="com.basar.moviehunter.ui.others.OthersFragment"
         android:label="fragment_others"
-        tools:layout="@layout/fragment_others" />
+        tools:layout="@layout/fragment_others" >
+        <action
+            android:id="@+id/action_othersFragment_to_myListFragment"
+            app:destination="@id/myListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myListFragment"
+        android:name="com.basar.moviehunter.ui.others.mylist.MyListFragment"
+        android:label="fragment_my_list"
+        tools:layout="@layout/fragment_my_list" />
 </navigation>
