@@ -10,6 +10,7 @@ import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener {
@@ -27,7 +28,14 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
         with(binding) {
             rvItems.apply {
                 with(MyListAdapter(viewModel.savedMovieURL.value)) {
-//                    itemClickListener = onClickListener
+                    itemClickListener = {
+                        navigate(
+                            MyListFragmentDirections.actionMyListFragmentToMovieDetail(
+                                it?.id ?: 0
+                            )
+                        )
+                    }
+
                     adapter = this
                 }
 //            addItemDecoration()
@@ -43,7 +51,18 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
     override fun setReceiver() {
         observe(viewModel.savedMovieURL) {
             // TODO: wrong
-            binding.rvItems.adapter = MyListAdapter(it)
+            with(MyListAdapter(viewModel.savedMovieURL.value)) {
+                itemClickListener = {
+                    Timber.d("clicked" + it?.id)
+                    navigate(
+                        MyListFragmentDirections.actionMyListFragmentToMovieDetail(
+                            it?.id ?: 0
+                        )
+                    )
+                }
+
+                binding.rvItems.adapter = this
+            }
         }
     }
 }

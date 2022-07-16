@@ -5,11 +5,13 @@
     android:id="@+id/others"
     app:startDestination="@id/othersFragment">
 
+    <include app:graph="@navigation/nav_movie_detail" />
+
     <fragment
         android:id="@+id/othersFragment"
         android:name="com.basar.moviehunter.ui.others.OthersFragment"
         android:label="fragment_others"
-        tools:layout="@layout/fragment_others" >
+        tools:layout="@layout/fragment_others">
         <action
             android:id="@+id/action_othersFragment_to_myListFragment"
             app:destination="@id/myListFragment" />
@@ -18,5 +20,15 @@
         android:id="@+id/myListFragment"
         android:name="com.basar.moviehunter.ui.others.mylist.MyListFragment"
         android:label="fragment_my_list"
-        tools:layout="@layout/fragment_my_list" />
+        tools:layout="@layout/fragment_my_list">
+        <action
+            android:id="@+id/action_myListFragment_to_movieDetail"
+            app:destination="@id/movieDetail">
+            <argument
+                android:name="movie_id"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
 </navigation>

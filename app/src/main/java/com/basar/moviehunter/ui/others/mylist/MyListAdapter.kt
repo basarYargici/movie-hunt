@@ -20,9 +20,8 @@ class MyListAdapter(private var imageList: List<MyListUI>?) :
             binding.apply {
                 imageView.setImageBitmap(listItem?.image)
                 materialCV.setOnClickListener {
-                    // TODO: image id
                     Timber.d("id: " + listItem?.id)
-//                    itemClickListener?.invoke(imageBitmap)
+                    itemClickListener?.invoke(listItem)
                 }
             }
         }

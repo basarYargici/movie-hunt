@@ -29,7 +29,7 @@ class DownloadImageUseCase @Inject constructor(
                         Timber.d("failure" + it.message)
                     }.addOnSuccessListener {
                         Timber.d("success" + it.size.toString())
-                        val id = result.name
+                        val id = result.name.toInt()
                         val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
                         movieList.add(MyListUI(id, bitmap))
                     }

@@ -6,6 +6,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MyListUI(
-    val id: String? = null,
+    val id: Int,
     val image: Bitmap? = null,
 ) : Parcelable
