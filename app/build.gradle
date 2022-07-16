@@ -47,7 +47,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
     implementationAppCompat(dependencies)
     implementationNavigation(dependencies)
     implementationHilt(dependencies)
@@ -57,6 +56,7 @@ dependencies {
     implementation deps.ANDROID_CONSTRAINT_LAYOUT
     implementation deps.MATERIAL
     implementation deps.COROUTINES
+    implementation deps.COROUTINE_PLAY_SERVICE
     implementation deps.VIEWPAGER2
     implementation deps.COIL
     implementation deps.SHIMMER
@@ -64,6 +64,7 @@ dependencies {
     implementation deps.LIFECYCLE
     implementation deps.YOUTUBE_EXTRACTOR
     implementation deps.FIREBASE_ANALYTICS_KTX
+    implementation deps.FIREBASE_STORAGE
     implementation platform(deps.FIREBASE_BOM)
     implementation files("libs\\YouTubeAndroidPlayerApi.jar")
 }

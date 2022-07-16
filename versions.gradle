@@ -32,6 +32,8 @@ def versions = [
         GOOGLE_SERVICES       : "4.3.13",
         FIREBASE_BOM          : "30.2.0",
         FIREBASE_ANALYTICS_KTX: "21.1.0",
+        COROUTINE_PLAY_SERVICE: "1.4.3",
+        FIREBASE_STORAGE      : "20.0.1",
 ]
 ext.versions = versions
 
@@ -56,6 +58,7 @@ def deps = [
         GOOGLE_SERVICES          : "com.google.gms:google-services:${versions.GOOGLE_SERVICES}",
         FIREBASE_BOM             : "com.google.firebase:firebase-bom:${versions.FIREBASE_BOM}",
         FIREBASE_ANALYTICS_KTX   : "com.google.firebase:firebase-analytics-ktx:${versions.FIREBASE_ANALYTICS_KTX}",
+        FIREBASE_STORAGE         : "com.google.firebase:firebase-storage-ktx:${versions.FIREBASE_STORAGE}",
         COIL                     : "io.coil-kt:coil:${versions.COIL}",
         VIEWPAGER2               : "androidx.viewpager2:viewpager2:${versions.VIEWPAGER2}",
         RETROFIT                 : "com.squareup.retrofit2:retrofit:${versions.RETROFIT}",
@@ -66,6 +69,7 @@ def deps = [
         TIMBER                   : "com.jakewharton.timber:timber:${versions.TIMBER}",
         LOTTIE                   : "com.airbnb.android:lottie:${versions.LOTTIE}",
         YOUTUBE_EXTRACTOR        : "com.github.HaarigerHarald:android-youtubeExtractor:${versions.YOUTUBE_EXTRACTOR}",
+        COROUTINE_PLAY_SERVICE   : "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${versions.COROUTINE_PLAY_SERVICE}",
 ]
 ext.deps = deps
 
