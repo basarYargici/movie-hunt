@@ -98,7 +98,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             }
         }
 
-        // TODO: refactor to base class
         observe(viewModel.isShimmerVisible) {
             binding.cl.visibility = if (it == false) View.VISIBLE else View.GONE
             binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE

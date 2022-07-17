@@ -3,6 +3,7 @@ package com.basar.moviehunter.base
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.annotation.MenuRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
@@ -11,7 +12,9 @@ import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.basar.moviehunter.util.NavOption
+import com.basar.moviehunter.util.ResProvider
 import timber.log.Timber
+import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     lateinit var binding: VB
@@ -21,6 +24,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): VB
+
+    @Inject
+    lateinit var resProvider: ResProvider
 
     @MenuRes
     open fun getMenuId(): Int = -1
@@ -101,4 +107,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         startActivity(shareIntent)
     }
 
+    fun showToast(message: String, isLong: Boolean? = false) {
+        val length = if (isLong == true) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        Toast.makeText(requireContext(), message, length).show()
+    }
 }

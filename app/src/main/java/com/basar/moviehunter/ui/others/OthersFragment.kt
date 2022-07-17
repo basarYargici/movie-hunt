@@ -3,15 +3,17 @@ package com.basar.moviehunter.ui.others
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.basar.moviehunter.R
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentOthersBinding
 import com.basar.moviehunter.domain.uimodel.RowUI
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.ui.adapter.AdapterRow
 import com.basar.moviehunter.util.Receiver
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver {
     lateinit var rowAdapter: AdapterRow
     private val viewModel: OthersFragmentViewModel by viewModels()
@@ -28,27 +30,21 @@ class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver {
         rowAdapter = object : AdapterRow() {
             override fun onItemClicked(item: RowUI.TextRowUI) {
                 when (item.text) {
-                    // TODO: string res
-                    "Listem" -> {
-                        // TODO: navigate
-                        Toast.makeText(context, "my list clicked", Toast.LENGTH_SHORT).show()
+                    resProvider.getString(R.string.my_list) -> {
+                        showToast(resProvider.getString(R.string.my_list) + " clicked")
                         navigate(OthersFragmentDirections.actionOthersFragmentToMyListFragment())
                     }
-                    "Ayarlar" -> {
-                        // TODO: navigate
-                        Toast.makeText(context, "a clicked", Toast.LENGTH_SHORT).show()
+                    resProvider.getString(R.string.settings) -> {
+                        showToast(resProvider.getString(R.string.settings) + " clicked")
                     }
-                    "Tema" -> {
-                        // TODO: navigate
-                        Toast.makeText(context, "a clicked", Toast.LENGTH_SHORT).show()
+                    resProvider.getString(R.string.theme) -> {
+                        showToast(resProvider.getString(R.string.theme) + " clicked")
                     }
-                    "İndirilenleri Sil" -> {
-                        // TODO: navigate
-                        Toast.makeText(context, "a clicked", Toast.LENGTH_SHORT).show()
+                    resProvider.getString(R.string.delete_downloads) -> {
+                        showToast(resProvider.getString(R.string.delete_downloads) + " clicked")
                     }
-                    "App Version" -> {
-                        // TODO: navigate
-                        Toast.makeText(context, "a clicked", Toast.LENGTH_SHORT).show()
+                    resProvider.getString(R.string.app_version) -> {
+                        showToast(resProvider.getString(R.string.app_version) + " clicked")
                     }
                 }
             }

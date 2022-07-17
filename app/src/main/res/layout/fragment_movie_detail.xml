@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:gravity="center"
-                    android:text="To  List"
+                    android:text="@string/to_list"
                     app:icon="@drawable/ic_add"
                     app:iconGravity="top" />
 
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:gravity="center"
-                    android:text="Share"
+                    android:text="@string/share"
                     app:icon="@drawable/ic_share"
                     app:iconGravity="top" />
             </LinearLayout>
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:justificationMode="inter_word"
-                android:text="Similar Movies"
+                android:text="@string/similar_movies"
                 app:layout_constraintEnd_toEndOf="@+id/tvDescription"
                 app:layout_constraintStart_toStartOf="@+id/tvDescription"
                 app:layout_constraintTop_toBottomOf="@+id/llButton" />

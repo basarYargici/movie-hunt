@@ -49,7 +49,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         popBackStack.emit(Pair(destinationId, inclusive))
     }
 
-    // TODO: viewListener might be created
     fun showLoading() {
         showLoading.postValue(true)
     }

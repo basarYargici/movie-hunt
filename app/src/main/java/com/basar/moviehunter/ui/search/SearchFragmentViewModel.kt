@@ -6,9 +6,9 @@ import com.basar.moviehunter.data.model.MediaType
 import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.search.SearchUseCase
+import com.basar.moviehunter.domain.uimodel.MovieListUI
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
-import com.basar.moviehunter.domain.uimodel.MovieListUI
 import com.basar.moviehunter.util.SingleLiveEvent
 import com.basar.moviehunter.util.resultItemToMovieResponseMapper
 import com.basar.moviehunter.util.videoMapper
@@ -84,8 +84,8 @@ class SearchFragmentViewModel @Inject constructor(
             showLoading()
         }.onCompletion {
             hideLoading()
-        }.collect {
-            youtubePath.postValue(videoMapper(it)?.key ?: "")
+        }.collect { videoResults ->
+            youtubePath.postValue(videoMapper(videoResults.results)?.key ?: "")
         }
     }
 }

@@ -35,10 +35,6 @@ import com.basar.moviehunter.util.categoryMapper
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
 
@@ -66,26 +62,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         setListeners()
         permissionsRequest = getPermissionsRequest()
     }
-
-    private fun uploadImageToStorage(id: Int? = null, uri: Uri) = CoroutineScope(Dispatchers.IO)
-        .launch {
-            try {
-                storageRef.child("image/$id").putFile(
-                    uri
-                ).addOnFailureListener {
-                    Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
-
-                }.addOnSuccessListener {
-                    Toast.makeText(context, "success" + it.totalByteCount.toString(), Toast.LENGTH_LONG)
-                        .show()
-
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-                }
-            }
-        }
 
     override fun setReceiver() {
         observe(viewModel.movieDetail) { movieDetail ->

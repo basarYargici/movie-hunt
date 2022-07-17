@@ -44,9 +44,7 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
         }
     }
 
-    override fun setListeners() {
-        TODO("Not yet implemented")
-    }
+    override fun setListeners() {}
 
     override fun setReceiver() {
         observe(viewModel.savedMovieURL) {

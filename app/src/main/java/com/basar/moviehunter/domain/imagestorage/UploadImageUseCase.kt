@@ -18,5 +18,4 @@ class UploadImageUseCase @Inject constructor(
     override fun execute(params: Params): Flow<Boolean> {
         return repository.uploadImage(params.id, params.uri)
     }
-    // TODO: responseToUI
 }

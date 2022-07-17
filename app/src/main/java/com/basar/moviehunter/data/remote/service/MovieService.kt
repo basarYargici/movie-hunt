@@ -19,7 +19,6 @@ interface MovieService {
     @GET("movie/{movie_id}/similar")
     suspend fun getSimilar(@Path("movie_id") movieId: Int): SimilarMoviesResponse
 
-    // TODO: region should be enum
     @GET("movie/upcoming")
     suspend fun getUpcoming(@Query("region") region: String?): UpcomingMovieResponse
 

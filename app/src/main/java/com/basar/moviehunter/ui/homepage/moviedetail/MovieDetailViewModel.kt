@@ -3,11 +3,11 @@ package com.basar.moviehunter.ui.homepage.moviedetail
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
-import com.basar.moviehunter.data.model.MovieDetailResponse
-import com.basar.moviehunter.data.model.SimilarMoviesResponse
 import com.basar.moviehunter.domain.imagestorage.UploadImageUseCase
 import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
 import com.basar.moviehunter.domain.movie.MovieGetSimilarUseCase
+import com.basar.moviehunter.domain.uimodel.MovieDetailUI
+import com.basar.moviehunter.domain.uimodel.SimilarMovieUI
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.util.videoMapper
@@ -28,8 +28,8 @@ class MovieDetailViewModel @Inject constructor(
     private val relatedVideosUseCase: GetRelatedMovieVideosUseCase,
     private val uploadImageUseCase: UploadImageUseCase
 ) : BaseViewModel() {
-    val movieDetail = MutableLiveData<MovieDetailResponse>()
-    val similarMovies = MutableLiveData<SimilarMoviesResponse>()
+    val movieDetail = MutableLiveData<MovieDetailUI>()
+    val similarMovies = MutableLiveData<SimilarMovieUI>()
     val youtubePath = MutableLiveData<String>()
 
     fun initVM(movieId: Int) = launch {
@@ -58,8 +58,8 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     private fun getMovieVideoPath(movieId: Int) = launch {
-        relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(movieId)).collect {
-            youtubePath.postValue(videoMapper(it)?.key ?: "")
+        relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(movieId)).collect { videoResults ->
+            youtubePath.postValue(videoMapper(videoResults.results)?.key ?: "")
         }
     }
 

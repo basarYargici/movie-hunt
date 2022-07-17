@@ -15,12 +15,6 @@
     <string name="lorem_XS">History.</string>
     <string name="lorem_CHAR">H</string>
 
-    <string name="hello_downloads_fragment">Hello downloads fragment</string>
-    <string name="hello_home_fragment">Hello home fragment</string>
-    <string name="hello_others_fragment">Hello others fragment</string>
-    <string name="hello_upcoming_fragment">Hello upcoming fragment</string>
-    <string name="hello_search_fragment">Hello search fragment</string>
-
     <!-- Bottom navigation icon strings -->
     <string name="menu_home">Home</string>
     <string name="menu_search">Search</string>
@@ -28,22 +22,15 @@
     <string name="menu_upcoming">Upcoming</string>
     <string name="menu_others">Others</string>
 
-    <!-- Fragment appbar title strings -->
-    <string name="label_home">Home</string>
-    <string name="label_search">Search</string>
-    <string name="label_downloads">Downloads</string>
-    <string name="label_upcoming">Upcoming</string>
-    <string name="label_others">Others</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
-    <string name="title_activity_player">PlayerActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="others_screen">Others Screen</string>
+    <string name="to_list">To List</string>
+    <string name="share">Share</string>
+    <string name="similar_movies">Similar Movies</string>
+    <string name="play">play</string>
+    <string name="info">info</string>
+    <string name="my_list">Listem</string>
+    <string name="settings">Ayarlar</string>
+    <string name="theme">Tema</string>
+    <string name="delete_downloads">İndirilenleri Sil</string>
+    <string name="app_version">App Version</string>
 </resources>

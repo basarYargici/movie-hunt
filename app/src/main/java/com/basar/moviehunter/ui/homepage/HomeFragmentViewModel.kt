@@ -6,10 +6,10 @@ import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
-import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
-import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
 import com.basar.moviehunter.domain.uimodel.MovieListUI
+import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
+import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.util.videoMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -78,7 +78,7 @@ class HomeFragmentViewModel @Inject constructor(
             relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(discover.id ?: 0))
                 .onCompletion {
                     hideLoading()
-                }.collect { video ->
+                }.collect { videoResults ->
                     discoverUIModel.postValue(
                         with(discover) {
                             DiscoverMovieUI(
@@ -89,7 +89,7 @@ class HomeFragmentViewModel @Inject constructor(
                                 releaseDate = releaseDate,
                                 voteAverage = voteAverage,
                                 voteCount = voteCount,
-                                youtubePath = videoMapper(video)?.key,
+                                youtubePath = videoMapper(videoResults.results)?.key,
                                 categoryList = categoryList
                             )
                         }
