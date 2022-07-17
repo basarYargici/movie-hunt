@@ -32,8 +32,6 @@ import com.basar.moviehunter.util.ConstantsHelper.MP4_BEST_QUALITY_FORMAT
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
 
@@ -43,7 +41,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
     private val viewModel: MovieDetailViewModel by viewModels()
     private val args: MovieDetailFragmentArgs by navArgs()
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
-    var storageRef = Firebase.storage.reference
 
     companion object {
         private val PERMISSIONS = arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
@@ -141,6 +138,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         }
 
     // TODO: handle extraction error, move to domain
+    // TODO: can download logic moved to VM?
     /**
      * Formats:
      * 171 webm audio only DASH audio 115k , audio@128k (44100Hz), 2.59MiB (worst)
@@ -178,7 +176,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 .setDestinationInExternalPublicDir(
                     Environment.DIRECTORY_DCIM,
-                    "/moviehunter/" + fileName
+                    "/moviehunter/$fileName"
                 )
             val downloadManager = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             downloadManager.enqueue(req)
