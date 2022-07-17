@@ -32,5 +32,5 @@
     <string name="settings">Ayarlar</string>
     <string name="theme">Tema</string>
     <string name="delete_downloads">İndirilenleri Sil</string>
-    <string name="app_version">App Version</string>
+    <string name="about">Geliştirici Hakkında</string>
 </resources>

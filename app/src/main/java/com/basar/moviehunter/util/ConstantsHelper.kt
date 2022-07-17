@@ -6,4 +6,5 @@ object ConstantsHelper {
     const val FIREBASE_IMAGE_PATH = "image/"
     const val MB_SIZE = 1024 * 1024
     const val MAX_DOWNLOAD_SIZE = 5L * MB_SIZE
+    const val WEBSITE_URL = "https://basaryargici.netlify.app"
 }

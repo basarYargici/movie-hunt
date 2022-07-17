@@ -33,7 +33,7 @@ class OthersFragmentViewModel @Inject constructor(
                 RowUI.TextRowUI("2", iconRes, resProvider.getString(R.string.settings)),
                 RowUI.TextRowUI("3", iconRes, resProvider.getString(R.string.theme)),
                 RowUI.TextRowUI("4", iconRes, resProvider.getString(R.string.delete_downloads)),
-                RowUI.TextRowUI("5", iconRes, resProvider.getString(R.string.app_version))
+                RowUI.TextRowUI("5", iconRes, resProvider.getString(R.string.about))
             )
             emit(rowList)
         }.onStart {

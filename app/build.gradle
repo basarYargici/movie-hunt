@@ -63,6 +63,7 @@ dependencies {
     implementation deps.TIMBER
     implementation deps.LIFECYCLE
     implementation deps.YOUTUBE_EXTRACTOR
+    implementation deps.CUSTOM_CHROME_TAB
     implementation deps.FIREBASE_ANALYTICS_KTX
     implementation deps.FIREBASE_STORAGE
     implementation platform(deps.FIREBASE_BOM)

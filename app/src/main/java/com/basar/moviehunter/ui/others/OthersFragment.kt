@@ -10,12 +10,13 @@ import com.basar.moviehunter.databinding.FragmentOthersBinding
 import com.basar.moviehunter.domain.uimodel.RowUI
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.ui.adapter.AdapterRow
+import com.basar.moviehunter.util.ConstantsHelper.WEBSITE_URL
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver {
-    lateinit var rowAdapter: AdapterRow
+    private lateinit var rowAdapter: AdapterRow
     private val viewModel: OthersFragmentViewModel by viewModels()
 
     override fun inflateLayout(
@@ -43,13 +44,12 @@ class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver {
                     resProvider.getString(R.string.delete_downloads) -> {
                         showToast(resProvider.getString(R.string.delete_downloads) + " clicked")
                     }
-                    resProvider.getString(R.string.app_version) -> {
-                        showToast(resProvider.getString(R.string.app_version) + " clicked")
+                    resProvider.getString(R.string.about) -> {
+                        openCustomTabWebpage(WEBSITE_URL)
                     }
                 }
             }
         }
-
 
         binding.rvItems.apply {
             adapter = rowAdapter

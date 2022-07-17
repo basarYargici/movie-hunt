@@ -12,6 +12,7 @@ def versions = [
                 EXT              : "1.1.3",
                 LIFECYCLE        : "2.4.1",
                 SAFE_ARGS        : "2.4.2",
+                CUSTOM_CHROME_TAB: "1.4.0",
         ],
         MATERIAL              : "1.6.1",
         JUNIT                 : "4.13.2",
@@ -48,6 +49,7 @@ def deps = [
         EXT                      : "androidx.test.ext:${versions.Androidx.EXT}",
         LIFECYCLE                : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.Androidx.LIFECYCLE}",
         SAFE_ARGS                : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.Androidx.SAFE_ARGS}",
+        CUSTOM_CHROME_TAB        : "androidx.browser:browser:${versions.Androidx.CUSTOM_CHROME_TAB}",
 
         JUNIT                    : "junit:junit:${versions.JUNIT}",
         MATERIAL                 : "com.google.android.material:material:${versions.MATERIAL}",
