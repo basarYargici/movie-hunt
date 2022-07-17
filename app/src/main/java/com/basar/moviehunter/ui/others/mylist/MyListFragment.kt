@@ -2,6 +2,7 @@ package com.basar.moviehunter.ui.others.mylist
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
@@ -29,6 +30,8 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
             rvItems.apply {
                 with(MyListAdapter(viewModel.savedMovieURL.value)) {
                     itemClickListener = {
+                        // TODO: the rest of moviedetail destination is not implemented. Destinations should
+                        //  be updated.
                         navigate(
                             MyListFragmentDirections.actionMyListFragmentToMovieDetail(
                                 it?.id ?: 0
@@ -61,6 +64,10 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
 
                 binding.rvItems.adapter = this
             }
+        }
+        observe(viewModel.isShimmerVisible) {
+            binding.rvItems.visibility = if (it == false) View.VISIBLE else View.GONE
+            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
         }
     }
 }
