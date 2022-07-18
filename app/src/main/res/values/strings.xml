@@ -30,7 +30,7 @@
     <string name="info">info</string>
     <string name="my_list">Listem</string>
     <string name="settings">Ayarlar</string>
-    <string name="theme">Tema</string>
+    <string name="dark_mode">Dark Mod</string>
     <string name="delete_downloads">İndirilenleri Sil</string>
     <string name="about">Geliştirici Hakkında</string>
 </resources>
