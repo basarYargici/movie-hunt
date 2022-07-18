@@ -3,7 +3,7 @@ package com.basar.moviehunter.base.app
 import javax.inject.Inject
 
 interface AppRepository {
-    fun setLanguage()
+    fun setReversedLanguage()
     fun getLanguage(): String
     fun getReverseLanguage(): String
     fun setLastVersion(version: String)
@@ -16,11 +16,11 @@ class AppRepositoryImpl @Inject constructor(
     private val appPreferences: AppPreferences
 ) : AppRepository {
     companion object {
-        private const val TURKISH = "tr"
-        private const val ENGLISH = "en"
+        const val TURKISH = "tr"
+        const val ENGLISH = "en"
     }
 
-    override fun setLanguage() = appPreferences.setLanguage(getReverseLanguage())
+    override fun setReversedLanguage() = appPreferences.setLanguage(getReverseLanguage())
     override fun getLanguage(): String = appPreferences.getLanguage()
     override fun getReverseLanguage(): String = if (getLanguage() == TURKISH) ENGLISH else TURKISH
     override fun setLastVersion(version: String) = appPreferences.setLastVersion(version)

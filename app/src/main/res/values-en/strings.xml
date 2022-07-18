@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MovieHunter</string>
     <!-- Dummy strings -->
@@ -16,25 +17,25 @@
     <string name="lorem_CHAR">H</string>
 
     <!-- Bottom navigation icon strings -->
-    <string name="menu_home">Ana Ekran</string>
-    <string name="menu_search">Ara</string>
-    <string name="menu_downloads">İndirilenler</string>
-    <string name="menu_upcoming">Yakında</string>
-    <string name="menu_others">Diğer</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_downloads">Downloads</string>
+    <string name="menu_upcoming">Upcoming</string>
+    <string name="menu_others">Others</string>
 
-    <string name="others_screen">Diğer</string>
-    <string name="to_list">Listeye Ekle</string>
-    <string name="share">Paylaş</string>
-    <string name="similar_movies">Benzer Filmler</string>
-    <string name="play">Oynat</string>
-    <string name="info">Bilgi</string>
-    <string name="my_list">Listem</string>
-    <string name="settings">Ayarlar</string>
-    <string name="dark_mode">Koyu Tema</string>
-    <string name="delete_downloads">İndirilenleri Sil</string>
-    <string name="about">Geliştirici Hakkında</string>
+    <string name="others_screen">Others Screen</string>
+    <string name="to_list">To List</string>
+    <string name="share">Share</string>
+    <string name="similar_movies">Similar Movies</string>
+    <string name="play">Play</string>
+    <string name="info">Info</string>
+    <string name="my_list">My List</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mod</string>
+    <string name="delete_downloads">Delete Downloads</string>
+    <string name="about">About Me</string>
 
-    <string name="popular_movies">Popüler Filmler</string>
-    <string name="top_rated_movies">En Çok Oy Alan Filmler</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
 
 </resources>

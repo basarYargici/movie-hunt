@@ -7,6 +7,7 @@ import com.basar.moviehunter.base.app.AppRepository
 import com.basar.moviehunter.domain.others.GetOthersUIUseCase
 import com.basar.moviehunter.domain.uimodel.RowUI
 import com.basar.moviehunter.extension.launch
+import com.basar.moviehunter.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
@@ -18,7 +19,7 @@ class OthersFragmentViewModel @Inject constructor(
     private val getOthersUIUseCase: GetOthersUIUseCase
 ) : BaseViewModel() {
     val rowUIList = MutableLiveData<ArrayList<RowUI>>()
-
+    val turkishLanguage = SingleLiveEvent<Boolean>()
     fun initVM() {
         getRowList()
     }
@@ -41,4 +42,7 @@ class OthersFragmentViewModel @Inject constructor(
         appRepository.setDarkModeState(AppCompatDelegate.getDefaultNightMode())
     }
 
+    fun setTurkish(checked: Boolean) {
+        turkishLanguage.postValue(checked)
+    }
 }

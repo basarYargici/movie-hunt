@@ -1,6 +1,7 @@
 package com.basar.moviehunter.ui.homepage
 
 import androidx.lifecycle.MutableLiveData
+import com.basar.moviehunter.R
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
@@ -10,6 +11,7 @@ import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
 import com.basar.moviehunter.domain.uimodel.MovieListUI
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
+import com.basar.moviehunter.util.ResProvider
 import com.basar.moviehunter.util.videoMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -25,7 +27,8 @@ class HomeFragmentViewModel @Inject constructor(
     private val popularUseCase: MovieGetPopularUseCase,
     private val topRatedUseCase: MovieGetTopRatedUseCase,
     private val discoverUseCase: DiscoverUseCase,
-    private val relatedVideosUseCase: GetRelatedMovieVideosUseCase
+    private val relatedVideosUseCase: GetRelatedMovieVideosUseCase,
+    val resProvider: ResProvider
 ) : BaseViewModel() {
 
     val discoverUIModel = MutableLiveData<DiscoverMovieUI>()
@@ -54,7 +57,7 @@ class HomeFragmentViewModel @Inject constructor(
             val movieList: ArrayList<MovieResponse> = it.results?.filterNotNull() as ArrayList<MovieResponse>
             popularMovieListUI.postValue(
                 MovieListUI(
-                    title = "Popular Movies",
+                    title = resProvider.getString(R.string.popular_movies),
                     movieList = movieList
                 )
             )
@@ -65,7 +68,7 @@ class HomeFragmentViewModel @Inject constructor(
         topRatedUseCase(Unit).collect {
             topRatedMovieListUI.postValue(
                 MovieListUI(
-                    title = "Top Rated Movies",
+                    title = resProvider.getString(R.string.top_rated_movies),
                     movieList = it.results?.filterNotNull() as ArrayList<MovieResponse>
                 )
             )

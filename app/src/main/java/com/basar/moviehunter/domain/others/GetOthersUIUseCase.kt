@@ -18,6 +18,7 @@ class GetOthersUIUseCase @Inject constructor(
     override fun execute(params: Unit): Flow<ArrayList<RowUI>> = flow {
         val iconRes = R.drawable.ic_add
         val darkModeEnabled = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        // TODO: does not get other language resources. ResProvider context might be the reason.
         rowList = arrayListOf(
             RowUI.HeaderRowUI(resProvider.getString(R.string.others_screen), HeaderTextStyle.BIG),
             RowUI.TextRowUI("1", iconRes, resProvider.getString(R.string.my_list)),
