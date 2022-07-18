@@ -9,6 +9,13 @@ sealed class RowUI {
         @DrawableRes val iconRes: Int? = null,
         val text: String
     ) : RowUI()
+
+    data class SwitchRowUI(
+        val id: String? = null,
+        @DrawableRes val iconRes: Int? = null,
+        val text: String,
+        var isChecked: Boolean? = false,
+    ) : RowUI()
 }
 
 enum class HeaderTextStyle {

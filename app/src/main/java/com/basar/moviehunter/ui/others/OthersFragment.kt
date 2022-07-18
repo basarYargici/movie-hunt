@@ -38,14 +38,23 @@ class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver {
                     resProvider.getString(R.string.settings) -> {
                         showToast(resProvider.getString(R.string.settings) + " clicked")
                     }
-                    resProvider.getString(R.string.theme) -> {
-                        showToast(resProvider.getString(R.string.theme) + " clicked")
+                    resProvider.getString(R.string.dark_mode) -> {
+                        showToast(resProvider.getString(R.string.dark_mode) + " clicked")
                     }
                     resProvider.getString(R.string.delete_downloads) -> {
                         showToast(resProvider.getString(R.string.delete_downloads) + " clicked")
                     }
                     resProvider.getString(R.string.about) -> {
                         openCustomTabWebpage(WEBSITE_URL)
+                    }
+                }
+            }
+
+            override fun onItemCheckChanged(item: RowUI.SwitchRowUI) {
+                with(item) {
+                    if (text == resProvider.getString(R.string.dark_mode)) {
+                        isChecked = isChecked?.not()
+                        viewModel.changeDarkModeSelection(isChecked == true)
                     }
                 }
             }

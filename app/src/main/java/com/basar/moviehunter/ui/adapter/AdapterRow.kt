@@ -9,10 +9,10 @@ import com.basar.moviehunter.R
 import com.basar.moviehunter.databinding.ItemRowBinding
 import com.basar.moviehunter.databinding.ItemRowHeaderBigBinding
 import com.basar.moviehunter.databinding.ItemRowHeaderSmallBinding
+import com.basar.moviehunter.databinding.ItemSwitchRowBinding
 import com.basar.moviehunter.domain.uimodel.HeaderTextStyle
 import com.basar.moviehunter.domain.uimodel.RowUI
-import com.basar.moviehunter.domain.uimodel.RowUI.HeaderRowUI
-import com.basar.moviehunter.domain.uimodel.RowUI.TextRowUI
+import com.basar.moviehunter.domain.uimodel.RowUI.*
 
 abstract class AdapterRow(
     var rowList: ArrayList<RowUI>? = null,
@@ -21,11 +21,13 @@ abstract class AdapterRow(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     open fun onItemClicked(item: TextRowUI) {}
+    open fun onItemCheckChanged(item: SwitchRowUI) {}
 
     private fun getItemLayoutId(viewType: Int) = when (viewType) {
         0 -> R.layout.item_row_header_big
         1 -> R.layout.item_row_header_small
         2 -> R.layout.item_row
+        3 -> R.layout.item_switch_row
         else -> -1
     }
 
@@ -37,6 +39,7 @@ abstract class AdapterRow(
             }
         }
         is TextRowUI -> 2
+        is SwitchRowUI -> 3
         else -> -1
     }
 
@@ -63,6 +66,13 @@ abstract class AdapterRow(
                     false
                 )
             )
+            3 -> SwitchRowViewHolder(
+                ItemSwitchRowBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
             else -> TextRowViewHolder(
                 ItemRowBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -80,6 +90,7 @@ abstract class AdapterRow(
             0 -> (holder as HeaderBigRowViewHolder).bind(item as HeaderRowUI)
             1 -> (holder as HeaderSmallRowViewHolder).bind(item as HeaderRowUI)
             2 -> (holder as TextRowViewHolder).bind(item as TextRowUI)
+            3 -> (holder as SwitchRowViewHolder).bind(item as SwitchRowUI)
         }
     }
 
@@ -100,6 +111,29 @@ abstract class AdapterRow(
                     }
                 }
                 cl.setOnClickListener { onItemClicked(item) }
+            }
+        }
+    }
+
+    inner class SwitchRowViewHolder(val binding: ItemSwitchRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: SwitchRowUI) {
+            with(binding) {
+                tvRow.apply {
+                    text = item.text
+                    item.iconRes?.let {
+                        setCompoundDrawables(
+                            AppCompatResources.getDrawable(this.context, it),
+                            null,
+                            null,
+                            null
+                        )
+                    }
+                }
+                smSwitch.apply {
+                    isChecked = (item.isChecked == true)
+                    setOnClickListener { onItemCheckChanged(item) }
+                }
             }
         }
     }
