@@ -3,9 +3,14 @@ package com.basar.moviehunter.di
 import android.app.Application
 import android.content.Context
 import com.basar.moviehunter.BuildConfig
+import com.basar.moviehunter.base.app.AppPreferences
+import com.basar.moviehunter.base.app.AppPreferencesImpl
+import com.basar.moviehunter.base.app.AppRepository
+import com.basar.moviehunter.base.app.AppRepositoryImpl
 import com.basar.moviehunter.di.qualifier.*
 import com.basar.moviehunter.util.AppInfoUtil
 import com.basar.moviehunter.util.ResProvider
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,7 +46,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideResProvider(
-        app: Application
-    ) = ResProvider(app)
+    fun provideResProvider(app: Application) = ResProvider(app)
+
+    @Provides
+    @Singleton
+    fun provideAppPreferences(
+        @ApplicationContext context: Context, gson: Gson
+    ): AppPreferences = AppPreferencesImpl(context, gson)
+
+    @Provides
+    @Singleton
+    fun provideAppRepository(
+        appPreferences: AppPreferences
+    ): AppRepository = AppRepositoryImpl(appPreferences)
 }
