@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_othersFragment_to_myListFragment"
             app:destination="@id/myListFragment" />
+        <action
+            android:id="@+id/action_othersFragment_to_aboutMeFragment"
+            app:destination="@id/aboutMeFragment" />
     </fragment>
     <fragment
         android:id="@+id/myListFragment"
@@ -30,5 +33,9 @@
                 app:argType="integer" />
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/aboutMeFragment"
+        android:name="com.basar.moviehunter.ui.others.about.AboutMeFragment"
+        android:label="AboutMeFragment" />
 
 </navigation>

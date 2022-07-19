@@ -12,7 +12,6 @@ import com.basar.moviehunter.databinding.FragmentOthersBinding
 import com.basar.moviehunter.domain.uimodel.RowUI
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.ui.adapter.AdapterRow
-import com.basar.moviehunter.util.ConstantsHelper.WEBSITE_URL
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +49,8 @@ class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver, Listener
                         showToast(resProvider.getString(R.string.delete_downloads) + " clicked")
                     }
                     resProvider.getString(R.string.about) -> {
-                        openCustomTabWebpage(WEBSITE_URL)
+                        navigate(OthersFragmentDirections.actionOthersFragmentToAboutMeFragment())
+//                        openCustomTabWebpage(WEBSITE_URL)
                     }
                 }
             }
