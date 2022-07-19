@@ -37,5 +37,8 @@
 
     <string name="popular_movies">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="download">download</string>
+    <string name="turkish">TUR</string>
+    <string name="english">ENG</string>
 
 </resources>

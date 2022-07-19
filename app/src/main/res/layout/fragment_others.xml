@@ -46,15 +46,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:src="@drawable/ic_add"
-                android:text="TUR" />
+                android:src="@drawable/ic_add" />
 
             <TextView
                 android:id="@+id/tvTurkish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="TUR" />
+                android:text="@string/turkish" />
 
             <View
                 android:layout_width="1dp"
@@ -68,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="ENG" />
+                android:text="@string/english" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

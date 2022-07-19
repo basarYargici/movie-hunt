@@ -36,5 +36,8 @@
 
     <string name="popular_movies">Popüler Filmler</string>
     <string name="top_rated_movies">En Çok Oy Alan Filmler</string>
+    <string name="download">İndir</string>
+    <string name="turkish">TUR</string>
+    <string name="english">ENG</string>
 
 </resources>

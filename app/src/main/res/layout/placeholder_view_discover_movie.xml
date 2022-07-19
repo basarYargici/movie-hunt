@@ -43,7 +43,6 @@
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:background="@color/background"
-        android:text="play"
         app:layout_constraintEnd_toStartOf="@+id/shimmer_btnInfo"
         app:layout_constraintStart_toEndOf="@+id/shimmer_btnAddToList"
         app:layout_constraintTop_toBottomOf="@+id/shimmer_tvCategories" />
@@ -53,7 +52,6 @@
         android:layout_width="80dp"
         android:layout_height="60dp"
         android:background="@color/background"
-        android:text="info"
         app:layout_constraintBottom_toBottomOf="@+id/shimmer_btnPlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/shimmer_btnPlay"
