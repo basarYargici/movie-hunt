@@ -49,5 +49,6 @@
     <string name="java">Java</string>
     <string name="spring_boot">Spring Boot</string>
     <string name="techs_enjoy">Several technologies I enjoy using</string>
+    <string name="contact_with_me">Contact With Me</string>
 
 </resources>

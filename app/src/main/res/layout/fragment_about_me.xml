@@ -81,13 +81,24 @@
                 app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
             <include
+                android:id="@+id/include"
                 layout="@layout/item_technologies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
                 app:layout_constraintStart_toStartOf="@+id/tvTechnologies"
                 app:layout_constraintTop_toBottomOf="@+id/tvTechnologies" />
+
+            <TextView
+                android:id="@+id/tvCommunities"
+                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_with_me"
+                app:layout_constraintEnd_toEndOf="@id/tvDescription"
+                app:layout_constraintStart_toStartOf="@id/tvDescription"
+                app:layout_constraintTop_toBottomOf="@+id/include" />
+            <!--  TODO: Add social media buttons and show CV as PDF -->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
