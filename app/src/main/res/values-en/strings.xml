@@ -40,5 +40,14 @@
     <string name="download">download</string>
     <string name="turkish">TUR</string>
     <string name="english">ENG</string>
+    <string name="about_me">On this page, you can learn a bit about me :) \nI currently work at ING as an
+        Android Developer while pursuing a bachelor\'s degree in computer engineering. I love learning
+        about new technologies and putting them into practice.</string>
+    <string name="welcome">Welcome There!</string>
+    <string name="android">Android</string>
+    <string name="kotlin">Kotlin</string>
+    <string name="java">Java</string>
+    <string name="spring_boot">Spring Boot</string>
+    <string name="techs_enjoy">Several technologies I enjoy using</string>
 
 </resources>

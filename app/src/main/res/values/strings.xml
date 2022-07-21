@@ -39,5 +39,15 @@
     <string name="download">İndir</string>
     <string name="turkish">TUR</string>
     <string name="english">ENG</string>
+    <string name="about_me">Bu sayfada benim ile ilgili bazı bilgiler elde edebilirsiniz :) \nŞu an
+        Bilgisayar mühendisliği alanında lisans öğrenimime devam ederken ING\'de Android Geliştiricisi olarak
+        çalışıyorum. Yeni teknolojileri öğrenmeyi ve onları uygulamalarla
+        deneyimlemeyi seviyorum. </string>
+    <string name="welcome">Merhaba!</string>
+    <string name="android">Android</string>
+    <string name="kotlin">Kotlin</string>
+    <string name="java">Java</string>
+    <string name="spring_boot">Spring Boot</string>
+    <string name="techs_enjoy">Kullanmaktan Zevk Aldığım Teknolojiler</string>
 
 </resources>
