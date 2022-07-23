@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class GetOthersUIUseCase @Inject constructor(
+class GetOthersUseCase @Inject constructor(
     val resProvider: ResProvider
 ) : UseCase<Unit, ArrayList<RowUI>>() {
     private var rowList: ArrayList<RowUI> = arrayListOf()

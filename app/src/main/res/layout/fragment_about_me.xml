@@ -3,7 +3,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -24,14 +25,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/about_me_photo" />
+                tools:src="@drawable/about_me_photo" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:title="İ. Başar YARGICI" />
+                tools:title="İ. Başar YARGICI" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/welcome"
+                tools:text="@string/welcome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/about_me"
+                tools:text="@string/about_me"
                 app:layout_constraintEnd_toEndOf="@id/tvWelcome"
                 app:layout_constraintStart_toStartOf="@id/tvWelcome"
                 app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
@@ -75,7 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/techs_enjoy"
+                tools:text="@string/techs_enjoy"
                 app:layout_constraintEnd_toEndOf="@id/tvDescription"
                 app:layout_constraintStart_toStartOf="@id/tvDescription"
                 app:layout_constraintTop_toBottomOf="@id/tvDescription" />
@@ -91,11 +92,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvTechnologies" />
 
             <TextView
-                android:id="@+id/tvCommunities"
+                android:id="@+id/tvConnect"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/contact_with_me"
+                tools:text="@string/contact_with_me"
                 app:layout_constraintEnd_toEndOf="@id/tvDescription"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@id/tvDescription"
@@ -106,37 +107,37 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/visit_my_linkedin_account"
-                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
-                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
-                app:layout_constraintTop_toBottomOf="@+id/tvCommunities" />
+                tools:text="@string/visit_my_linkedin_account"
+                app:layout_constraintEnd_toEndOf="@+id/tvConnect"
+                app:layout_constraintStart_toStartOf="@+id/tvConnect"
+                app:layout_constraintTop_toBottomOf="@+id/tvConnect" />
 
             <Button
                 android:id="@+id/btnGithub"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/visit_my_github_account"
-                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
-                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                tools:text="@string/visit_my_github_account"
+                app:layout_constraintEnd_toEndOf="@+id/tvConnect"
+                app:layout_constraintStart_toStartOf="@+id/tvConnect"
                 app:layout_constraintTop_toBottomOf="@+id/btnLinkedin" />
 
             <Button
                 android:id="@+id/btnWebsite"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/visit_my_website"
-                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
-                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                tools:text="@string/visit_my_website"
+                app:layout_constraintEnd_toEndOf="@+id/tvConnect"
+                app:layout_constraintStart_toStartOf="@+id/tvConnect"
                 app:layout_constraintTop_toBottomOf="@+id/btnGithub" />
 
             <Button
                 android:id="@+id/btnResume"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/open_my_resume_in_mid_2022"
+                tools:text="@string/open_my_resume_in_mid_2022"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
-                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                app:layout_constraintEnd_toEndOf="@+id/tvConnect"
+                app:layout_constraintStart_toStartOf="@+id/tvConnect"
                 app:layout_constraintTop_toBottomOf="@+id/btnWebsite" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

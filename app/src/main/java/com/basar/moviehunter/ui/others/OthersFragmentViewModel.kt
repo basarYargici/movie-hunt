@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.base.app.AppRepository
-import com.basar.moviehunter.domain.others.GetOthersUIUseCase
+import com.basar.moviehunter.domain.others.GetOthersUseCase
 import com.basar.moviehunter.domain.uimodel.RowUI
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.util.SingleLiveEvent
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OthersFragmentViewModel @Inject constructor(
     private var appRepository: AppRepository,
-    private val getOthersUIUseCase: GetOthersUIUseCase
+    private val getOthersUseCase: GetOthersUseCase
 ) : BaseViewModel() {
     val rowUIList = MutableLiveData<ArrayList<RowUI>>()
     val turkishLanguage = SingleLiveEvent<Boolean>()
@@ -25,7 +25,7 @@ class OthersFragmentViewModel @Inject constructor(
     }
 
     private fun getRowList() = launch {
-        getOthersUIUseCase(Unit).onStart {
+        getOthersUseCase(Unit).onStart {
             showLoading()
         }.onCompletion {
             hideLoading()
