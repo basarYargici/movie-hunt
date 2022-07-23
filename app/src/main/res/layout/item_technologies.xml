@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sk"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="bottom">
     <!-- TODO: Image ve Text alignment can be problem for long strings -->
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:id="@+id/mcvAndroid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="8dp"
-        android:layout_weight="1"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
+        app:layout_constraintEnd_toStartOf="@id/mcvKotlin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTechnologies"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
 
@@ -25,42 +25,43 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ivAndroid"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
-                android:src="@drawable/im_android"
-                app:layout_constraintBottom_toTopOf="@id/guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/im_android" />
 
             <View
-                style="@style/LineDivider"
-                android:layout_marginVertical="4dp" />
+                android:id="@+id/viewAndroid"
+                style="@style/LineDivider" />
 
             <TextView
+                android:id="@+id/tvAndroid"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center|bottom"
                 android:text="@string/android"
                 android:textAlignment="center" />
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:id="@+id/mcvKotlin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="8dp"
-        android:layout_weight="1"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTechnologies"
+        app:layout_constraintEnd_toStartOf="@id/mcvJava"
+        app:layout_constraintStart_toEndOf="@id/mcvAndroid"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
 
@@ -70,26 +71,25 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ivKotlin"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
-                android:src="@drawable/im_kotlin"
-                app:layout_constraintBottom_toTopOf="@id/guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/im_kotlin" />
 
             <View
-                style="@style/LineDivider"
-                android:layout_marginVertical="4dp" />
+                android:id="@+id/viewKotlin"
+                style="@style/LineDivider" />
 
             <TextView
+                android:id="@+id/tvKotlin"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center|bottom"
                 android:text="@string/kotlin"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -97,15 +97,15 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:id="@+id/mcvJava"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_weight="1"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTechnologies"
+        app:layout_constraintEnd_toStartOf="@id/mcvSpring"
+        app:layout_constraintStart_toEndOf="@id/mcvKotlin"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
 
@@ -115,26 +115,24 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ivJava"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
-                android:src="@drawable/im_java"
-                app:layout_constraintBottom_toTopOf="@id/guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/im_java" />
 
             <View
-                style="@style/LineDivider"
-                android:layout_marginVertical="4dp" />
+                android:id="@+id/viewJava"
+                style="@style/LineDivider" />
 
             <TextView
+                android:id="@+id/tvJava"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center|bottom"
                 android:text="@string/java"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -142,15 +140,15 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:id="@+id/mcvSpring"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:layout_weight="1"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTechnologies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/mcvJava"
+        app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/stroke_color"
         app:strokeWidth="1dp">
 
@@ -160,28 +158,26 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ivSpring"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:padding="4dp"
-                android:src="@drawable/im_spring"
-                app:layout_constraintBottom_toTopOf="@id/guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/im_spring" />
 
             <View
-                style="@style/LineDivider"
-                android:layout_marginVertical="4dp" />
+                android:id="@+id/viewSpring"
+                style="@style/LineDivider" />
 
             <TextView
+                android:id="@+id/tvSpring"
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center|bottom"
                 android:text="@string/spring_boot"
                 android:textAlignment="center" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

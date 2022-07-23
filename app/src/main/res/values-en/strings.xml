@@ -50,5 +50,9 @@
     <string name="spring_boot">Spring Boot</string>
     <string name="techs_enjoy">Several technologies I enjoy using</string>
     <string name="contact_with_me">Contact With Me</string>
+    <string name="visit_my_linkedin_account">Visit My Linkedin Account</string>
+    <string name="visit_my_website">Visit My Website</string>
+    <string name="visit_my_github_account">Visit My Github Account</string>
+    <string name="open_my_resume_in_mid_2022">Open My Resume (in mid 2022)</string>
 
 </resources>

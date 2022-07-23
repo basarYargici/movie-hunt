@@ -50,5 +50,9 @@
     <string name="spring_boot">Spring Boot</string>
     <string name="techs_enjoy">Kullanmaktan Zevk Aldığım Teknolojiler</string>
     <string name="contact_with_me">Bana Ulaşabileceğiniz Adresler</string>
+    <string name="visit_my_linkedin_account">Linkedin Hesabımı Ziyaret Edin</string>
+    <string name="visit_my_website">Websitemi Ziyaret Edin</string>
+    <string name="visit_my_github_account">Github Hesabımı Ziyaret Edin</string>
+    <string name="open_my_resume_in_mid_2022">CV\'mi İncelemek İçin (2022 Ortası)</string>
 
 </resources>

@@ -86,6 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tvTechnologies"
                 app:layout_constraintTop_toBottomOf="@+id/tvTechnologies" />
 
@@ -96,9 +97,47 @@
                 android:layout_height="wrap_content"
                 android:text="@string/contact_with_me"
                 app:layout_constraintEnd_toEndOf="@id/tvDescription"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@id/tvDescription"
                 app:layout_constraintTop_toBottomOf="@+id/include" />
-            <!--  TODO: Add social media buttons and show CV as PDF -->
+
+            <Button
+                android:id="@+id/btnLinkedin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/visit_my_linkedin_account"
+                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
+                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                app:layout_constraintTop_toBottomOf="@+id/tvCommunities" />
+
+            <Button
+                android:id="@+id/btnGithub"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/visit_my_github_account"
+                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
+                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                app:layout_constraintTop_toBottomOf="@+id/btnLinkedin" />
+
+            <Button
+                android:id="@+id/btnWebsite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/visit_my_website"
+                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
+                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                app:layout_constraintTop_toBottomOf="@+id/btnGithub" />
+
+            <Button
+                android:id="@+id/btnResume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/open_my_resume_in_mid_2022"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvCommunities"
+                app:layout_constraintStart_toStartOf="@+id/tvCommunities"
+                app:layout_constraintTop_toBottomOf="@+id/btnWebsite" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
