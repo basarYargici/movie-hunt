@@ -27,6 +27,7 @@ class DownloadsViewModel @Inject constructor(
             }.onCompletion {
                 // TODO:
             }.collect {
+                // TODO: if null, show info 
                 downloadedMoviesUI.postValue(it)
             }
     }

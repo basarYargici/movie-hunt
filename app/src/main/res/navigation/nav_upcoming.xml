@@ -17,7 +17,7 @@
 
     <activity
         android:id="@+id/playerActivity"
-        android:name="com.basar.moviehunter.ui.player.PlayerActivity"
+        android:name="com.basar.moviehunter.ui.player.YoutubePlayerActivity"
         android:label="activity_player"
         tools:layout="@layout/activity_player">
         <argument

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieHunter">
         <activity
-            android:name=".ui.player.PlayerActivity"
+            android:name=".ui.player.YoutubePlayerActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />

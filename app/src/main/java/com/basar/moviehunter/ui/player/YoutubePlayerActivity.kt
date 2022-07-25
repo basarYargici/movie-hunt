@@ -9,11 +9,11 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 
-class PlayerActivity : YouTubeBaseActivity() {
+class YoutubePlayerActivity : YouTubeBaseActivity() {
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityPlayerBinding.inflate(layoutInflater)
     }
-    val args: PlayerActivityArgs by navArgs()
+    val args: YoutubePlayerActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
