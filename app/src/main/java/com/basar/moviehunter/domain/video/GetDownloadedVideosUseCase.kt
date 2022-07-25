@@ -17,8 +17,8 @@ class GetDownloadedVideosUseCase @Inject constructor(
     private val downloadedMoviesList = arrayListOf<DownloadedMovie>()
 
     override fun execute(params: Any?): Flow<List<DownloadedMovie>> {
-        // TODO: file can not be read now. Should check
         return flow {
+            downloadedMoviesList.clear()
             downloadedMoviesFiles?.let {
                 it.filter { file ->
                     file.extension == "mp4"
@@ -26,12 +26,6 @@ class GetDownloadedVideosUseCase @Inject constructor(
                     downloadedMoviesList.add(DownloadedMovie(file.path))
                 }
                 downloadedMoviesList
-            }
-            // TODO: Dummy
-            if (downloadedMoviesFiles == null) {
-                downloadedMoviesList.addAll(
-                    listOf(DownloadedMovie("/storage/self/primary/DCIM/moviehunter/Marvel Studios' Doctor Strange in the Multiverse of Madness | A Mind-Bending Vision Featurette"))
-                )
             }
             emit(downloadedMoviesList)
         }

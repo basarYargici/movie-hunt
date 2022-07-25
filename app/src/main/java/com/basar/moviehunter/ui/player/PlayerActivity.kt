@@ -19,10 +19,7 @@ class PlayerActivity : YouTubeBaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // Get reference to the view of Video player
-        val ytPlayer = binding.ytPlayer
-
-        ytPlayer.initialize(
+        binding.ytPlayer.initialize(
             BuildConfig.YOUTUBE_API_KEY,
             object : YouTubePlayer.OnInitializedListener {
                 override fun onInitializationSuccess(

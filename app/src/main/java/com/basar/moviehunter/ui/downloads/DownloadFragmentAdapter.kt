@@ -1,11 +1,12 @@
 package com.basar.moviehunter.ui.downloads
 
+import android.media.MediaMetadataRetriever
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.basar.moviehunter.R
 import com.basar.moviehunter.data.model.DownloadedMovie
 import com.basar.moviehunter.databinding.ItemMostSearchedMoviesBinding
-import com.basar.moviehunter.extension.setImageBitmap
 import java.io.File
 
 class DownloadFragmentAdapter(private var movieList: List<DownloadedMovie>?) :
@@ -16,13 +17,21 @@ class DownloadFragmentAdapter(private var movieList: List<DownloadedMovie>?) :
 
     inner class DownloadItemsViewHolder(private val binding: ItemMostSearchedMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val media = MediaMetadataRetriever()
 
         fun bind(position: Int) {
             val downloadedMovie = movieList?.get(position)
             binding.apply {
                 downloadedMovie?.let { movie ->
-                    imgPoster.setImageBitmap(movie.path)
-                    tvTitle.text = File(movie.path).name
+                    media.setDataSource(movie.path)
+                    val img = media.getFrameAtTime(1000)
+                    if (img != null) {
+                        imgPoster.setImageBitmap(img)
+                    } else {
+                        imgPoster.setImageResource(R.drawable.ic_error)
+                    }
+
+                    tvTitle.text = File(movie.path).nameWithoutExtension
                     ll.setOnClickListener {
                         itemClickListener?.invoke(movie)
                     }

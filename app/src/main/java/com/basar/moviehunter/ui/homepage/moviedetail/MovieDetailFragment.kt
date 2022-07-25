@@ -171,12 +171,12 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             val req = DownloadManager.Request(imageLink)
             req.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
                 .setMimeType("video/mp4")
-                .setTitle("$fileName.mp4")
+                .setTitle(fileName)
                 .setDescription("Downloading Your File")
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 .setDestinationInExternalPublicDir(
                     Environment.DIRECTORY_DCIM,
-                    "/moviehunter/$fileName"
+                    "/moviehunter/$fileName.mp4"
                 )
             val downloadManager = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             downloadManager.enqueue(req)
