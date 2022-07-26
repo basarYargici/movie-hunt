@@ -11,9 +11,7 @@ import java.io.File
 
 class DownloadFragmentAdapter(private var movieList: List<DownloadedMovie>?) :
     RecyclerView.Adapter<DownloadFragmentAdapter.DownloadItemsViewHolder>() {
-
     var itemClickListener: ((DownloadedMovie?) -> Unit)? = null
-    var onPlayClickListener: ((DownloadedMovie?) -> Unit)? = null
 
     inner class DownloadItemsViewHolder(private val binding: ItemMostSearchedMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -35,9 +33,6 @@ class DownloadFragmentAdapter(private var movieList: List<DownloadedMovie>?) :
                     ll.setOnClickListener {
                         itemClickListener?.invoke(movie)
                     }
-                    imgPlayButton.setOnClickListener {
-                        onPlayClickListener?.invoke(movie)
-                    }
                 }
             }
         }
@@ -56,5 +51,4 @@ class DownloadFragmentAdapter(private var movieList: List<DownloadedMovie>?) :
     override fun onBindViewHolder(holder: DownloadItemsViewHolder, position: Int) = holder.bind(position)
 
     override fun getItemCount() = movieList?.size ?: 0
-
 }

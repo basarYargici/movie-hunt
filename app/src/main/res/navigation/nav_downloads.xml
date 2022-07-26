@@ -9,5 +9,18 @@
         android:id="@+id/downloadsFragment"
         android:name="com.basar.moviehunter.ui.downloads.DownloadsFragment"
         android:label="fragment_downloads"
-        tools:layout="@layout/fragment_downloads" />
+        tools:layout="@layout/fragment_downloads" >
+        <action
+            android:id="@+id/action_downloadsFragment_to_localPlayerActivity"
+            app:destination="@id/localPlayerActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/localPlayerActivity"
+        android:name="com.basar.moviehunter.ui.player.LocalPlayerActivity"
+        android:label="activity_local_player"
+        tools:layout="@layout/activity_local_player">
+        <argument
+            android:name="video_path"
+            app:argType="string" />
+    </activity>
 </navigation>

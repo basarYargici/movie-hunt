@@ -20,7 +20,7 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_movieDetailFragment_to_playerActivity"
-            app:destination="@id/playerActivity">
+            app:destination="@id/youtubePlayerActivity">
             <argument
                 android:name="youtube_path"
                 app:argType="string" />

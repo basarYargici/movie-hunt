@@ -41,10 +41,14 @@ class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
                     // TODO: leak each update?
                     val adapter = DownloadFragmentAdapter(it)
                     adapter.itemClickListener = {
+                        it?.path?.let { path ->
+                            navigate(
+                                DownloadsFragmentDirections.actionDownloadsFragmentToLocalPlayerActivity(
+                                    path
+                                )
+                            )
+                        }
                         Toast.makeText(context, "itemClickListener", Toast.LENGTH_SHORT).show()
-                    }
-                    adapter.onPlayClickListener = {
-                        Toast.makeText(context, "onPlayClickListener", Toast.LENGTH_SHORT).show()
                     }
                     rvItems.adapter = adapter
                 }

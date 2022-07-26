@@ -14,7 +14,7 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_playerActivity"
-            app:destination="@id/playerActivity" />
+            app:destination="@id/youtubePlayerActivity" />
         <action
             android:id="@+id/action_homeFragment_to_movieDetail"
             app:destination="@id/movieDetail">
@@ -25,7 +25,7 @@
         </action>
     </fragment>
     <activity
-        android:id="@+id/playerActivity"
+        android:id="@+id/youtubePlayerActivity"
         android:name="com.basar.moviehunter.ui.player.YoutubePlayerActivity"
         android:label="activity_player"
         tools:layout="@layout/activity_player">

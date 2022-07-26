@@ -12,11 +12,11 @@
         tools:layout="@layout/fragment_upcoming">
         <action
             android:id="@+id/action_upcomingFragment_to_playerActivity"
-            app:destination="@id/playerActivity" />
+            app:destination="@id/youtubePlayerActivity" />
     </fragment>
 
     <activity
-        android:id="@+id/playerActivity"
+        android:id="@+id/youtubePlayerActivity"
         android:name="com.basar.moviehunter.ui.player.YoutubePlayerActivity"
         android:label="activity_player"
         tools:layout="@layout/activity_player">
