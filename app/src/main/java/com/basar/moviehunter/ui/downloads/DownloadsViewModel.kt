@@ -1,11 +1,12 @@
 package com.basar.moviehunter.ui.downloads
 
-import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.data.model.DownloadedMovie
 import com.basar.moviehunter.domain.video.GetDownloadedVideosUseCase
-import com.basar.moviehunter.extension.launch
+import com.basar.moviehunter.extension.launchInIO
+import com.basar.moviehunter.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
@@ -14,20 +15,21 @@ import javax.inject.Inject
 class DownloadsViewModel @Inject constructor(
     private val downloadedVideosUseCase: GetDownloadedVideosUseCase,
 ) : BaseViewModel() {
-    val downloadedMoviesUI = MutableLiveData<List<DownloadedMovie>>()
+    val downloadedMoviesUI = SingleLiveEvent<List<DownloadedMovie>>()
 
     fun initVM() {
         getVideos()
     }
 
-    private fun getVideos() = launch {
+    private fun getVideos() = launchInIO {
         downloadedVideosUseCase(null)
             .onStart {
-                // TODO:
+                showShimmer()
             }.onCompletion {
-                // TODO:
+                delay(300L)
+                hideShimmer()
             }.collect {
-                // TODO: if null, show info 
+                // TODO: if null, show info
                 downloadedMoviesUI.postValue(it)
             }
     }

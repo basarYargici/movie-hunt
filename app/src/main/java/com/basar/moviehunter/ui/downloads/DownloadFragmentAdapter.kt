@@ -9,9 +9,9 @@ import com.basar.moviehunter.data.model.DownloadedMovie
 import com.basar.moviehunter.databinding.ItemMostSearchedMoviesBinding
 import java.io.File
 
-class DownloadFragmentAdapter(private var movieList: List<DownloadedMovie>?) :
-    RecyclerView.Adapter<DownloadFragmentAdapter.DownloadItemsViewHolder>() {
+class DownloadFragmentAdapter : RecyclerView.Adapter<DownloadFragmentAdapter.DownloadItemsViewHolder>() {
     var itemClickListener: ((DownloadedMovie?) -> Unit)? = null
+    var movieList: List<DownloadedMovie>? = null
 
     inner class DownloadItemsViewHolder(private val binding: ItemMostSearchedMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {

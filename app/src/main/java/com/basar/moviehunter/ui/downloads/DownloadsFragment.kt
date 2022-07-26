@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -17,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
     private val viewModel: DownloadsViewModel by viewModels()
+    private val adapter = DownloadFragmentAdapter()
     override fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,27 +34,31 @@ class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
             viewModel.initVM()
         }
         setReceiver()
+
+        with(binding) {
+            adapter.itemClickListener = {
+                it?.path?.let { path ->
+                    navigate(
+                        DownloadsFragmentDirections.actionDownloadsFragmentToLocalPlayerActivity(
+                            path
+                        )
+                    )
+                }
+                Toast.makeText(context, "itemClickListener", Toast.LENGTH_SHORT).show()
+            }
+            rvItems.adapter = adapter
+        }
     }
 
     override fun setReceiver() {
         observe(viewModel.downloadedMoviesUI) { popularMovieListUI ->
             popularMovieListUI?.let {
-                with(binding) {
-                    // TODO: leak each update?
-                    val adapter = DownloadFragmentAdapter(it)
-                    adapter.itemClickListener = {
-                        it?.path?.let { path ->
-                            navigate(
-                                DownloadsFragmentDirections.actionDownloadsFragmentToLocalPlayerActivity(
-                                    path
-                                )
-                            )
-                        }
-                        Toast.makeText(context, "itemClickListener", Toast.LENGTH_SHORT).show()
-                    }
-                    rvItems.adapter = adapter
-                }
+                adapter.movieList = it
             }
+        }
+        observe(viewModel.isShimmerVisible) {
+            binding.rvItems.visibility = if (it == false) View.VISIBLE else View.GONE
+            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
         }
     }
 }
