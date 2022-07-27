@@ -5,7 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface DiscoverService {
-    // TODO: args may be changed to request model
     @GET("discover/movie")
     suspend fun discoverMovie(
         @Query("page") page: Int?,

@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
+    // TODO: check has permission
     private val viewModel: DownloadsViewModel by viewModels()
     private val adapter = DownloadFragmentAdapter()
     override fun inflateLayout(

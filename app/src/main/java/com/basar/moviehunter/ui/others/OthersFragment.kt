@@ -50,7 +50,6 @@ class OthersFragment : BaseFragment<FragmentOthersBinding>(), Receiver, Listener
                     }
                     resProvider.getString(R.string.about) -> {
                         navigate(OthersFragmentDirections.actionOthersFragmentToAboutMeFragment())
-//                        openCustomTabWebpage(WEBSITE_URL)
                     }
                 }
             }

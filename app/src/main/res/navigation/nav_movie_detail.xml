@@ -26,4 +26,14 @@
                 app:argType="string" />
         </action>
     </fragment>
+    <activity
+        android:id="@+id/youtubePlayerActivity"
+        android:name="com.basar.moviehunter.ui.player.YoutubePlayerActivity"
+        android:label="activity_player"
+        tools:layout="@layout/activity_player">
+        <argument
+            android:name="youtube_path"
+            app:argType="string" />
+    </activity>
+
 </navigation>

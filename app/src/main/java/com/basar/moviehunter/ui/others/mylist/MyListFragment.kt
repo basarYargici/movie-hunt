@@ -16,6 +16,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener {
     private val viewModel: MyListFragmentViewModel by viewModels()
+    private val adapter = MyListAdapter()
 
     override fun inflateLayout(
         inflater: LayoutInflater,
@@ -26,33 +27,9 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
     override fun initViews() {
         setReceiver()
         viewModel.downloadImage()
-        with(binding) {
-            rvItems.apply {
-                with(MyListAdapter(viewModel.savedMovieURL.value)) {
-                    itemClickListener = {
-                        // TODO: the rest of moviedetail destination is not implemented. Destinations should
-                        //  be updated.
-                        navigate(
-                            MyListFragmentDirections.actionMyListFragmentToMovieDetail(
-                                it?.id ?: 0
-                            )
-                        )
-                    }
+        binding.rvItems.apply {
+            with(this@MyListFragment.adapter) {
 
-                    adapter = this
-                }
-//            addItemDecoration()
-                setHasFixedSize(true)
-            }
-        }
-    }
-
-    override fun setListeners() {}
-
-    override fun setReceiver() {
-        observe(viewModel.savedMovieURL) {
-            // TODO: wrong
-            with(MyListAdapter(viewModel.savedMovieURL.value)) {
                 itemClickListener = {
                     Timber.d("clicked" + it?.id)
                     navigate(
@@ -61,9 +38,18 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
                         )
                     )
                 }
-
-                binding.rvItems.adapter = this
+                adapter = this
             }
+            setHasFixedSize(true)
+        }
+    }
+
+    override fun setListeners() {}
+
+    override fun setReceiver() {
+        observe(viewModel.savedMovieURL) {
+            adapter.imageList = it
+            adapter.notifyDataSetChanged()
         }
         observe(viewModel.isShimmerVisible) {
             binding.rvItems.visibleIf(it == false)

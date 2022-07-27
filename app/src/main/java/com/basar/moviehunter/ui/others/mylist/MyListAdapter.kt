@@ -7,9 +7,9 @@ import com.basar.moviehunter.databinding.ItemMovieListBinding
 import com.basar.moviehunter.domain.uimodel.MyListUI
 import timber.log.Timber
 
-class MyListAdapter(private var imageList: List<MyListUI>?) :
+class MyListAdapter :
     RecyclerView.Adapter<MyListAdapter.MyListViewHolder>() {
-
+    var imageList: List<MyListUI>? = null
     var itemClickListener: ((MyListUI?) -> Unit)? = null
 
     inner class MyListViewHolder(private val binding: ItemMovieListBinding) :

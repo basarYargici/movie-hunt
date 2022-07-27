@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
     private val viewModel: SearchFragmentViewModel by viewModels()
+    val adapter = SearchFragmentAdapter()
 
     override fun inflateLayout(
         inflater: LayoutInflater,
@@ -46,6 +47,18 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
                     return false
                 }
             })
+            setAdapter()
+            rvItems.adapter = adapter
+        }
+    }
+
+    private fun setAdapter() {
+        adapter.itemClickListener = {
+            navigate(SearchFragmentDirections.actionSearchFragmentToMovieDetail(it?.id ?: 0))
+        }
+        adapter.onPlayClickListener = {
+            Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+            viewModel.getMovieVideoPath(it?.id ?: 0)
         }
     }
 
@@ -54,20 +67,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             popularMovieListUI?.let {
                 with(binding) {
                     tvTitle.text = it.title
-                    // TODO: leak each update?
-                    val adapter = SearchFragmentAdapter(it.movieList)
-                    adapter.itemClickListener = {
-                        navigate(
-                            SearchFragmentDirections.actionSearchFragmentToMovieDetail(
-                                it?.id ?: 0
-                            )
-                        )
-                    }
-                    adapter.onPlayClickListener = {
-                        Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-                        viewModel.getMovieVideoPath(it?.id ?: 0)
-                    }
-                    rvItems.adapter = adapter
+                    adapter.movieList = it.movieList
+                    // TODO: all adapters should have diffutil
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
@@ -75,19 +77,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             popularMovieListUI?.let {
                 with(binding) {
                     tvTitle.text = it.title
-                    val adapter = SearchFragmentAdapter(it.movieList)
-                    adapter.itemClickListener = {
-                        navigate(
-                            SearchFragmentDirections.actionSearchFragmentToMovieDetail(
-                                it?.id ?: 0
-                            )
-                        )
-                    }
-                    adapter.onPlayClickListener = {
-                        Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-                        viewModel.getMovieVideoPath(it?.id ?: 0)
-                    }
-                    rvItems.adapter = adapter
+                    adapter.movieList = it.movieList
+                    adapter.notifyDataSetChanged()
                 }
             }
         }

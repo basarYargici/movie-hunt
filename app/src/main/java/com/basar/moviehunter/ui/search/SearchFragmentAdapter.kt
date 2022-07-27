@@ -8,8 +8,9 @@ import com.basar.moviehunter.databinding.ItemMostSearchedMoviesBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.setImageBitmap
 
-class SearchFragmentAdapter(private var movieList: List<MovieResponse>?) :
+class SearchFragmentAdapter :
     RecyclerView.Adapter<SearchFragmentAdapter.SearchItemsViewHolder>() {
+    var movieList: List<MovieResponse>? = null
 
     var itemClickListener: ((MovieResponse?) -> Unit)? = null
     var onPlayClickListener: ((MovieResponse?) -> Unit)? = null

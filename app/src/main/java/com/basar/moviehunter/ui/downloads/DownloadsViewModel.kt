@@ -30,7 +30,6 @@ class DownloadsViewModel @Inject constructor(
                 delay(300L)
                 hideShimmer()
             }.collect {
-                // TODO: if null, show info
                 downloadedMoviesUI.postValue(it)
                 hasDownloadedMovie.postValue(it.isNotEmpty())
             }
