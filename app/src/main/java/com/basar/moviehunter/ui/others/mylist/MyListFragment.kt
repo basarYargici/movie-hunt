@@ -2,12 +2,12 @@ package com.basar.moviehunter.ui.others.mylist
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentMyListBinding
 import com.basar.moviehunter.extension.observe
+import com.basar.moviehunter.extension.visibleIf
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,8 +66,8 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
             }
         }
         observe(viewModel.isShimmerVisible) {
-            binding.rvItems.visibility = if (it == false) View.VISIBLE else View.GONE
-            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.rvItems.visibleIf(it == false)
+            binding.shimmer.visibleIf(it == true)
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentSearchBinding
 import com.basar.moviehunter.extension.observe
+import com.basar.moviehunter.extension.visibleIf
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -99,13 +100,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
         }
 
         observe(viewModel.isShimmerVisible) {
-            binding.cl.visibility = if (it == false) View.VISIBLE else View.GONE
-            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.cl.visibleIf(it == false)
+            binding.shimmer.visibleIf(it == true)
         }
 
         observe(viewModel.isNotFoundAnimVisible) {
             with(binding) {
-                lottieAnimation.visibility = if (it == true) View.VISIBLE else View.GONE
+                lottieAnimation.visibleIf(it == true)
                 if (lottieAnimation.visibility == View.VISIBLE) {
                     tvTitle.text = "No results found with: ${searchView.query}"
                 }

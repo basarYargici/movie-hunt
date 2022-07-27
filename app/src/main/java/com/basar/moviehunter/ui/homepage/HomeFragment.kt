@@ -2,13 +2,13 @@ package com.basar.moviehunter.ui.homepage
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
 import com.basar.moviehunter.extension.observe
+import com.basar.moviehunter.extension.visibleIf
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,8 +54,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
             }
         }
         observe(viewModel.isShimmerVisible) {
-            binding.constraintLayout.visibility = if (it == false) View.VISIBLE else View.GONE
-            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.constraintLayout.visibleIf(it == false)
+            binding.shimmer.visibleIf(it == true)
         }
     }
 

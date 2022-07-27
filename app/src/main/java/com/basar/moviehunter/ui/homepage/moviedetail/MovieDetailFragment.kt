@@ -13,7 +13,6 @@ import android.os.Environment
 import android.provider.MediaStore.Images.Media.insertImage
 import android.util.SparseArray
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -94,8 +93,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             }
         }
         observe(viewModel.isShimmerVisible) {
-            binding.constraintLayout.visibility = if (it == false) View.VISIBLE else View.GONE
-            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.constraintLayout.visibleIf(it == false)
+            binding.shimmer.visibleIf(it == true)
         }
     }
 

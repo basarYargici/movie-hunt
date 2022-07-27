@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -12,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentDownloadsBinding
 import com.basar.moviehunter.extension.observe
+import com.basar.moviehunter.extension.visibleIf
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -57,8 +57,11 @@ class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
             }
         }
         observe(viewModel.isShimmerVisible) {
-            binding.rvItems.visibility = if (it == false) View.VISIBLE else View.GONE
-            binding.shimmer.visibility = if (it == true) View.VISIBLE else View.GONE
+            binding.shimmer.visibleIf(it == true)
+        }
+        observe(viewModel.hasDownloadedMovie) {
+            binding.rvItems.visibleIf(it == true)
+            binding.clNoContent.visibleIf(it == false)
         }
     }
 }

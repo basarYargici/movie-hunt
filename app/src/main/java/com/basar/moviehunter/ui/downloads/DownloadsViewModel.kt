@@ -16,6 +16,7 @@ class DownloadsViewModel @Inject constructor(
     private val downloadedVideosUseCase: GetDownloadedVideosUseCase,
 ) : BaseViewModel() {
     val downloadedMoviesUI = SingleLiveEvent<List<DownloadedMovie>>()
+    val hasDownloadedMovie = SingleLiveEvent<Boolean>()
 
     fun initVM() {
         getVideos()
@@ -31,6 +32,7 @@ class DownloadsViewModel @Inject constructor(
             }.collect {
                 // TODO: if null, show info
                 downloadedMoviesUI.postValue(it)
+                hasDownloadedMovie.postValue(it.isNotEmpty())
             }
     }
 }
