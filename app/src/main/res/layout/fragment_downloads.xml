@@ -12,6 +12,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -35,7 +36,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="32dp"
-            android:visibility="visible"
+            tools:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,23 +50,11 @@
             style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/lorem_L"
+            android:text="@string/no_content"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="@id/lottieAnimation"
             app:layout_constraintStart_toStartOf="@id/lottieAnimation" />
-
-        <Button
-            android:id="@+id/button"
-            style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Select and Download Movies"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="@+id/textView" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -87,6 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="4dp"
+        tools:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

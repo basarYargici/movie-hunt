@@ -54,5 +54,6 @@
     <string name="visit_my_website">Visit My Website</string>
     <string name="visit_my_github_account">Visit My Github Account</string>
     <string name="open_my_resume_in_mid_2022">Open My Resume (in mid 2022)</string>
-
+    <string name="no_content">Make Sure You Have Granted The Reading Permission and You Have Downloaded
+        Video!</string>
 </resources>

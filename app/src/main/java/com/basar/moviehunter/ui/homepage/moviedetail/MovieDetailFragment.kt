@@ -1,6 +1,5 @@
 package com.basar.moviehunter.ui.homepage.moviedetail
 
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.DownloadManager
@@ -42,7 +41,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
 
     companion object {
-        private val PERMISSIONS = arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
+        private val PERMISSIONS = arrayOf(WRITE_EXTERNAL_STORAGE)
     }
 
     override fun inflateLayout(

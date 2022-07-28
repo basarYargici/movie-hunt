@@ -54,5 +54,6 @@
     <string name="visit_my_website">Websitemi Ziyaret Edin</string>
     <string name="visit_my_github_account">Github Hesabımı Ziyaret Edin</string>
     <string name="open_my_resume_in_mid_2022">CV\'mi İncelemek İçin (2022 Ortası)</string>
+    <string name="no_content">Okuma İzni Verdiğinizden ve Video İndirdiğinizden Emin Olun!</string>
 
 </resources>

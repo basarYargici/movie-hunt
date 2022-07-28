@@ -42,14 +42,15 @@
             style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginEnd="16dp"
             android:gravity="start"
-            tools:text="ACTION - COMEDY - SAD"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/tvReleaseDate"
+            app:layout_constraintBottom_toTopOf="@+id/viDivider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvReleaseDate" />
+            app:layout_constraintStart_toStartOf="@+id/tvReleaseDate"
+            tools:text="ACTION - COMEDY - SAD" />
 
         <TextView
             android:id="@+id/tvReleaseDate"
@@ -61,7 +62,7 @@
             android:gravity="start"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/viDivider"
+            app:layout_constraintBottom_toTopOf="@+id/tvCategories"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="May,17" />
 
@@ -78,16 +79,17 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+            style="@style/TextAppearance.Material3.TitleLarge"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
+            android:textAllCaps="true"
             android:gravity="start"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/tvVote"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvCategories"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Johhn Wick" />
 
@@ -98,10 +100,10 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:gravity="start"
-            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/viDivider2"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
             tools:text="Chapter 3- Parabellum(2019)" />
 
@@ -129,6 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="@string/to_list"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnPlay"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +145,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnInfo"
                 app:layout_constraintStart_toEndOf="@+id/btnAddToList"
+                android:textAllCaps="false"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -149,6 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/info"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btnPlay"

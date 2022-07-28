@@ -12,11 +12,12 @@ import javax.inject.Inject
 
 class GetDownloadedVideosUseCase @Inject constructor() : UseCase<Any?, List<DownloadedMovie>>() {
     private val downloadedMoviesFolder = File(ConstantsHelper.DOWNLOADED_VIDEO_PATH)
-    private val downloadedMoviesFiles: Array<File>? = downloadedMoviesFolder.listFiles()
     private val downloadedMoviesList = arrayListOf<DownloadedMovie>()
+    private var downloadedMoviesFiles: Array<File>? = null
 
     override fun execute(params: Any?): Flow<List<DownloadedMovie>> {
         return flow {
+            downloadedMoviesFiles = downloadedMoviesFolder.listFiles()
             downloadedMoviesList.clear()
             downloadedMoviesFiles?.let {
                 it.filter { file ->

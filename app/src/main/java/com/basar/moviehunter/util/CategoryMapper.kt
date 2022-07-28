@@ -21,8 +21,8 @@ val genreList = listOf(
     Genre(10402, "Music"),
     Genre(9648, "Mystery"),
     Genre(10749, "Romance"),
-    Genre(878, "Science_Fiction"),
-    Genre(10770, "TV_Movie"),
+    Genre(878, "Science Fiction"),
+    Genre(10770, "TV Movie"),
     Genre(53, "Thriller"),
     Genre(10752, "War"),
     Genre(37, "Western"),
@@ -61,5 +61,3 @@ fun resultItemToMovieResponseMapper(item: ResultsItem) = with(item) {
         voteCount
     )
 }
-
-

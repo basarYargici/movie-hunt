@@ -10,6 +10,6 @@ fun Fragment.requestPermissionList(
     permissions: Array<String>
 ) = request.launch(permissions)
 
-fun Fragment.isAllPermissionsGranted(permissions: Array<String>) = permissions.all {
+fun Fragment.isAllPermissionsGranted(permissions: Array<String>): Boolean = permissions.all {
     ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
 }

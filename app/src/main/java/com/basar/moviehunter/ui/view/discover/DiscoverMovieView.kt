@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.basar.moviehunter.databinding.ViewDiscoverMovieBinding
+import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.setImageBitmap
-import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
 import com.google.android.material.card.MaterialCardView
 
 class DiscoverMovieView @JvmOverloads constructor(
@@ -27,10 +27,10 @@ class DiscoverMovieView @JvmOverloads constructor(
         onAddToListClickListener: (() -> Unit)? = null,
         onPlayClickListener: (() -> Unit)? = null
     ) {
-        val vote = "${item.voteAverage} / ${item.voteCount}"
+        val vote = "${item.voteAverage} rate / ${item.voteCount} votes"
         with(binding) {
             tvTitle.text = item.title
-            tvCategories.text = item.categoryList?.joinToString(prefix = "*")
+            tvCategories.text = item.categoryList?.take(3)?.joinToString(" - ")
             tvReleaseDate.text = item.releaseDate.toString()
             tvVote.text = vote
             imageView.setImageBitmap(getImageEndpoint(item.backdropPath))
