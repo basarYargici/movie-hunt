@@ -51,7 +51,7 @@ A demo Movie app using <a href="https://www.themoviedb.org" target="_blank"> The
 
 1. Clone the repo
 2. Generate a new API Key from [The Movie DB](https://www.themoviedb.org/settings/api). We will use this key in each request.
-3. Follow the YouTube Android Player API documentation : Download jar and generate API Key
+3. Follow the [Youtube Android Player API](https://developers.google.com/youtube/android/player) documentation : Download jar and generate API Key
 4. Go to `gradle.properties` file and create and bind your keys to IMDB API Key and Youtube API Key :
  ```kotlin
  API_KEY="0d******************v32" 
