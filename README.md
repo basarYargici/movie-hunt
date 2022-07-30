@@ -53,10 +53,14 @@ A demo Movie app using <a href="https://www.themoviedb.org" target="_blank"> The
 2. Generate a new API Key from [The Movie DB](https://www.themoviedb.org/settings/api). We will use this key in each request.
 3. Follow the YouTube Android Player API documentation : Download jar and generate API Key
 4. Go to `gradle.properties` file and create and bind your keys to IMDB API Key and Youtube API Key :
- ```kotlinAPI_KEY="0d******************v32" YOUTUBE_API_KEY="I8Y*************************8J"  
+ ```kotlin
+ API_KEY="0d******************v32" 
+ YOUTUBE_API_KEY="I8Y*************************8J"  
 ```  
 6. Add keys to `gradle.properties` :
- ```kotlinbuildConfigField 'String', 'API_KEY', API_KEY buildConfigField 'String', 'YOUTUBE_API_KEY', YOUTUBE_API_KEY  
+ ```kotlin
+ buildConfigField 'String', 'API_KEY', API_KEY 
+ buildConfigField 'String', 'YOUTUBE_API_KEY', YOUTUBE_API_KEY  
 ```  
 7. Gradle Sync
 
