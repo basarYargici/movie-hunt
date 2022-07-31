@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/background"
+            app:strokeColor="?attr/colorButtonNormal"
             app:strokeWidth="2dp">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -40,7 +40,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/mcv"
             app:layout_constraintTop_toBottomOf="@+id/mcv"
-            app:strokeColor="@color/background"
+            app:strokeColor="?attr/colorButtonNormal"
             app:strokeWidth="2dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -68,7 +68,7 @@
                     android:layout_height="14dp"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
-                    android:background="@color/background" />
+                    android:background="@color/divider_background" />
 
                 <TextView
                     android:id="@+id/tvEnglish"
