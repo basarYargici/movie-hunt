@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="LineDivider">
-        <item name="android:background">@color/background</item>
+    <style name="ActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <style name="LineDivider" parent="Widget.MaterialComponents.MaterialDivider">
+        <item name="android:background">@color/divider_background</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
     </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="iconifiedByDefault">false</item>
+        <item name="queryBackground">@color/transparent</item>
+        <item name="android:background">@drawable/search_view_bg</item>
+        <item name="queryHint">Enter the query</item>
+    </style>
+
 </resources>
