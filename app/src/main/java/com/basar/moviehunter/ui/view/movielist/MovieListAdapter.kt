@@ -8,10 +8,14 @@ import com.basar.moviehunter.databinding.ItemMovieListBinding
 import com.basar.moviehunter.extension.getImageEndpoint
 import com.basar.moviehunter.extension.setImageBitmap
 
-class MovieListAdapter(private var movieList: List<MovieResponse>?) :
-    RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
+class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
     var itemClickListener: ((MovieResponse?) -> Unit)? = null
+    private var movieList: List<MovieResponse>? = arrayListOf()
+
+    fun submitList(movieList: List<MovieResponse>?) {
+        this.movieList = movieList
+    }
 
     inner class MovieListViewHolder(private val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {

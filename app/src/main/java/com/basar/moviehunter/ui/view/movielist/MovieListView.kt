@@ -13,6 +13,8 @@ class MovieListView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
+    private val movieListAdapter = MovieListAdapter()
+
     private val binding: ViewMovieListBinding =
         ViewMovieListBinding.inflate(
             LayoutInflater.from(context),
@@ -29,7 +31,8 @@ class MovieListView @JvmOverloads constructor(
 
     private fun ViewMovieListBinding.initRV(item: List<MovieResponse>?, onClickListener: ((MovieResponse?) -> Unit)?) {
         with(rvItems) {
-            with(MovieListAdapter(item)) {
+            movieListAdapter.submitList(item)
+            with(movieListAdapter) {
                 itemClickListener = onClickListener
                 adapter = this
             }
