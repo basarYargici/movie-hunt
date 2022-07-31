@@ -4,17 +4,9 @@
         <item name="android:statusBarColor">@color/cadet_grey</item>
         <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
         <item name="android:windowBackground">@color/grey</item>
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!--        <item name="materialCardViewStyle">@style/MyStyle.Cardview.Orange</item>-->
+        <item name="colorPrimary">@color/gunmetal</item>
+        <item name="colorPrimaryVariant">@color/limed_spruce</item>
+        <item name="colorOnPrimary">@color/timberwolf</item>
+        <item name="colorSecondary">@color/surf</item>
     </style>
-
-    <!-- CardView -->
-    <!--
-            <style name="MyStyle.Cardview.Orange" parent="Widget.MaterialComponents.CardView">
-                <item name="cardBackgroundColor">#F3921F</item>
-            </style>
-    -->
-
 </resources>

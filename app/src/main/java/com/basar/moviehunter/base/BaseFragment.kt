@@ -125,7 +125,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         .setShareState(CustomTabsIntent.SHARE_STATE_OFF)
         .setDefaultColorSchemeParams(
             CustomTabColorSchemeParams.Builder().setToolbarColor(
-                resProvider.getColor(R.color.purple_200)
+                resProvider.getColor(R.color.cadet_grey)
             ).build()
         )
 }
