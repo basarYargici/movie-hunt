@@ -9,4 +9,10 @@
         <item name="colorOnPrimary">@color/timberwolf</item>
         <item name="colorSecondary">@color/surf</item>
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="itemBackground">@color/dark_grey</item>
+        <item name="itemIconTint">@drawable/bottom_navigation_icon_tint_selector</item>
+        <item name="itemTextColor">@drawable/bottom_navigation_icon_text_selector</item>
+    </style>
 </resources>

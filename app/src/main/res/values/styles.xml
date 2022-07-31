@@ -8,12 +8,6 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="itemBackground">@color/dark_grey</item>
-        <item name="itemIconTint">@drawable/bottom_navigation_icon_tint_selector</item>
-        <item name="itemTextColor">@drawable/bottom_navigation_icon_text_selector</item>
-    </style>
-
     <style name="LineDivider" parent="Widget.MaterialComponents.MaterialDivider">
         <item name="android:background">@color/divider_background</item>
         <item name="android:layout_width">match_parent</item>
@@ -28,5 +22,4 @@
         <item name="android:background">@drawable/search_view_bg</item>
         <item name="queryHint">Enter the query</item>
     </style>
-
 </resources>
