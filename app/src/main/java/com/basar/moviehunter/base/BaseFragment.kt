@@ -21,12 +21,14 @@ import timber.log.Timber
 import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
-    lateinit var binding: VB
+    private var _binding: VB? = null
+    protected val binding get() = _binding!!
+
     private var isViewCreated = false
     abstract fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): VB
 
     @Inject
@@ -42,12 +44,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Timber.v("onCreateView ${javaClass.simpleName}")
-
-        if (!::binding.isInitialized) {
-            binding = inflateLayout(inflater, container, savedInstanceState)
+        if (_binding == null) {
+            _binding = inflateLayout(inflater, container, savedInstanceState)
         }
 
-        return binding.root
+        return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,6 +78,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     override fun onDestroyView() {
         Timber.v("onDestroyView ${javaClass.simpleName}")
         super.onDestroyView()
+        _binding = null
     }
 
     protected fun navigate(
