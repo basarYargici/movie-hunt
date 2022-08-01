@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver, Listener {
     private val viewModel: MovieDetailViewModel by viewModels()
     private val args: MovieDetailFragmentArgs by navArgs()
+    private lateinit var movieListAdapter: MovieListAdapter
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
 
     companion object {
@@ -47,7 +48,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
     override fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): FragmentMovieDetailBinding = FragmentMovieDetailBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
@@ -56,6 +57,21 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
         setReceiver()
         setListeners()
         permissionsRequest = getPermissionsRequest()
+        initRV()
+    }
+
+    private fun initRV() {
+        binding.rvItems.apply {
+            movieListAdapter = MovieListAdapter()
+            with(movieListAdapter) {
+                itemClickListener = {
+                    navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(it?.id ?: 0))
+                    Toast.makeText(context, it?.id.toString(), Toast.LENGTH_SHORT).show()
+                }
+                adapter = this
+            }
+            layoutManager = GridLayoutManager(context, 2)
+        }
     }
 
     override fun setReceiver() {
@@ -76,14 +92,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
 
         observe(viewModel.similarMovies) { similarMovies ->
             binding.rvItems.apply {
-                with(MovieListAdapter(similarMovies?.results?.filterNotNull())) {
-                    itemClickListener = {
-                        navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(it?.id ?: 0))
-                        Toast.makeText(context, it?.id.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                    adapter = this
-                }
-                layoutManager = GridLayoutManager(context, 2)
+                movieListAdapter.submitList(similarMovies?.results?.filterNotNull())
+                movieListAdapter.notifyDataSetChanged()
             }
         }
         observe(viewModel.youtubePath) { path ->

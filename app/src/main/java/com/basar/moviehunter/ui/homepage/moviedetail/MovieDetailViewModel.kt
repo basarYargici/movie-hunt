@@ -7,15 +7,14 @@ import com.basar.moviehunter.domain.imagestorage.UploadImageUseCase
 import com.basar.moviehunter.domain.movie.MovieGetDetailUseCase
 import com.basar.moviehunter.domain.movie.MovieGetSimilarUseCase
 import com.basar.moviehunter.domain.uimodel.MovieDetailUI
+import com.basar.moviehunter.domain.uimodel.RelatedMovieVideoUI
 import com.basar.moviehunter.domain.uimodel.SimilarMovieUI
 import com.basar.moviehunter.domain.video.GetRelatedMovieVideosUseCase
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.util.videoMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
@@ -33,34 +32,54 @@ class MovieDetailViewModel @Inject constructor(
     val youtubePath = MutableLiveData<String>()
 
     fun initVM(movieId: Int) = launch {
-        listOf(
-            async { getDetail(movieId) },
-            async { getSimilar(movieId) },
-            async { getMovieVideoPath(movieId) }
-        ).awaitAll().asFlow().onStart {
+        combine(getDetail(movieId),
+            getSimilar(movieId),
+            getMovieVideoPath(movieId)) { movieDetailUI: MovieDetailUI, similarMovieUI: SimilarMovieUI, relatedMovieVideoUI: RelatedMovieVideoUI ->
+            movieDetail.postValue(movieDetailUI)
+            similarMovies.postValue(similarMovieUI)
+            youtubePath.postValue(videoMapper(relatedMovieVideoUI.results)?.key ?: "")
+        }.onStart {
             showShimmer()
         }.onCompletion {
-            delay(500L)
             hideShimmer()
-        }.collect {}
+        }.collect {
+            println("Result $it")
+        }
+
+//        flowOf(
+//            listOf(
+//                async { getDetail(movieId) },
+//                async { getSimilar(movieId) },
+//                async { getMovieVideoPath(movieId) }
+//            ).awaitAll()
+//        ).onStart {
+//            showShimmer()
+//        }.onCompletion {
+//            hideShimmer()
+//        }.collect {
+//            it[0].collect {
+//                movieDetail.postValue(it as MovieDetailUI)
+//            }
+//            it[1].collect {
+//                similarMovies.postValue(it as SimilarMovieUI)
+//            }
+//            it[2].collect {
+//                youtubePath.postValue(videoMapper((it as RelatedMovieVideoUI).results)?.key ?: "")
+//            }
+//        }
     }
 
-    private fun getDetail(movieId: Int) = launch {
-        detailUseCase(MovieGetDetailUseCase.Params(movieId)).collect {
-            movieDetail.postValue(it)
-        }
+    private fun getDetail(movieId: Int): Flow<MovieDetailUI> {
+
+        return detailUseCase(MovieGetDetailUseCase.Params(movieId))
     }
 
-    private fun getSimilar(movieId: Int) = launch {
-        similarUseCase(MovieGetSimilarUseCase.Params(movieId)).collect {
-            similarMovies.postValue(it)
-        }
+    private fun getSimilar(movieId: Int): Flow<SimilarMovieUI> {
+        return similarUseCase(MovieGetSimilarUseCase.Params(movieId))
     }
 
-    private fun getMovieVideoPath(movieId: Int) = launch {
-        relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(movieId)).collect { videoResults ->
-            youtubePath.postValue(videoMapper(videoResults.results)?.key ?: "")
-        }
+    private fun getMovieVideoPath(movieId: Int): Flow<RelatedMovieVideoUI> {
+        return relatedVideosUseCase(GetRelatedMovieVideosUseCase.Params(movieId))
     }
 
     fun uploadImage(id: Int, uri: Uri) = launch {
