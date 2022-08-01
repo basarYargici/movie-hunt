@@ -45,32 +45,9 @@ class MovieDetailViewModel @Inject constructor(
         }.collect {
             println("Result $it")
         }
-
-//        flowOf(
-//            listOf(
-//                async { getDetail(movieId) },
-//                async { getSimilar(movieId) },
-//                async { getMovieVideoPath(movieId) }
-//            ).awaitAll()
-//        ).onStart {
-//            showShimmer()
-//        }.onCompletion {
-//            hideShimmer()
-//        }.collect {
-//            it[0].collect {
-//                movieDetail.postValue(it as MovieDetailUI)
-//            }
-//            it[1].collect {
-//                similarMovies.postValue(it as SimilarMovieUI)
-//            }
-//            it[2].collect {
-//                youtubePath.postValue(videoMapper((it as RelatedMovieVideoUI).results)?.key ?: "")
-//            }
-//        }
     }
 
     private fun getDetail(movieId: Int): Flow<MovieDetailUI> {
-
         return detailUseCase(MovieGetDetailUseCase.Params(movieId))
     }
 
