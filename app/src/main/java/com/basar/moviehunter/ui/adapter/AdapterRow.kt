@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.basar.moviehunter.R
 import com.basar.moviehunter.databinding.ItemRowBinding
 import com.basar.moviehunter.databinding.ItemRowHeaderBigBinding
 import com.basar.moviehunter.databinding.ItemRowHeaderSmallBinding
@@ -16,20 +15,11 @@ import com.basar.moviehunter.domain.uimodel.RowUI.*
 
 abstract class AdapterRow(
     var rowList: ArrayList<RowUI>? = null,
-    private val hideLastDivider: Boolean = true,
-//    val diffCallback: DiffUtil.ItemCallback<RowUI> = EmptyDiffCallBack()
+    //    val diffCallback: DiffUtil.ItemCallback<RowUI> = EmptyDiffCallBack()
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     open fun onItemClicked(item: TextRowUI) {}
     open fun onItemCheckChanged(item: SwitchRowUI) {}
-
-    private fun getItemLayoutId(viewType: Int) = when (viewType) {
-        0 -> R.layout.item_row_header_big
-        1 -> R.layout.item_row_header_small
-        2 -> R.layout.item_row
-        3 -> R.layout.item_switch_row
-        else -> -1
-    }
 
     override fun getItemViewType(position: Int): Int = when (val item = rowList?.get(position)) {
         is HeaderRowUI -> {
