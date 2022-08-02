@@ -4,12 +4,10 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore.Images.Media.insertImage
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -30,8 +28,8 @@ import com.basar.moviehunter.util.ConstantsHelper.MP4_BEST_QUALITY_FORMAT
 import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.categoryMapper
+import com.basar.moviehunter.util.getImageUri
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.ByteArrayOutputStream
 
 
 @AndroidEntryPoint
@@ -104,14 +102,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             binding.constraintLayout.visibleIf(it == false)
             binding.shimmer.visibleIf(it == true)
         }
-    }
-
-    // TODO refactor
-    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
     }
 
     override fun setListeners() {

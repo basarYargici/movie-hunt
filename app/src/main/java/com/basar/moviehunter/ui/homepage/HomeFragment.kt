@@ -1,15 +1,16 @@
 package com.basar.moviehunter.ui.homepage
 
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.visibleIf
 import com.basar.moviehunter.util.Receiver
+import com.basar.moviehunter.util.getImageUri
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,12 +31,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
     override fun setReceiver() {
         observe(viewModel.discoverUIModel) { discoverUIModel ->
             discoverUIModel?.let {
-                binding.discover.setItem(it, onInfoClickListener = {
-                    navigateToMovieDetail(it.id)
+                binding.discover.setItem(discoverUIModel, onInfoClickListener = {
+                    navigateToMovieDetail(discoverUIModel.id)
                 }, onPlayClickListener = {
-                    navigate(HomeFragmentDirections.actionHomeFragmentToPlayerActivity(it.youtubePath ?: ""))
+                    navigate(
+                        HomeFragmentDirections
+                            .actionHomeFragmentToPlayerActivity(discoverUIModel.youtubePath ?: "")
+                    )
                 }, onAddToListClickListener = {
-                    Toast.makeText(context, "Add To List", Toast.LENGTH_SHORT).show()
+                    // TODO: Dummy solution. Must be improved
+                    getImageUri(requireContext(),
+                        (binding.discover.getTempImageView().drawable as BitmapDrawable).bitmap)?.let {
+                        viewModel.uploadImage(discoverUIModel.id ?: 0, it)
+                    }
                 })
             }
         }

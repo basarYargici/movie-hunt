@@ -34,6 +34,7 @@ class DiscoverMovieView @JvmOverloads constructor(
             tvReleaseDate.text = item.releaseDate.toString()
             tvVote.text = vote
             imageView.setImageBitmap(getImageEndpoint(item.backdropPath))
+            imageViewTemp.setImageBitmap(getImageEndpoint(item.posterPath))
             btnInfo.setOnClickListener {
                 onInfoClickListener?.invoke()
             }
@@ -48,4 +49,6 @@ class DiscoverMovieView @JvmOverloads constructor(
             }
         }
     }
+
+    fun getTempImageView() = binding.imageViewTemp
 }

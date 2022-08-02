@@ -1,10 +1,12 @@
 package com.basar.moviehunter.ui.homepage
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.basar.moviehunter.R
 import com.basar.moviehunter.base.BaseViewModel
 import com.basar.moviehunter.data.model.MovieResponse
 import com.basar.moviehunter.domain.discover.DiscoverUseCase
+import com.basar.moviehunter.domain.imagestorage.UploadImageUseCase
 import com.basar.moviehunter.domain.movie.MovieGetPopularUseCase
 import com.basar.moviehunter.domain.movie.MovieGetTopRatedUseCase
 import com.basar.moviehunter.domain.uimodel.DiscoverMovieUI
@@ -20,6 +22,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,6 +31,7 @@ class HomeFragmentViewModel @Inject constructor(
     private val topRatedUseCase: MovieGetTopRatedUseCase,
     private val discoverUseCase: DiscoverUseCase,
     private val relatedVideosUseCase: GetRelatedMovieVideosUseCase,
+    private val uploadImageUseCase: UploadImageUseCase,
     val resProvider: ResProvider
 ) : BaseViewModel() {
 
@@ -98,6 +102,12 @@ class HomeFragmentViewModel @Inject constructor(
                         }
                     )
                 }
+        }
+    }
+
+    fun uploadImage(id: Int, uri: Uri) = launch {
+        uploadImageUseCase(UploadImageUseCase.Params(id, uri)).collect {
+            Timber.d(it.toString())
         }
     }
 }
