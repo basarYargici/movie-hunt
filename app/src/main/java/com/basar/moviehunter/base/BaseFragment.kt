@@ -24,7 +24,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private var _binding: VB? = null
     protected val binding get() = _binding!!
 
-    private var isViewCreated = false
     abstract fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,12 +55,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-
-        if (!isViewCreated) {
-            isViewCreated = true
-
-            initViews()
-        }
+        initViews()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
