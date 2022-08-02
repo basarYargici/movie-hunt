@@ -66,7 +66,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
             with(movieListAdapter) {
                 itemClickListener = {
                     navigate(MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(it?.id ?: 0))
-                    Toast.makeText(context, it?.id.toString(), Toast.LENGTH_SHORT).show()
                 }
                 adapter = this
             }

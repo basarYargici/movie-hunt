@@ -39,7 +39,6 @@ class UpcomingFragment : BaseFragment<FragmentUpcomingBinding>(), Receiver {
                 )
             }
             adapterUpcoming.shareClickListener = {
-                Toast.makeText(context, "sharing", Toast.LENGTH_SHORT).show()
                 shareMessage(it.toString())
             }
             rvItems.adapter = adapterUpcoming

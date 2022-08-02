@@ -48,7 +48,6 @@ class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
                         )
                     )
                 }
-                Toast.makeText(context, "itemClickListener", Toast.LENGTH_SHORT).show()
             }
             rvItems.adapter = adapter
         }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import com.basar.moviehunter.base.BaseFragment
@@ -57,7 +56,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             navigate(SearchFragmentDirections.actionSearchFragmentToMovieDetail(it?.id ?: 0))
         }
         adapter.onPlayClickListener = {
-            Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
             viewModel.getMovieVideoPath(it?.id ?: 0)
         }
     }
