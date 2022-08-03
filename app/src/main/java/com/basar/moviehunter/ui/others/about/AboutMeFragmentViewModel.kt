@@ -15,6 +15,10 @@ class AboutMeFragmentViewModel @Inject constructor(
     private val getAboutUseCase: GetAboutUseCase
 ) : BaseViewModel() {
     val aboutUI = MutableLiveData<AboutUI>()
+    var linkedActionUrl: String? = null
+    var githubActionUrl: String? = null
+    var websiteActionUrl: String? = null
+    var resumeActionUrl: String? = null
 
     fun initVM() {
         getAbout()

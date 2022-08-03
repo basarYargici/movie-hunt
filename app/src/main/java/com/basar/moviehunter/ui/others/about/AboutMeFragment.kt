@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AboutMeFragment : BaseFragment<FragmentAboutMeBinding>(), Receiver, Listener {
     private val viewModel: AboutMeFragmentViewModel by viewModels()
+
     override fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,12 +24,26 @@ class AboutMeFragment : BaseFragment<FragmentAboutMeBinding>(), Receiver, Listen
     ): FragmentAboutMeBinding = FragmentAboutMeBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
-        setReceiver()
         viewModel.initVM()
+        setReceiver()
+        setListeners()
     }
 
     override fun setListeners() {
-        TODO("Not yet implemented")
+        with(binding) {
+            btnLinkedin.setOnClickListener {
+                viewModel.linkedActionUrl?.let { url -> openCustomTabWebpage(url) }
+            }
+            btnGithub.setOnClickListener {
+                viewModel.githubActionUrl?.let { url -> openCustomTabWebpage(url) }
+            }
+            btnWebsite.setOnClickListener {
+                viewModel.websiteActionUrl?.let { url -> openCustomTabWebpage(url) }
+            }
+            btnResume.setOnClickListener {
+                viewModel.resumeActionUrl?.let { url -> openCustomTabWebpage(url) }
+            }
+        }
     }
 
     override fun setReceiver() {
@@ -70,7 +85,6 @@ class AboutMeFragment : BaseFragment<FragmentAboutMeBinding>(), Receiver, Listen
                 }
             }
         }
-
     }
 
     private fun bindToConnections(connectActionList: ArrayList<ConnectionButtonModel>?) {
@@ -79,32 +93,22 @@ class AboutMeFragment : BaseFragment<FragmentAboutMeBinding>(), Receiver, Listen
                 when (index) {
                     0 -> {
                         btnLinkedin.text = connectionAction.title
-                        // TODO: How to get listener to listener function?
-                        btnLinkedin.setOnClickListener {
-                            connectionAction.actionUrl?.let { it1 -> openCustomTabWebpage(it1) }
-                        }
+                        viewModel.linkedActionUrl = connectionAction.actionUrl
                     }
                     1 -> {
                         btnGithub.text = connectionAction.title
-                        btnGithub.setOnClickListener {
-                            connectionAction.actionUrl?.let { it1 -> openCustomTabWebpage(it1) }
-                        }
+                        viewModel.githubActionUrl = connectionAction.actionUrl
                     }
                     2 -> {
                         btnWebsite.text = connectionAction.title
-                        btnWebsite.setOnClickListener {
-                            connectionAction.actionUrl?.let { it1 -> openCustomTabWebpage(it1) }
-                        }
+                        viewModel.websiteActionUrl = connectionAction.actionUrl
                     }
                     else -> {
                         btnResume.text = connectionAction.title
-                        btnResume.setOnClickListener {
-                            connectionAction.actionUrl?.let { it1 -> openCustomTabWebpage(it1) }
-                        }
+                        viewModel.resumeActionUrl = connectionAction.actionUrl
                     }
                 }
             }
         }
     }
-
 }
