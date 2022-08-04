@@ -63,7 +63,7 @@
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 tools:text="@string/about_me"
                 app:layout_constraintEnd_toEndOf="@id/tvWelcome"
@@ -85,6 +85,7 @@
                 android:id="@+id/include"
                 layout="@layout/item_technologies"
                 android:layout_width="0dp"
+                android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@+id/tvTechnologies"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -105,8 +106,8 @@
             <Button
                 android:id="@+id/btnLinkedin"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="4dp"
                 tools:text="@string/visit_my_linkedin_account"
                 app:layout_constraintEnd_toEndOf="@+id/tvConnect"
                 app:layout_constraintStart_toStartOf="@+id/tvConnect"
@@ -115,7 +116,7 @@
             <Button
                 android:id="@+id/btnGithub"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 tools:text="@string/visit_my_github_account"
                 app:layout_constraintEnd_toEndOf="@+id/tvConnect"
                 app:layout_constraintStart_toStartOf="@+id/tvConnect"
@@ -124,7 +125,7 @@
             <Button
                 android:id="@+id/btnWebsite"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 tools:text="@string/visit_my_website"
                 app:layout_constraintEnd_toEndOf="@+id/tvConnect"
                 app:layout_constraintStart_toStartOf="@+id/tvConnect"
@@ -133,7 +134,7 @@
             <Button
                 android:id="@+id/btnResume"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 tools:text="@string/open_my_resume_in_mid_2022"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tvConnect"
@@ -141,6 +142,4 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnWebsite" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

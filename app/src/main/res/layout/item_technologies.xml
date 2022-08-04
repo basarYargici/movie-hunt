@@ -17,38 +17,17 @@
         app:layout_constraintEnd_toStartOf="@id/mcvKotlin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/stroke_color"
-        app:strokeWidth="1dp">
+        app:strokeColor="?attr/colorButtonNormal"
+        app:strokeWidth="2dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/ivAndroid"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            tools:src="@drawable/im_android" />
 
-            <ImageView
-                android:id="@+id/ivAndroid"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                tools:src="@drawable/im_android" />
-
-            <View
-                android:id="@+id/viewAndroid"
-                style="@style/LineDivider" />
-
-            <TextView
-                android:id="@+id/tvAndroid"
-                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center|bottom"
-                tools:text="@string/android"
-                android:textAlignment="center" />
-        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -61,79 +40,38 @@
         app:layout_constraintEnd_toStartOf="@id/mcvJava"
         app:layout_constraintStart_toEndOf="@id/mcvAndroid"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/stroke_color"
-        app:strokeWidth="1dp">
+        app:strokeColor="?attr/colorButtonNormal"
+        app:strokeWidth="2dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/ivKotlin"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivKotlin"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                tools:src="@drawable/im_kotlin" />
-
-            <View
-                android:id="@+id/viewKotlin"
-                style="@style/LineDivider" />
-
-            <TextView
-                android:id="@+id/tvKotlin"
-                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center|bottom"
-                tools:text="@string/kotlin"
-                android:textAlignment="center" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:padding="8dp"
+            tools:src="@drawable/im_kotlin" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvJava"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="8dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/mcvSpring"
         app:layout_constraintStart_toEndOf="@id/mcvKotlin"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/stroke_color"
-        app:strokeWidth="1dp">
+        app:strokeColor="?attr/colorButtonNormal"
+        app:strokeWidth="2dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/ivJava"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            tools:src="@drawable/im_java" />
 
-            <ImageView
-                android:id="@+id/ivJava"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                tools:src="@drawable/im_java" />
-
-            <View
-                android:id="@+id/viewJava"
-                style="@style/LineDivider" />
-
-            <TextView
-                android:id="@+id/tvJava"
-                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center|bottom"
-                tools:text="@string/java"
-                android:textAlignment="center" />
-        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -146,35 +84,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/mcvJava"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/stroke_color"
-        app:strokeWidth="1dp">
+        app:strokeColor="?attr/colorButtonNormal"
+        app:strokeWidth="2dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/ivSpring"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivSpring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:padding="4dp"
-                tools:src="@drawable/im_spring" />
-
-            <View
-                android:id="@+id/viewSpring"
-                style="@style/LineDivider" />
-
-            <TextView
-                android:id="@+id/tvSpring"
-                style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center|bottom"
-                tools:text="@string/spring_boot"
-                android:textAlignment="center" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:padding="8dp"
+            tools:src="@drawable/im_spring" />
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

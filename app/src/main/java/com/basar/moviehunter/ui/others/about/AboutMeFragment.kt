@@ -66,22 +66,10 @@ class AboutMeFragment : BaseFragment<FragmentAboutMeBinding>(), Receiver, Listen
         with(binding.include) {
             technologyList?.mapIndexed { index, technologyModel ->
                 when (index) {
-                    0 -> {
-                        technologyModel.imageRes?.let { ivAndroid.setImageResource(it) }
-                        tvAndroid.text = technologyModel.title
-                    }
-                    1 -> {
-                        technologyModel.imageRes?.let { ivKotlin.setImageResource(it) }
-                        tvKotlin.text = technologyModel.title
-                    }
-                    2 -> {
-                        technologyModel.imageRes?.let { ivJava.setImageResource(it) }
-                        tvJava.text = technologyModel.title
-                    }
-                    else -> {
-                        technologyModel.imageRes?.let { ivSpring.setImageResource(it) }
-                        tvSpring.text = technologyModel.title
-                    }
+                    0 -> technologyModel.imageRes?.let { ivAndroid.setImageResource(it) }
+                    1 -> technologyModel.imageRes?.let { ivKotlin.setImageResource(it) }
+                    2 -> technologyModel.imageRes?.let { ivJava.setImageResource(it) }
+                    else -> technologyModel.imageRes?.let { ivSpring.setImageResource(it) }
                 }
             }
         }
