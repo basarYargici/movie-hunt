@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
     private val viewModel: SearchFragmentViewModel by viewModels()
-    val adapter = SearchFragmentAdapter()
+    private val adapter = SearchFragmentAdapter()
 
     override fun inflateLayout(
         inflater: LayoutInflater,
@@ -26,11 +26,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
 
     override fun initViews() {
         // TODO: Is it possible that not recreating fr when bottomNav changed?
-        if (viewModel.isInitialized.value != true) {
-            viewModel.initVM()
-        }
-        setReceiver()
-
         with(binding) {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -49,6 +44,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             setAdapter()
             rvItems.adapter = adapter
         }
+
+        if (viewModel.isInitialized.value != true) {
+            viewModel.initVM()
+        }
+        setReceiver()
     }
 
     private fun setAdapter() {
