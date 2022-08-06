@@ -36,7 +36,6 @@ class MovieListView @JvmOverloads constructor(
                 itemClickListener = onClickListener
                 adapter = this
             }
-//            addItemDecoration()
             setHasFixedSize(true)
         }
     }

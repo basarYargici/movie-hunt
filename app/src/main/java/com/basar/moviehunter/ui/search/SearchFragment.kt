@@ -65,9 +65,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             popularMovieListUI?.let {
                 with(binding) {
                     tvTitle.text = it.title
-                    adapter.movieList = it.movieList
-                    // TODO: all adapters should have diffutil
-                    adapter.notifyDataSetChanged()
+                    adapter.submitList(it.movieList)
                 }
             }
         }
@@ -75,8 +73,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), Receiver {
             popularMovieListUI?.let {
                 with(binding) {
                     tvTitle.text = it.title
-                    adapter.movieList = it.movieList
-                    adapter.notifyDataSetChanged()
+                    adapter.submitList(it.movieList)
                 }
             }
         }

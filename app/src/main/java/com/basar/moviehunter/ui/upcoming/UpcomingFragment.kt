@@ -24,32 +24,33 @@ class UpcomingFragment : BaseFragment<FragmentUpcomingBinding>(), Receiver {
     ): FragmentUpcomingBinding = FragmentUpcomingBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        initRV()
         viewModel.initVM()
         setReceiver()
-        with(binding) {
-            adapterUpcoming = UpcomingFragmentAdapter(null)
-            adapterUpcoming.playClickListener = {
-                Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-                // TODO: async problem and catch required if we do not have any youtubePath
-                viewModel.getTutorialLink(it?.id ?: 0)
-                navigate(
-                    UpcomingFragmentDirections.actionUpcomingFragmentToPlayerActivity(
-                        viewModel.youtubePath.value ?: ""
-                    )
+    }
+
+    private fun initRV() {
+        adapterUpcoming = UpcomingFragmentAdapter()
+        adapterUpcoming.playClickListener = {
+            Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+            // TODO: async problem and catch required if we do not have any youtubePath
+            viewModel.getTutorialLink(it?.id ?: 0)
+            navigate(
+                UpcomingFragmentDirections.actionUpcomingFragmentToPlayerActivity(
+                    viewModel.youtubePath.value ?: ""
                 )
-            }
-            adapterUpcoming.shareClickListener = {
-                shareMessage(it.toString())
-            }
-            rvItems.adapter = adapterUpcoming
+            )
         }
+        adapterUpcoming.shareClickListener = {
+            shareMessage(it.toString())
+        }
+        binding.rvItems.adapter = adapterUpcoming
     }
 
     override fun setReceiver() {
         observe(viewModel.upcomingMoviesUI) {
             Timber.d("++upcoming: $it")
-            adapterUpcoming.movieList = it
-            adapterUpcoming.notifyDataSetChanged()
+            adapterUpcoming.submitList(it)
         }
         observe(viewModel.youtubePath) {
             Timber.d("++upcoming: $it")

@@ -8,15 +8,14 @@ import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentMyListBinding
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.visibleIf
-import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener {
+class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver {
     private val viewModel: MyListFragmentViewModel by viewModels()
-    private val adapter = MyListAdapter()
+    private lateinit var adapter: MyListAdapter
 
     override fun inflateLayout(
         inflater: LayoutInflater,
@@ -25,31 +24,32 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener
     ): FragmentMyListBinding = FragmentMyListBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        initRV()
         setReceiver()
         viewModel.downloadImage()
-        binding.rvItems.apply {
-            with(this@MyListFragment.adapter) {
+    }
 
-                itemClickListener = {
-                    Timber.d("clicked" + it?.id)
-                    navigate(
-                        MyListFragmentDirections.actionMyListFragmentToMovieDetail(
-                            it?.id ?: 0
-                        )
+    private fun initRV() {
+        adapter = MyListAdapter()
+        with(adapter) {
+            itemClickListener = {
+                Timber.d("clicked" + it?.id)
+                navigate(
+                    MyListFragmentDirections.actionMyListFragmentToMovieDetail(
+                        it?.id ?: 0
                     )
-                }
-                adapter = this
+                )
             }
-            setHasFixedSize(true)
+            binding.rvItems.apply {
+                adapter = this@MyListFragment.adapter
+                setHasFixedSize(true)
+            }
         }
     }
 
-    override fun setListeners() {}
-
     override fun setReceiver() {
         observe(viewModel.savedMovieURL) {
-            adapter.imageList = it
-            adapter.notifyDataSetChanged()
+            adapter.submitList(it)
         }
         observe(viewModel.isShimmerVisible) {
             binding.rvItems.visibleIf(it == false)

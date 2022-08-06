@@ -50,12 +50,12 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
     ): FragmentMovieDetailBinding = FragmentMovieDetailBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
-        val movieId: Int = args.movieId
-        viewModel.initVM(movieId)
+        initRV()
         setReceiver()
         setListeners()
+        val movieId: Int = args.movieId
+        viewModel.initVM(movieId)
         permissionsRequest = getPermissionsRequest()
-        initRV()
     }
 
     private fun initRV() {
@@ -86,11 +86,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(), Receiver
                 imageView.setImageBitmap(getImageEndpoint(movieDetail?.posterPath))
             }
         }
-
         observe(viewModel.similarMovies) { similarMovies ->
             binding.rvItems.apply {
                 movieListAdapter.submitList(similarMovies?.results?.filterNotNull())
-                movieListAdapter.notifyDataSetChanged()
             }
         }
         observe(viewModel.youtubePath) { path ->

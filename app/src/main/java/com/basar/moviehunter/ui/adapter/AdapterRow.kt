@@ -13,6 +13,7 @@ import com.basar.moviehunter.domain.uimodel.HeaderTextStyle
 import com.basar.moviehunter.domain.uimodel.RowUI
 import com.basar.moviehunter.domain.uimodel.RowUI.*
 
+// TODO: diffCallBack
 abstract class AdapterRow(
     var rowList: ArrayList<RowUI>? = null,
     //    val diffCallback: DiffUtil.ItemCallback<RowUI> = EmptyDiffCallBack()

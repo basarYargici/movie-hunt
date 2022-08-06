@@ -18,11 +18,12 @@ class LocalPlayerActivity : AppCompatActivity() {
 
         val mediaController = MediaController(this)
         mediaController.setAnchorView(binding.vv)
-        binding.vv.setMediaController(mediaController)
-
-        binding.vv.setVideoPath(args.videoPath)
-        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        binding.vv.start()
+        binding.vv.apply {
+            setMediaController(mediaController)
+            setVideoPath(args.videoPath)
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            start()
+        }
     }
 
     // TODO: investigate on this

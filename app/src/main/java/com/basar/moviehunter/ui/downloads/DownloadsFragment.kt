@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
     private val viewModel: DownloadsViewModel by viewModels()
-    private val adapter = DownloadFragmentAdapter()
+    private lateinit var adapter: DownloadFragmentAdapter
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
 
     companion object {
@@ -35,22 +35,24 @@ class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
             permissionsRequest = getPermissionsRequest()
             requestPermissionList(permissionsRequest, PERMISSIONS)
         } else {
+            initRV()
             viewModel.initVM()
         }
         setReceiver()
+    }
 
-        with(binding) {
-            adapter.itemClickListener = {
-                it?.path?.let { path ->
-                    navigate(
-                        DownloadsFragmentDirections.actionDownloadsFragmentToLocalPlayerActivity(
-                            path
-                        )
+    private fun initRV() {
+        adapter = DownloadFragmentAdapter()
+        adapter.itemClickListener = {
+            it?.path?.let { path ->
+                navigate(
+                    DownloadsFragmentDirections.actionDownloadsFragmentToLocalPlayerActivity(
+                        path
                     )
-                }
+                )
             }
-            rvItems.adapter = adapter
         }
+        binding.rvItems.adapter = adapter
     }
 
     private fun getPermissionsRequest() =
@@ -72,8 +74,7 @@ class DownloadsFragment : BaseFragment<FragmentDownloadsBinding>(), Receiver {
     override fun setReceiver() {
         observe(viewModel.downloadedMoviesUI) { popularMovieListUI ->
             popularMovieListUI?.let {
-                adapter.movieList = it
-                adapter.notifyDataSetChanged()
+                adapter.submitList(it)
             }
         }
         observe(viewModel.isShimmerVisible) {

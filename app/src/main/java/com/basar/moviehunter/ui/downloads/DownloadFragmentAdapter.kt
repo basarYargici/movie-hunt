@@ -3,22 +3,32 @@ package com.basar.moviehunter.ui.downloads
 import android.media.MediaMetadataRetriever
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.basar.moviehunter.R
 import com.basar.moviehunter.data.model.DownloadedMovie
 import com.basar.moviehunter.databinding.ItemMostSearchedMoviesBinding
+import com.basar.moviehunter.ui.downloads.DownloadFragmentAdapter.DownloadItemsViewHolder
 import java.io.File
 
-class DownloadFragmentAdapter : RecyclerView.Adapter<DownloadFragmentAdapter.DownloadItemsViewHolder>() {
+class DownloadFragmentAdapter : ListAdapter<DownloadedMovie, DownloadItemsViewHolder>(DiffCallback()) {
     var itemClickListener: ((DownloadedMovie?) -> Unit)? = null
-    var movieList: List<DownloadedMovie>? = null
+
+    private class DiffCallback : DiffUtil.ItemCallback<DownloadedMovie>() {
+        override fun areItemsTheSame(oldItem: DownloadedMovie, newItem: DownloadedMovie) =
+            oldItem.path == newItem.path
+
+        override fun areContentsTheSame(oldItem: DownloadedMovie, newItem: DownloadedMovie) =
+            oldItem == newItem
+    }
 
     inner class DownloadItemsViewHolder(private val binding: ItemMostSearchedMoviesBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val media = MediaMetadataRetriever()
 
         fun bind(position: Int) {
-            val downloadedMovie = movieList?.get(position)
+            val downloadedMovie = getItem(position)
             binding.apply {
                 downloadedMovie?.let { movie ->
                     media.setDataSource(movie.path)
@@ -50,5 +60,5 @@ class DownloadFragmentAdapter : RecyclerView.Adapter<DownloadFragmentAdapter.Dow
 
     override fun onBindViewHolder(holder: DownloadItemsViewHolder, position: Int) = holder.bind(position)
 
-    override fun getItemCount() = movieList?.size ?: 0
+    override fun getItemCount() = currentList.size
 }
