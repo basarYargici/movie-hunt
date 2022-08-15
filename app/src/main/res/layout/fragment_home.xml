@@ -1,76 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:visibility="gone">
 
-                <include layout="@layout/placeholder_view_discover_movie" />
-
-                <include
-                    layout="@layout/placeholder_view_movie_list"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp" />
+                    android:orientation="vertical">
 
-                <include
-                    layout="@layout/placeholder_view_movie_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp" />
+                    <include layout="@layout/placeholder_view_discover_movie" />
 
-            </LinearLayout>
-        </com.facebook.shimmer.ShimmerFrameLayout>
+                    <include
+                        layout="@layout/placeholder_view_movie_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.homepage.HomeFragment">
+                    <include
+                        layout="@layout/placeholder_view_movie_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp" />
 
-            <com.basar.moviehunter.ui.view.discover.DiscoverMovieView
-                android:id="@+id/discover"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
-            <com.basar.moviehunter.ui.view.movielist.MovieListView
-                android:id="@+id/popularMovieList"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/topMovieList"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/discover" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.homepage.HomeFragment">
 
-            <com.basar.moviehunter.ui.view.movielist.MovieListView
-                android:id="@+id/topMovieList"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <com.basar.moviehunter.ui.view.discover.DiscoverMovieView
+                    android:id="@+id/discover"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+                <com.basar.moviehunter.ui.view.movielist.MovieListView
+                    android:id="@+id/popularMovieList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/topMovieList"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/discover" />
 
-</androidx.core.widget.NestedScrollView>
+                <com.basar.moviehunter.ui.view.movielist.MovieListView
+                    android:id="@+id/topMovieList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

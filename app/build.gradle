@@ -54,6 +54,7 @@ dependencies {
     testUnit(dependencies)
     testAndroid(dependencies)
     implementation deps.ANDROID_CONSTRAINT_LAYOUT
+    implementation deps.SWIPE_REFRESH_LAYOUT
     implementation deps.MATERIAL
     implementation deps.COROUTINES
     implementation deps.COROUTINE_PLAY_SERVICE

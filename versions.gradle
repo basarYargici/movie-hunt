@@ -3,16 +3,17 @@ def versions = [
         TARGET_ANDROID_SDK    : 32,
         COMPILE_ANDROID_SDK   : 32,
         Androidx              : [
-                APP_COMPAT       : "1.4.2",
-                CORE_KTX         : "1.8.0",
-                ESPRESSO         : "3.4.0",
-                NAVIGATION       : "2.4.2",
-                CONSTRAINT_LAYOUT: "2.1.4",
-                RECYCLERVIEW     : "1.2.1",
-                EXT              : "1.1.3",
-                LIFECYCLE        : "2.4.1",
-                SAFE_ARGS        : "2.4.2",
-                CUSTOM_CHROME_TAB: "1.4.0",
+                APP_COMPAT          : "1.4.2",
+                CORE_KTX            : "1.8.0",
+                ESPRESSO            : "3.4.0",
+                NAVIGATION          : "2.4.2",
+                CONSTRAINT_LAYOUT   : "2.1.4",
+                RECYCLERVIEW        : "1.2.1",
+                EXT                 : "1.1.3",
+                LIFECYCLE           : "2.4.1",
+                SAFE_ARGS           : "2.4.2",
+                CUSTOM_CHROME_TAB   : "1.4.0",
+                SWIPE_REFRESH_LAYOUT: "1.1.0",
         ],
         MATERIAL              : "1.6.1",
         JUNIT                 : "4.13.2",
@@ -50,6 +51,7 @@ def deps = [
         LIFECYCLE                : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.Androidx.LIFECYCLE}",
         SAFE_ARGS                : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.Androidx.SAFE_ARGS}",
         CUSTOM_CHROME_TAB        : "androidx.browser:browser:${versions.Androidx.CUSTOM_CHROME_TAB}",
+        SWIPE_REFRESH_LAYOUT     : "androidx.swiperefreshlayout:swiperefreshlayout:${versions.Androidx.SWIPE_REFRESH_LAYOUT}",
 
         JUNIT                    : "junit:junit:${versions.JUNIT}",
         MATERIAL                 : "com.google.android.material:material:${versions.MATERIAL}",
@@ -83,45 +85,46 @@ def gradleDeps = [
 ext.gradleDeps = gradleDeps
 
 def implementationAppCompat(DependencyHandler handler) {
-        handler.add("implementation", deps.ANDROID_APP_COMPAT)
-        handler.add("implementation", deps.ANDROID_CORE_KTX)
+    handler.add("implementation", deps.ANDROID_APP_COMPAT)
+    handler.add("implementation", deps.ANDROID_CORE_KTX)
 }
 
 ext.implementationAppCompat = this.&implementationAppCompat
 
 def implementationNavigation(DependencyHandler handler) {
-        handler.add("implementation", deps.NAVIGATION_FRAGMENT)
-        handler.add("implementation", deps.NAVIGATION_UI)
-        handler.add("implementation", deps.LOTTIE)
+    handler.add("implementation", deps.NAVIGATION_FRAGMENT)
+    handler.add("implementation", deps.NAVIGATION_UI)
+    handler.add("implementation", deps.LOTTIE)
 }
 
 ext.implementationNavigation = this.&implementationNavigation
 
 def implementationHilt(DependencyHandler handler) {
-        handler.add("implementation", deps.HILT)
-        handler.add("kapt", deps.KAPT_HILT)
+    handler.add("implementation", deps.HILT)
+    handler.add("kapt", deps.KAPT_HILT)
 }
 
 ext.implementationHilt = this.&implementationHilt
 
 def implementationNetwork(DependencyHandler handler) {
-        handler.add("implementation", deps.RETROFIT)
-        handler.add("implementation", deps.GSON)
-        handler.add("implementation", deps.OKHTTP)
-        handler.add("implementation", deps.OKHTTP_LOGGING)
-        handler.add("implementation", deps.GSON)
+    handler.add("implementation", deps.RETROFIT)
+    handler.add("implementation", deps.GSON)
+    handler.add("implementation", deps.OKHTTP)
+    handler.add("implementation", deps.OKHTTP_LOGGING)
+    handler.add("implementation", deps.GSON)
 }
 
 ext.implementationNetwork = this.&implementationNetwork
 
 def testUnit(DependencyHandler handler) {
-        handler.add("testImplementation", deps.JUNIT)
-        handler.add("testImplementation", deps.EXT)
+    handler.add("testImplementation", deps.JUNIT)
+    handler.add("testImplementation", deps.EXT)
 }
 
 ext.testUnit = this.&testUnit
 
 def testAndroid(DependencyHandler handler) {
-        handler.add("androidTestImplementation", deps.ESPRESSO)
+    handler.add("androidTestImplementation", deps.ESPRESSO)
 }
+
 ext.testAndroid = this.&testAndroid

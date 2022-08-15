@@ -9,12 +9,13 @@ import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentHomeBinding
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.visibleIf
+import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import com.basar.moviehunter.util.getImageUri
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver, Listener {
     private val viewModel: HomeFragmentViewModel by viewModels()
 
     override fun inflateLayout(
@@ -26,6 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
     override fun initViews() {
         viewModel.initVM()
         setReceiver()
+        setListeners()
     }
 
     override fun setReceiver() {
@@ -69,5 +71,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), Receiver {
 
     private fun navigateToMovieDetail(id: Int?) {
         navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetail(id ?: 0))
+    }
+
+    override fun setListeners() {
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.initVM()
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 }
