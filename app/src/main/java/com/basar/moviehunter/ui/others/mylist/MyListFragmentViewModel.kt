@@ -6,7 +6,6 @@ import com.basar.moviehunter.domain.uimodel.MyListUI
 import com.basar.moviehunter.extension.launch
 import com.basar.moviehunter.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
@@ -19,13 +18,16 @@ class MyListFragmentViewModel @Inject constructor(
     val savedMovieURL = SingleLiveEvent<List<MyListUI>>()
     val movieList = arrayListOf<MyListUI>()
 
-    fun downloadImage() = launch {
+    fun initVM() {
+        downloadImage()
+    }
+
+    private fun downloadImage() = launch {
         downloadImageUseCase(null).flatMapMerge {
             downloadImageUseCase.decodeImages(it)
         }.onStart {
             showShimmer()
         }.onCompletion {
-            delay(500L)
             hideShimmer()
         }.collect {
             savedMovieURL.postValue(it)

@@ -8,12 +8,13 @@ import com.basar.moviehunter.base.BaseFragment
 import com.basar.moviehunter.databinding.FragmentMyListBinding
 import com.basar.moviehunter.extension.observe
 import com.basar.moviehunter.extension.visibleIf
+import com.basar.moviehunter.util.Listener
 import com.basar.moviehunter.util.Receiver
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver {
+class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver, Listener {
     private val viewModel: MyListFragmentViewModel by viewModels()
     private lateinit var adapter: MyListAdapter
 
@@ -24,9 +25,10 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver {
     ): FragmentMyListBinding = FragmentMyListBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        viewModel.initVM()
         initRV()
         setReceiver()
-        viewModel.downloadImage()
+        setListeners()
     }
 
     private fun initRV() {
@@ -54,6 +56,13 @@ class MyListFragment : BaseFragment<FragmentMyListBinding>(), Receiver {
         observe(viewModel.isShimmerVisible) {
             binding.rvItems.visibleIf(it == false)
             binding.shimmer.visibleIf(it == true)
+        }
+    }
+
+    override fun setListeners() {
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.initVM()
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 }
